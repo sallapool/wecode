@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-ar="طلب منتج - موردك" data-en="Product Request - Mourdak" data-zh="产品请求 - 莫尔达克">طلب منتج - موردك</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <meta name="google-site-verification" content="rcKPWhkEHwsHlpMV863y9f7DTviHooFZO_Q5YTsu4A4" />
+</head>
+
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2 data-ar="موردك" data-en="Mourdak" data-zh="莫尔达克">موردك</h2>
+            </div>
+            
+            <div class="nav-controls">
+                <div class="language-selector">
+                    <button class="lang-btn" id="lang-btn">
+                        <i class="fas fa-globe"></i>
+                        <span data-ar="العربية" data-en="English" data-zh="中文">العربية</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="lang-dropdown" id="lang-dropdown">
+                        <button class="lang-option" data-lang="ar">العربية</button>
+                        <button class="lang-option" data-lang="en">English</button>
+                        <button class="lang-option" data-lang="zh">中文</button>
+                    </div>
+                </div>
+                <a href="index.html" class="back-home">
+                    <i class="fas fa-home"></i>
+                    <span data-ar="الرئيسية" data-en="Home" data-zh="首页">الرئيسية</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Request Section -->
+    <section class="request-section">
+        <div class="container">
+            <div class="request-header">
+                <h1 data-ar="طلب منتج" data-en="Product Request" data-zh="产品请求">طلب منتج</h1>
+                <p data-ar="أرسل لنا تفاصيل المنتج الذي تريد استيراده وسنتواصل معك بأفضل العروض" data-en="Send us details of the product you want to import and we will contact you with the best offers" data-zh="向我们发送您想要进口的产品的详细信息，我们将与您联系，为您提供最佳报价">أرسل لنا تفاصيل المنتج الذي تريد استيراده وسنتواصل معك بأفضل العروض</p>
+            </div>
+            
+            <div class="request-form-container">
+                <form class="request-form" id="productRequestForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productName" data-ar="اسم المنتج *" data-en="Product Name *" data-zh="产品名称 *">اسم المنتج *</label>
+                            <input type="text" id="productName" name="productName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="quantity" data-ar="الكمية المطلوبة *" data-en="Required Quantity *" data-zh="所需数量 *">الكمية المطلوبة *</label>
+                            <input type="number" id="quantity" name="quantity" min="1" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name" data-ar="الاسم الكامل *" data-en="Full Name *" data-zh="全名 *">الاسم الكامل *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" data-ar="البريد الإلكتروني *" data-en="Email *" data-zh="邮箱 *">البريد الإلكتروني *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone" data-ar="رقم الهاتف *" data-en="Phone Number *" data-zh="电话号码 *">رقم الهاتف *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company" data-ar="اسم الشركة (اختياري)" data-en="Company Name (Optional)" data-zh="公司名称（可选）">اسم الشركة (اختياري)</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productImage" data-ar="صورة المنتج" data-en="Product Image" data-zh="产品图片">صورة المنتج</label>
+                        <div class="file-upload">
+                            <input type="file" id="productImage" name="productImage" accept="image/*">
+                            <div class="file-upload-display" id="fileUploadDisplay">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span data-ar="اضغط هنا لرفع صورة المنتج" data-en="Click here to upload product image" data-zh="点击这里上传产品图片">اضغط هنا لرفع صورة المنتج</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="details" data-ar="تفاصيل إضافية عن المنتج" data-en="Additional Product Details" data-zh="产品附加详情">تفاصيل إضافية عن المنتج</label>
+                        <textarea id="details" name="details" rows="4" placeholder="أدخل أي تفاصيل إضافية حول المنتج، المواصفات، الجودة المطلوبة، إلخ..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="urgency" data-ar="مدى الأولوية" data-en="Priority Level" data-zh="优先级">مدى الأولوية</label>
+                        <select id="urgency" name="urgency">
+                            <option value="low" data-ar="منخفضة" data-en="Low" data-zh="低">منخفضة</option>
+                            <option value="medium" data-ar="متوسطة" data-en="Medium" data-zh="中" selected>متوسطة</option>
+                            <option value="high" data-ar="عالية" data-en="High" data-zh="高">عالية</option>
+                            <option value="urgent" data-ar="عاجلة" data-en="Urgent" data-zh="紧急">عاجلة</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-features">
+                        <h3 data-ar="المميزات المطلوبة" data-en="Required Features" data-zh="所需功能">المميزات المطلوبة</h3>
+                        <div class="features-grid">
+                            <label class="feature-checkbox">
+                                <input type="checkbox" name="features" value="quality-inspection">
+                                <span class="checkmark"></span>
+                                <span data-ar="فحص الجودة" data-en="Quality Inspection" data-zh="质量检验">فحص الجودة</span>
+                            </label>
+                            
+                            <label class="feature-checkbox">
+                                <input type="checkbox" name="features" value="fast-shipping">
+                                <span class="checkmark"></span>
+                                <span data-ar="شحن سريع" data-en="Fast Shipping" data-zh="快速运输">شحن سريع</span>
+                            </label>
+                            
+                            <label class="feature-checkbox">
+                                <input type="checkbox" name="features" value="custom-packaging">
+                                <span class="checkmark"></span>
+                                <span data-ar="تغليف مخصص" data-en="Custom Packaging" data-zh="定制包装">تغليف مخصص</span>
+                            </label>
+                            
+                            <label class="feature-checkbox">
+                                <input type="checkbox" name="features" value="warranty">
+                                <span class="checkmark"></span>
+                                <span data-ar="ضمان" data-en="Warranty" data-zh="保修">ضمان</span>
+                            </label>
+                            
+                            <label class="feature-checkbox">
+                                <input type="checkbox" name="features" value="bulk-discount">
+                                <span class="checkmark"></span>
+                                <span data-ar="خصم الكمية" data-en="Bulk Discount" data-zh="批量折扣">خصم الكمية</span>
+                            </label>
+                            
+                            <label class="feature-checkbox">
+                                <input type="checkbox" name="features" value="documentation">
+                                <span class="checkmark"></span>
+                                <span data-ar="التوثيق الكامل" data-en="Full Documentation" data-zh="完整文档">التوثيق الكامل</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-paper-plane"></i>
+                            <span data-ar="إرسال طلب المنتج" data-en="Send Product Request" data-zh="发送产品请求">إرسال طلب المنتج</span>
+                        </button>
+                        <button type="button" class="btn-consultation" onclick="openConsultation()">
+                            <i class="fas fa-comments"></i>
+                            <span data-ar="طلب استشارة مجانية" data-en="Request Free Consultation" data-zh="请求免费咨询">طلب استشارة مجانية</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 data-ar="تم إرسال طلبك بنجاح!" data-en="Your request has been sent successfully!" data-zh="您的请求已成功发送！">تم إرسال طلبك بنجاح!</h3>
+                <button class="close-modal" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <p data-ar="شكراً لك! تم استلام طلبك وسنتواصل معك خلال 24 ساعة بأفضل العروض والأسعار." data-en="Thank you! Your request has been received and we will contact you within 24 hours with the best offers and prices." data-zh="谢谢！我们已收到您的请求，我们将在24小时内与您联系，为您提供最佳报价和价格。">شكراً لك! تم استلام طلبك وسنتواصل معك خلال 24 ساعة بأفضل العروض والأسعار.</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>+966566072502</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@mourdak.com</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" onclick="closeModal()">
+                    <span data-ar="حسناً" data-en="OK" data-zh="好的">حسناً</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Chat -->
+    <div class="floating-chat">
+        <div class="chat-options">
+            <a href="https://wa.me/966566072502" class="chat-option whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                <span data-ar="واتساب" data-en="WhatsApp" data-zh="WhatsApp">واتساب</span>
+            </a>
+            <a href="mailto:info@mourdak.com" class="chat-option email">
+                <i class="fas fa-envelope"></i>
+                <span data-ar="إيميل" data-en="Email" data-zh="邮件">إيميل</span>
+            </a>
+            <a href="contact.html" class="chat-option consultation">
+                <i class="fas fa-comments"></i>
+                <span data-ar="استشارة مجانية" data-en="Free Consultation" data-zh="免费咨询">استشارة مجانية</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <style>
+        .request-section {
+            padding: 120px 20px 80px;
+            background: var(--light-gray);
+            min-height: 100vh;
+        }
+        
+        .request-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .request-header h1 {
+            color: var(--primary-blue);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .request-header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .request-form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark-gray);
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--light-blue);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--white);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .file-upload {
+            position: relative;
+        }
+        
+        .file-upload input[type="file"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        
+        .file-upload-display {
+            border: 2px dashed var(--light-blue);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            color: var(--gray);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .file-upload-display:hover {
+            border-color: var(--primary-blue);
+            background: var(--light-blue);
+        }
+        
+        .file-upload-display i {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .form-features {
+            margin-bottom: 2rem;
+        }
+        
+        .form-features h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .feature-checkbox {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        
+        .feature-checkbox:hover {
+            background: var(--light-blue);
+        }
+        
+        .feature-checkbox input {
+            display: none;
+        }
+        
+        .feature-checkbox .checkmark {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--light-blue);
+            border-radius: 4px;
+            margin-right: 10px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .feature-checkbox input:checked + .checkmark {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+        
+        .feature-checkbox input:checked + .checkmark::after {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 2px;
+            width: 6px;
+            height: 10px;
+            border: solid var(--white);
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .btn-submit, .btn-consultation {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-submit {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+        
+        .btn-submit:hover {
+            background: var(--dark-blue);
+            transform: translateY(-2px);
+        }
+        
+        .btn-consultation {
+            background: var(--success);
+            color: var(--white);
+        }
+        
+        .btn-consultation:hover {
+            background: #0d9488;
+            transform: translateY(-2px);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.show {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: var(--white);
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: fadeInUp 0.3s ease;
+        }
+        
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--light-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h3 {
+            color: var(--primary-blue);
+            margin: 0;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            padding: 5px;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+        }
+        
+        .modal-body {
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .success-icon {
+            font-size: 4rem;
+            color: var(--success);
+            margin-bottom: 1rem;
+        }
+        
+        .modal-body p {
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-blue);
+        }
+        
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--light-blue);
+            text-align: center;
+        }
+        
+        .back-home {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .back-home:hover {
+            color: var(--dark-blue);
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-submit, .btn-consultation {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .request-form-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+
+    <script>
+        // Include the main script functionality for language switching
+        document.addEventListener('DOMContentLoaded', function() {
+            // Language functionality
+            const langBtn = document.getElementById('lang-btn');
+            const langDropdown = document.getElementById('lang-dropdown');
+            let currentLanguage = localStorage.getItem('language') || 'ar';
+            
+            function setLanguage(lang) {
+                currentLanguage = lang;
+                localStorage.setItem('language', lang);
+                
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                
+                const elements = document.querySelectorAll('[data-ar], [data-en], [data-zh]');
+                elements.forEach(element => {
+                    const text = element.getAttribute(`data-${lang}`);
+                    if (text) {
+                        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                            element.placeholder = text;
+                        } else {
+                            element.textContent = text;
+                        }
+                    }
+                });
+                
+                const langTexts = { ar: 'العربية', en: 'English', zh: '中文' };
+                const langBtnSpan = langBtn.querySelector('span');
+                if (langBtnSpan) {
+                    langBtnSpan.textContent = langTexts[lang];
+                }
+            }
+            
+            // Initialize language
+            setLanguage(currentLanguage);
+            
+            // Language selector events
+            langBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                langDropdown.classList.toggle('show');
+            });
+            
+            document.querySelectorAll('.lang-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    setLanguage(lang);
+                    langDropdown.classList.remove('show');
+                });
+            });
+            
+            document.addEventListener('click', function() {
+                langDropdown.classList.remove('show');
+            });
+            
+            // File upload functionality
+            const fileInput = document.getElementById('productImage');
+            const fileDisplay = document.getElementById('fileUploadDisplay');
+            
+            fileInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        fileDisplay.innerHTML = `
+                            <img src="${e.target.result}" alt="Product Image" style="max-width: 200px; max-height: 150px; border-radius: 8px;">
+                            <p style="margin-top: 10px; color: var(--success);">تم رفع الصورة بنجاح</p>
+                        `;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Form submission
+            document.getElementById('productRequestForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(this);
+                const features = Array.from(document.querySelectorAll('input[name="features"]:checked')).map(cb => cb.value);
+                
+                const requestData = {
+                    id: 'REQ-' + Date.now(),
+                    productName: formData.get('productName'),
+                    quantity: formData.get('quantity'),
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    company: formData.get('company'),
+                    details: formData.get('details'),
+                    urgency: formData.get('urgency'),
+                    features: features,
+                    date: new Date().toISOString(),
+                    image: fileDisplay.querySelector('img') ? fileDisplay.querySelector('img').src : null
+                };
+                
+                // Save to localStorage
+                const existingRequests = JSON.parse(localStorage.getItem('productRequests') || '[]');
+                existingRequests.push(requestData);
+                localStorage.setItem('productRequests', JSON.stringify(existingRequests));
+                
+                // Show success modal
+                document.getElementById('successModal').classList.add('show');
+                
+                // Reset form
+                this.reset();
+                fileDisplay.innerHTML = `
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span>اضغط هنا لرفع صورة المنتج</span>
+                `;
+            });
+            
+            // Scroll to top
+            const scrollToTop = document.getElementById('scrollToTop');
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollToTop.classList.add('show');
+                } else {
+                    scrollToTop.classList.remove('show');
+                }
+            });
+            
+            scrollToTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+        
+        function closeModal() {
+            document.getElementById('successModal').classList.remove('show');
+        }
+        
+        function openConsultation() {
+            window.location.href = 'contact.html';
+        }
+        
+        // Close modal when clicking outside
+        document.getElementById('successModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

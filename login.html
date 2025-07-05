@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-ar="تسجيل الدخول إلى منصة موردك | بوابة الاستيراد من الصين" data-en="Login to Mourdak Platform | China Import Gateway" data-zh="登录莫尔达克平台 | 中国进口门户"> منصة موردك - تسجيل الدخول</title>
+    <meta name="title" content="منصة موردك - تسجيل الدخول ">
+
+    <meta name="description" content="سجل دخولك إلى حسابك في منصة موردك للاستيراد من الصين. تتبع شحناتك، إدارة طلباتك والوصول إلى جميع خدماتنا اللوجستية والتجارية.">
+    
+    <meta name="keywords" content="تسجيل دخول موردك, حساب موردك, دخول موردك, منصة موردك, استيراد من الصين, تتبع شحنات, إدارة طلبات, خدمات لوجستية, وساطة تجارية, موردك للاستيراد">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="تسجيل الدخول إلى منصة موردك | بوابة الاستيراد من الصين">
+    <meta property="og:description" content="سجل دخولك إلى حسابك في منصة موردك للاستيراد من الصين وإدارة جميع عملياتك التجارية">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.mourdak.com/login">
+    <meta property="og:image" content="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=1200">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="تسجيل الدخول إلى منصة موردك | بوابة الاستيراد من الصين">
+    <meta name="twitter:description" content="سجل دخولك إلى حسابك في منصة موردك للاستيراد من الصين وإدارة جميع عملياتك التجارية">
+    
+    <meta name="google-site-verification" content="rcKPWhkEHwsHlpMV863y9f7DTviHooFZO_Q5YTsu4A4" />  
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.mourdak.com/login" />
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Schema Markup for Login Page -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "تسجيل الدخول إلى منصة موردك",
+      "description": "صفحة تسجيل الدخول إلى حسابك في منصة موردك للاستيراد من الصين",
+      "url": "https://www.mourdak.com/login",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "منصة موردك",
+        "url": "https://www.mourdak.com"
+      },
+      "potentialAction": {
+        "@type": "LoginAction",
+        "target": "https://www.mourdak.com/dashboard",
+        "expectsAcceptanceOf": {
+          "@type": "Offer",
+          "name": "شروط الاستخدام"
+        }
+      }
+    }
+    </script>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "منصة موردك",
+          "item": "https://www.mourdak.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "تسجيل الدخول",
+          "item": "https://www.mourdak.com/login"
+        }
+      ]
+    }
+    </script>
+</head>
+
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2 data-ar="موردك" data-en="Mourdak" data-zh="莫尔达克">موردك</h2>
+            </div>
+            
+            <div class="nav-controls">
+                <div class="language-selector">
+                    <button class="lang-btn" id="lang-btn">
+                        <i class="fas fa-globe"></i>
+                        <span data-ar="العربية" data-en="English" data-zh="中文">العربية</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="lang-dropdown" id="lang-dropdown">
+                        <button class="lang-option" data-lang="ar">العربية</button>
+                        <button class="lang-option" data-lang="en">English</button>
+                        <button class="lang-option" data-lang="zh">中文</button>
+                    </div>
+                </div>
+                <a href="index.html" class="back-home">
+                    <i class="fas fa-home"></i>
+                    <span data-ar="الرئيسية" data-en="Home" data-zh="首页">الرئيسية</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="auth-section">
+        <div class="auth-container">
+            <div class="auth-form-container">
+                <div class="auth-header">
+                    <h2 data-ar="تسجيل الدخول" data-en="Login" data-zh="登录">تسجيل الدخول</h2>
+                    <p data-ar="مرحباً بك مرة أخرى" data-en="Welcome back" data-zh="欢迎回来">مرحباً بك مرة أخرى</p>
+                </div>
+                
+                <form class="auth-form" id="loginForm">
+                    <div class="form-group">
+                        <label for="email" data-ar="البريد الإلكتروني" data-en="Email" data-zh="邮箱">البريد الإلكتروني</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password" data-ar="كلمة المرور" data-en="Password" data-zh="密码">كلمة المرور</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="remember">
+                            <span class="checkmark"></span>
+                            <span data-ar="تذكرني" data-en="Remember me" data-zh="记住我">تذكرني</span>
+                        </label>
+                        <a href="#" class="forgot-password" data-ar="نسيت كلمة المرور؟" data-en="Forgot password?" data-zh="忘记密码？">نسيت كلمة المرور؟</a>
+                    </div>
+                    
+                    <button type="submit" class="btn-auth" data-ar="تسجيل الدخول" data-en="Login" data-zh="登录">تسجيل الدخول</button>
+                    
+                    <div class="auth-divider">
+                        <span data-ar="أو" data-en="or" data-zh="或">أو</span>
+                    </div>
+                    
+                    <div class="auth-switch">
+                        <p data-ar="ليس لديك حساب؟" data-en="Don't have an account?" data-zh="没有账户？">ليس لديك حساب؟</p>
+                        <button type="button" class="btn-switch" id="showRegister" data-ar="إنشاء حساب جديد" data-en="Create new account" data-zh="创建新账户">إنشاء حساب جديد</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="auth-form-container" id="registerContainer" style="display: none;">
+                <div class="auth-header">
+                    <h2 data-ar="إنشاء حساب جديد" data-en="Create New Account" data-zh="创建新账户">إنشاء حساب جديد</h2>
+                    <p data-ar="انضم إلينا اليوم" data-en="Join us today" data-zh="今天加入我们">انضم إلينا اليوم</p>
+                </div>
+                
+                <form class="auth-form" id="registerForm">
+                    <div class="form-group">
+                        <label for="fullName" data-ar="الاسم الكامل" data-en="Full Name" data-zh="全名">الاسم الكامل</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="regEmail" data-ar="البريد الإلكتروني" data-en="Email" data-zh="邮箱">البريد الإلكتروني</label>
+                        <input type="email" id="regEmail" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" data-ar="رقم الهاتف" data-en="Phone Number" data-zh="电话号码">رقم الهاتف</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="regPassword" data-ar="كلمة المرور" data-en="Password" data-zh="密码">كلمة المرور</label>
+                        <input type="password" id="regPassword" name="password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword" data-ar="تأكيد كلمة المرور" data-en="Confirm Password" data-zh="确认密码">تأكيد كلمة المرور</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="terms" required>
+                            <span class="checkmark"></span>
+                            <span data-ar="أوافق على الشروط والأحكام" data-en="I agree to the terms and conditions" data-zh="我同意条款和条件">أوافق على الشروط والأحكام</span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn-auth" data-ar="إنشاء حساب" data-en="Create Account" data-zh="创建账户">إنشاء حساب</button>
+                    
+                    <div class="auth-divider">
+                        <span data-ar="أو" data-en="or" data-zh="或">أو</span>
+                    </div>
+                    
+                    <div class="auth-switch">
+                        <p data-ar="لديك حساب بالفعل؟" data-en="Already have an account?" data-zh="已有账户？">لديك حساب بالفعل؟</p>
+                        <button type="button" class="btn-switch" id="showLogin" data-ar="تسجيل الدخول" data-en="Login" data-zh="登录">تسجيل الدخول</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Chat -->
+    <div class="floating-chat">
+        <div class="chat-options">
+            <a href="https://wa.me/966566072502" class="chat-option whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                <span data-ar="واتساب" data-en="WhatsApp" data-zh="WhatsApp">واتساب</span>
+            </a>
+            <a href="mailto:info@mourdak.com" class="chat-option email">
+                <i class="fas fa-envelope"></i>
+                <span data-ar="إيميل" data-en="Email" data-zh="邮件">إيميل</span>
+            </a>
+            <a href="contact.html" class="chat-option consultation">
+                <i class="fas fa-comments"></i>
+                <span data-ar="استشارة مجانية" data-en="Free Consultation" data-zh="免费咨询">استشارة مجانية</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <style>
+        .auth-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 20px 80px;
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+        }
+        
+        .auth-container {
+            max-width: 400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .auth-form-container {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            animation: fadeInUp 0.6s ease;
+        }
+        
+        .auth-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .auth-header h2 {
+            color: var(--primary-blue);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .auth-header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark-gray);
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--light-blue);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--white);
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .checkbox-label input {
+            display: none;
+        }
+        
+        .checkmark {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--light-blue);
+            border-radius: 4px;
+            margin-right: 8px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .checkbox-label input:checked + .checkmark {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+        
+        .checkbox-label input:checked + .checkmark::after {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 2px;
+            width: 6px;
+            height: 10px;
+            border: solid var(--white);
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        .forgot-password {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+        
+        .btn-auth {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .btn-auth:hover {
+            background: var(--dark-blue);
+            transform: translateY(-2px);
+        }
+        
+        .auth-divider {
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .auth-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--light-blue);
+        }
+        
+        .auth-divider span {
+            background: var(--white);
+            padding: 0 15px;
+            color: var(--gray);
+        }
+        
+        .auth-switch {
+            text-align: center;
+        }
+        
+        .auth-switch p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        
+        .btn-switch {
+            background: none;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .btn-switch:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+        
+        .back-home {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .back-home:hover {
+            color: var(--dark-blue);
+        }
+        
+        @media (max-width: 768px) {
+            .auth-form-container {
+                padding: 1.5rem;
+            }
+            
+            .auth-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .form-options {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+        }
+    </style>
+
+    <script>
+        // Include the main script functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Language functionality
+            const langBtn = document.getElementById('lang-btn');
+            const langDropdown = document.getElementById('lang-dropdown');
+            let currentLanguage = localStorage.getItem('language') || 'ar';
+            
+            function setLanguage(lang) {
+                currentLanguage = lang;
+                localStorage.setItem('language', lang);
+                
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                
+                const elements = document.querySelectorAll('[data-ar], [data-en], [data-zh]');
+                elements.forEach(element => {
+                    const text = element.getAttribute(`data-${lang}`);
+                    if (text) {
+                        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                            element.placeholder = text;
+                        } else {
+                            element.textContent = text;
+                        }
+                    }
+                });
+                
+                const langTexts = { ar: 'العربية', en: 'English', zh: '中文' };
+                const langBtnSpan = langBtn.querySelector('span');
+                if (langBtnSpan) {
+                    langBtnSpan.textContent = langTexts[lang];
+                }
+            }
+            
+            // Initialize language
+            setLanguage(currentLanguage);
+            
+            // Language selector events
+            langBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                langDropdown.classList.toggle('show');
+            });
+            
+            document.querySelectorAll('.lang-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    setLanguage(lang);
+                    langDropdown.classList.remove('show');
+                });
+            });
+            
+            document.addEventListener('click', function() {
+                langDropdown.classList.remove('show');
+            });
+            
+            // Form switching
+            const showRegister = document.getElementById('showRegister');
+            const showLogin = document.getElementById('showLogin');
+            const loginContainer = document.querySelector('.auth-form-container');
+            const registerContainer = document.getElementById('registerContainer');
+            
+            showRegister.addEventListener('click', function() {
+                loginContainer.style.display = 'none';
+                registerContainer.style.display = 'block';
+            });
+            
+            showLogin.addEventListener('click', function() {
+                registerContainer.style.display = 'none';
+                loginContainer.style.display = 'block';
+            });
+            
+            // Form submissions
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                
+                // Admin login check
+                if (email === 'admin@mourdak.com' && password === 'admin123') {
+                    window.location.href = 'admin.html';
+                    return;
+                }
+                
+                // Regular user login
+                alert(currentLanguage === 'ar' ? 'تم تسجيل الدخول بنجاح' : 
+                      currentLanguage === 'en' ? 'Login successful' : 
+                      '登录成功');
+                window.location.href = 'index.html';
+            });
+            
+            document.getElementById('registerForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const password = document.getElementById('regPassword').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                
+                if (password !== confirmPassword) {
+                    alert(currentLanguage === 'ar' ? 'كلمات المرور غير متطابقة' : 
+                          currentLanguage === 'en' ? 'Passwords do not match' : 
+                          '密码不匹配');
+                    return;
+                }
+                
+                alert(currentLanguage === 'ar' ? 'تم إنشاء الحساب بنجاح' : 
+                      currentLanguage === 'en' ? 'Account created successfully' : 
+                      '账户创建成功');
+                window.location.href = 'index.html';
+            });
+            
+            // Scroll to top
+            const scrollToTop = document.getElementById('scrollToTop');
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollToTop.classList.add('show');
+                } else {
+                    scrollToTop.classList.remove('show');
+                }
+            });
+            
+            scrollToTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
