@@ -47,10 +47,12 @@
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
+    
     <!-- طلب منتج -->
     <url>
         <loc>https://mourdak.com/product-request</loc>
         <lastmod>2025-06-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.4</priority>
-</url>
+    </url>
+</urlset>
