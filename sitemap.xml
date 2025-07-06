@@ -1,52 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="sitemap.css"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-<!-- الصفحة الرئيسية - أعلى أولوية -->
 <url>
-    <loc>https://mourdak.com/</loc>
+    <loc>https://mowaridak.com/</loc>
     <lastmod>2025-01-27T12:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
 </url>
 
-<!-- تسجيل الدخول - ثاني أولوية -->
 <url>
-    <loc>https://mourdak.com/login</loc>
+    <loc>https://mowaridak.com/login</loc>
     <lastmod>2025-01-27T12:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
 </url>
 
-<!-- من نحن - ثالث أولوية -->
 <url>
-    <loc>https://mourdak.com/about</loc>
+    <loc>https://mowaridak.com/about</loc>
     <lastmod>2025-01-27T12:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
 </url>
 
-<!-- خدماتنا - رابع أولوية -->
 <url>
-    <loc>https://mourdak.com/services</loc>
+    <loc>https://mowaridak.com/services</loc>
     <lastmod>2025-01-27T12:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
 </url>
 
-<!-- سير العمل -->
 <url>
-    <loc>https://mourdak.com/workflow</loc>
+    <loc>https://mowaridak.com/workflow</loc>
     <lastmod>2025-01-27T12:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
 </url>
 
-<!-- اتصل بنا -->
 <url>
-    <loc>https://mourdak.com/contact</loc>
+    <loc>https://mowaridak.com/contact</loc>
     <lastmod>2025-01-27T12:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
