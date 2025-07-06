@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# السماح لجميع محركات البحث
+Allow: /index
+Allow: /about
+Allow: /services
+Allow: /workflow
+Allow: /contact
+Allow: /login
+
+# منع الوصول للملفات الحساسة
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /api/
+
+# خريطة الموقع
+Sitemap: https://mowaridak.com/sitemap.xml
+
+# معدل الزحف (اختياري)
+Crawl-delay: 1

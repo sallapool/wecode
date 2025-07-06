@@ -1,0 +1,12 @@
+# ads.txt file for mowaridak.com
+# This file is used to authorize digital advertising sellers
+
+# Format: domain, publisher ID, relationship, certification authority ID
+# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+# facebook.com, 000000000000000, DIRECT, c3e20eee3f780d68
+
+# Contact information
+contact=info@mowaridak.com
+
+# Subdomain declaration (if applicable)
+# subdomain=ads.mowaridak.com

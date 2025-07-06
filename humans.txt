@@ -1,0 +1,15 @@
+/* TEAM */
+Website: https://mowaridak.com
+Location: Saudi Arabia
+
+/* THANKS */
+جميع عملائنا الكرام الذين يثقون بخدماتنا
+
+/* SITE */
+Last update: 2025/01/27
+Language: Arabic / العربية
+Doctype: HTML5
+IDE: Visual Studio Code
+Standards: HTML5, CSS3, JavaScript ES6+
+Components: Bootstrap, Font Awesome
+Software: Adobe Creative Suite

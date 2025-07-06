@@ -1,0 +1,8 @@
+Contact: mailto:info@mowaridak.com
+Contact: https://mowaridak.com/contact
+Expires: 2025-12-31T23:59:59.000Z
+Encryption: https://mowaridak.com/pgp-key.txt
+Acknowledgments: https://mowaridak.com/security-acknowledgments
+Preferred-Languages: ar, en
+Canonical: https://mowaridak.com/.well-known/security.txt
+Policy: https://mowaridak.com/security-policy

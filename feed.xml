@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>منصة موردك - Mowaridak Platform</title>
+    <description>آخر الأخبار والتحديثات من منصة موردك</description>
+    <link>https://mowaridak.com</link>
+    <atom:link href="https://mowaridak.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <language>ar</language>
+    <lastBuildDate>Mon, 27 Jan 2025 12:00:00 +0000</lastBuildDate>
+    <pubDate>Mon, 27 Jan 2025 12:00:00 +0000</pubDate>
+    <ttl>1440</ttl>
+    <managingEditor>info@mowaridak.com (فريق موردك)</managingEditor>
+    <webMaster>admin@mowaridak.com (مدير الموقع)</webMaster>
+    
+    <item>
+      <title>إطلاق منصة موردك الجديدة</title>
+      <description>نحن فخورون بإطلاق منصة موردك المحدثة بخدمات متطورة وواجهة مستخدم محسنة</description>
+      <link>https://mowaridak.com/</link>
+      <guid>https://mowaridak.com/news/platform-launch</guid>
+      <pubDate>Mon, 27 Jan 2025 12:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>
