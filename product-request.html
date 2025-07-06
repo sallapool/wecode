@@ -4,19 +4,2014 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-ar="طلب منتج - موردك" data-en="Product Request - mowaridak" data-zh="产品请求 - 莫尔达克">طلب منتج - موردك</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <meta name="google-site-verification" content="rcKPWhkEHwsHlpMV863y9f7DTviHooFZO_Q5YTsu4A4" />
+    
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --secondary-blue: #3b82f6;
+            --light-blue: #dbeafe;
+            --dark-blue: #1e40af;
+            --white: #ffffff;
+            --light-gray: #f8fafc;
+            --gray: #64748b;
+            --dark-gray: #334155;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --purple: #8b5cf6;
+            --orange: #f97316;
+            --teal: #14b8a6;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --gradient: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            --gradient-success: linear-gradient(135deg, var(--success), var(--teal));
+            --gradient-purple: linear-gradient(135deg, var(--purple), var(--primary-blue));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Background Animation */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .floating-shapes {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(37, 99, 235, 0.1), rgba(59, 130, 246, 0.05));
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .shape-1 {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: -1s;
+        }
+
+        .shape-2 {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 15%;
+            animation-delay: -3s;
+        }
+
+        .shape-3 {
+            width: 60px;
+            height: 60px;
+            bottom: 30%;
+            left: 20%;
+            animation-delay: -2s;
+        }
+
+        .shape-4 {
+            width: 100px;
+            height: 100px;
+            top: 80%;
+            right: 30%;
+            animation-delay: -4s;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-logo h2 {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.8rem;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .logo-animation {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            animation: shine 3s infinite;
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .language-selector {
+            position: relative;
+        }
+
+        .lang-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--light-blue);
+            background: var(--white);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--primary-blue);
+            background: var(--light-blue);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: var(--shadow-lg);
+            min-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            z-index: 1001;
+            overflow: hidden;
+        }
+
+        .lang-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            display: block;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: none;
+            background: none;
+            text-align: right;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .lang-option:hover {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+        }
+
+        .back-home {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--gradient);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .back-home:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Progress Indicator */
+        .progress-container {
+            position: sticky;
+            top: 80px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            box-shadow: var(--shadow);
+            z-index: 100;
+            margin-top: 80px;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            position: relative;
+            opacity: 0.5;
+            transition: var(--transition);
+        }
+
+        .progress-step.active {
+            opacity: 1;
+        }
+
+        .progress-step.completed {
+            opacity: 1;
+        }
+
+        .step-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--light-blue);
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-bottom: 8px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-circle i {
+            font-size: 1.2rem;
+            position: absolute;
+            transition: var(--transition);
+        }
+
+        .step-number {
+            font-size: 1.1rem;
+            position: absolute;
+            transition: var(--transition);
+            opacity: 0;
+        }
+
+        .progress-step.active .step-circle {
+            background: var(--gradient);
+            color: var(--white);
+            transform: scale(1.1);
+            animation: pulse 2s infinite;
+        }
+
+        .progress-step.active .step-circle i {
+            opacity: 1;
+        }
+
+        .progress-step.active .step-number {
+            opacity: 0;
+        }
+
+        .progress-step.completed .step-circle {
+            background: var(--gradient-success);
+            color: var(--white);
+        }
+
+        .progress-step.completed .step-circle i {
+            opacity: 0;
+        }
+
+        .progress-step.completed .step-number {
+            opacity: 1;
+        }
+
+        .step-label {
+            font-size: 0.9rem;
+            text-align: center;
+            font-weight: 500;
+            color: var(--gray);
+            margin-top: 0.5rem;
+        }
+
+        .progress-step.active .step-label {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 30px;
+            left: 20px;
+            right: 20px;
+            height: 3px;
+            background: var(--light-blue);
+            z-index: -1;
+            border-radius: 2px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-success);
+            width: 0%;
+            transition: width 1s ease;
+            border-radius: 2px;
+        }
+
+        /* Request Section */
+        .request-section {
+            padding: 40px 20px 80px;
+            background: var(--light-gray);
+            min-height: calc(100vh - 160px);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .request-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .header-animation {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .floating-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .floating-icons i {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            opacity: 0.3;
+            animation: floatIcon 3s ease-in-out infinite;
+        }
+
+        .floating-icons i:nth-child(2) {
+            animation-delay: -1s;
+        }
+
+        .floating-icons i:nth-child(3) {
+            animation-delay: -2s;
+        }
+
+        .request-header h1 {
+            color: var(--primary-blue);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
+        }
+
+        .request-header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 0.3rem;
+            animation: countUp 2s ease 1s both;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .request-form-container {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease 0.9s both;
+        }
+
+        .request-form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        /* Form Steps */
+        .form-step {
+            display: none;
+            animation: slideInRight 0.5s ease;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        .step-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--light-blue);
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gradient);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+            animation: bounceIn 0.8s ease;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .step-header h3 {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-header p {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark-gray);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* Enhanced Input Styles */
+        .input-wrapper,
+        .textarea-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper input,
+        .textarea-wrapper textarea,
+        .select-wrapper select {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            border: 2px solid var(--light-blue);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--white);
+            font-family: inherit;
+        }
+
+        .input-icon,
+        .textarea-icon,
+        .select-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+            transition: var(--transition);
+        }
+
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-wrapper select {
+            padding-left: 15px;
+            padding-right: 45px;
+            appearance: none;
+            background-image: none;
+        }
+
+        .select-icon {
+            left: auto;
+            right: 15px;
+            pointer-events: none;
+        }
+
+        .input-wrapper input:focus,
+        .textarea-wrapper textarea:focus,
+        .select-wrapper select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .input-wrapper input:focus + .input-icon,
+        .textarea-wrapper textarea:focus + .textarea-icon {
+            color: var(--primary-blue);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .form-group input.valid,
+        .form-group textarea.valid,
+        .form-group select.valid {
+            border-color: var(--success);
+            background: linear-gradient(to right, var(--white) 95%, rgba(16, 185, 129, 0.1));
+        }
+
+        .form-group input.invalid,
+        .form-group textarea.invalid,
+        .form-group select.invalid {
+            border-color: var(--error);
+            background: linear-gradient(to right, var(--white) 95%, rgba(239, 68, 68, 0.1));
+            animation: shake 0.5s ease;
+        }
+
+        .input-feedback {
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+            min-height: 1rem;
+            transition: var(--transition);
+        }
+
+        .input-feedback.valid {
+            color: var(--success);
+        }
+
+        .input-feedback.invalid {
+            color: var(--error);
+        }
+
+        /* Phone Input */
+        .phone-input {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .phone-input select {
+            flex: 0 0 140px;
+            padding: 12px 15px;
+            border: 2px solid var(--light-blue);
+            border-radius: 12px;
+            background: var(--white);
+        }
+
+        .phone-input .input-wrapper {
+            flex: 1;
+        }
+
+        /* Priority Selector */
+        .priority-selector {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .priority-selector input[type="radio"] {
+            display: none;
+        }
+
+        .priority-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--light-blue);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--white);
+            font-size: 0.9rem;
+        }
+
+        .priority-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--gray);
+            transition: var(--transition);
+        }
+
+        .priority-selector input[type="radio"]:checked + .priority-btn {
+            border-color: var(--primary-blue);
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .priority-selector input[type="radio"]:checked + .priority-btn .priority-dot {
+            background: var(--primary-blue);
+            animation: pulse 1s infinite;
+        }
+
+        .priority-selector input[name="urgency"][value="low"]:checked + .priority-btn .priority-dot {
+            background: var(--success);
+        }
+
+        .priority-selector input[name="urgency"][value="medium"]:checked + .priority-btn .priority-dot {
+            background: var(--warning);
+        }
+
+        .priority-selector input[name="urgency"][value="high"]:checked + .priority-btn .priority-dot {
+            background: var(--orange);
+        }
+
+        .priority-selector input[name="urgency"][value="urgent"]:checked + .priority-btn .priority-dot {
+            background: var(--error);
+            animation: urgentPulse 0.5s infinite;
+        }
+
+        /* Quantity Suggestions */
+        .quantity-suggestions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .qty-btn {
+            padding: 0.4rem 1rem;
+            border: 1px solid var(--light-blue);
+            background: var(--white);
+            color: var(--primary-blue);
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .qty-btn:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Character Counter */
+        .char-counter {
+            text-align: right;
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-top: 0.3rem;
+        }
+
+        /* Multi File Upload */
+        .multi-file-upload {
+            border: 2px dashed var(--light-blue);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            background: linear-gradient(145deg, var(--white), #f8fafc);
+        }
+
+        .multi-file-upload.dragover {
+            border-color: var(--primary-blue);
+            background: var(--light-blue);
+            transform: scale(1.02);
+        }
+
+        .upload-area {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .upload-area input[type="file"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+        }
+
+        .upload-text h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .upload-text p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .uploaded-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .image-preview {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            background: var(--white);
+        }
+
+        .image-preview:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .image-preview img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .image-preview .remove-image {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--error);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .image-preview .remove-image:hover {
+            background: #dc2626;
+            transform: scale(1.1);
+        }
+
+        /* Features Grid */
+        .form-features {
+            margin-bottom: 2rem;
+        }
+
+        .form-features h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .feature-checkbox {
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+            padding: 1.2rem;
+            border: 2px solid var(--light-blue);
+            border-radius: 15px;
+            transition: var(--transition);
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-checkbox::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent);
+            transition: var(--transition);
+        }
+
+        .feature-checkbox:hover {
+            border-color: var(--primary-blue);
+            background: var(--light-blue);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-checkbox:hover::before {
+            left: 100%;
+        }
+
+        .feature-checkbox input {
+            display: none;
+        }
+
+        .checkmark {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--light-blue);
+            border-radius: 6px;
+            margin-right: 15px;
+            position: relative;
+            transition: var(--transition);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .feature-checkbox input:checked + .checkmark {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+            animation: checkPop 0.3s ease;
+        }
+
+        .feature-checkbox input:checked + .checkmark::after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 3px;
+            width: 6px;
+            height: 10px;
+            border: solid var(--white);
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+            animation: checkDraw 0.3s ease 0.1s both;
+        }
+
+        .feature-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            flex: 1;
+        }
+
+        .feature-content i {
+            color: var(--primary-blue);
+            font-size: 1.3rem;
+            margin-top: 0.1rem;
+        }
+
+        .feature-text {
+            flex: 1;
+        }
+
+        .feature-text span {
+            display: block;
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 0.2rem;
+        }
+
+        .feature-text small {
+            color: var(--gray);
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
+        /* Review Summary */
+        .review-summary {
+            background: linear-gradient(145deg, var(--light-gray), var(--white));
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--light-blue);
+        }
+
+        .review-section {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--light-blue);
+        }
+
+        .review-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .review-section h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .review-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding: 0.25rem 0;
+        }
+
+        .review-item span {
+            color: var(--gray);
+        }
+
+        .review-item strong {
+            color: var(--dark-gray);
+            font-weight: 600;
+        }
+
+        .review-images {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .review-images img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid var(--light-blue);
+        }
+
+        /* Contact Preference */
+        .final-actions {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-preference h4 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .contact-options {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-option {
+            cursor: pointer;
+        }
+
+        .contact-option input[type="radio"] {
+            display: none;
+        }
+
+        .option-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            border: 2px solid var(--light-blue);
+            border-radius: 15px;
+            transition: var(--transition);
+            background: var(--white);
+            min-width: 100px;
+        }
+
+        .contact-option input:checked + .option-content {
+            border-color: var(--primary-blue);
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .option-content i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .option-content span {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Form Navigation */
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--light-blue);
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .step-indicator {
+            background: var(--light-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        .btn-prev, .btn-next, .btn-submit {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-width: 120px;
+            justify-content: center;
+        }
+
+        .btn-prev {
+            background: var(--gray);
+            color: var(--white);
+        }
+
+        .btn-prev:hover {
+            background: var(--dark-gray);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-next {
+            background: var(--gradient);
+            color: var(--white);
+        }
+
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-submit {
+            background: var(--gradient-success);
+            color: var(--white);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-submit:disabled {
+            background: var(--gray);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .loading-content {
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--light-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, var(--light-blue), var(--white));
+        }
+
+        .modal-header h3 {
+            color: var(--primary-blue);
+            margin: 0;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            padding: 5px;
+            border-radius: 50%;
+            transition: var(--transition);
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-modal:hover {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Success Animation */
+        .success-animation {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: var(--success);
+            margin-bottom: 1rem;
+            animation: successPulse 1s ease-in-out;
+        }
+
+        .success-confetti {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .success-confetti::before,
+        .success-confetti::after {
+            content: '🎉';
+            position: absolute;
+            font-size: 2rem;
+            animation: confetti 2s ease-out;
+        }
+
+        .success-confetti::before {
+            left: 20%;
+            animation-delay: 0.2s;
+        }
+
+        .success-confetti::after {
+            right: 20%;
+            animation-delay: 0.4s;
+        }
+
+        .request-id {
+            background: var(--light-blue);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .request-id strong {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .modal-body p {
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-blue);
+            font-weight: 500;
+        }
+
+        .next-steps {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: right;
+        }
+
+        .next-steps h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .next-steps ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .next-steps li {
+            padding: 0.3rem 0;
+            color: var(--gray);
+            position: relative;
+            padding-right: 1.5rem;
+        }
+
+        .next-steps li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--light-blue);
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--gray);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--dark-gray);
+            transform: translateY(-2px);
+        }
+
+        /* Loading Animation */
+        .loading-animation {
+            padding: 2rem;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--light-blue);
+            border-top: 4px solid var(--primary-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        .loading-animation h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .loading-animation p {
+            color: var(--gray);
+        }
+
+        .loading-progress {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .progress-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--light-blue);
+            animation: dotPulse 1.5s infinite;
+        }
+
+        .progress-dot:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .progress-dot:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        .progress-dot.active {
+            background: var(--primary-blue);
+        }
+
+        /* Floating Chat */
+        .floating-chat {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 1500;
+        }
+
+        .chat-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .chat-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .pulse-ring {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-blue);
+            animation: pulseRing 2s infinite;
+        }
+
+        .chat-options {
+            position: absolute;
+            bottom: 70px;
+            left: 0;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: var(--shadow-lg);
+            padding: 1rem;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+        }
+
+        .chat-options.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .chat-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            text-decoration: none;
+            color: var(--dark-gray);
+            border-radius: 10px;
+            transition: var(--transition);
+            margin-bottom: 0.5rem;
+        }
+
+        .chat-option:last-child {
+            margin-bottom: 0;
+        }
+
+        .chat-option:hover {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            transform: translateX(5px);
+        }
+
+        .chat-option.whatsapp:hover {
+            background: #e7f5e7;
+            color: #25d366;
+        }
+
+        .chat-option.email:hover {
+            background: #f0f4ff;
+            color: var(--primary-blue);
+        }
+
+        .chat-option.consultation:hover {
+            background: #fef3e7;
+            color: var(--orange);
+        }
+
+        /* Scroll to Top */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
+
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        @keyframes floatIcon {
+            0%, 100% {
+                transform: translateY(0);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-10px);
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+            }
+        }
+
+        @keyframes urgentPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes checkPop {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes checkDraw {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-5px);
+            }
+            75% {
+                transform: translateX(5px);
+            }
+        }
+
+        @keyframes successPulse {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes confetti {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes dotPulse {
+            0%, 80%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            40% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes pulseRing {
+            0% {
+                transform: scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .nav-logo h2 {
+                font-size: 1.5rem;
+            }
+
+            .progress-bar {
+                padding: 0 10px;
+            }
+
+            .progress-step .step-label {
+                font-size: 0.7rem;
+                margin-top: 0.3rem;
+            }
+
+            .step-circle {
+                width: 45px;
+                height: 45px;
+                font-size: 0.9rem;
+            }
+
+            .floating-icons {
+                gap: 1rem;
+            }
+
+            .floating-icons i {
+                font-size: 1.5rem;
+            }
+
+            .request-header h1 {
+                font-size: 2rem;
+            }
+
+            .stats-bar {
+                gap: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+
+            .request-form-container {
+                padding: 1.5rem;
+            }
+
+            .step-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .step-header h3 {
+                font-size: 1.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .phone-input {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .phone-input select {
+                flex: none;
+            }
+
+            .priority-selector {
+                justify-content: center;
+            }
+
+            .quantity-suggestions {
+                justify-content: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-options {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .form-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-center {
+                order: -1;
+            }
+
+            .btn-prev, .btn-next, .btn-submit {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .uploaded-images {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            }
+
+            .image-preview img {
+                height: 80px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .modal-footer {
+                flex-direction: column;
+            }
+
+            .floating-chat {
+                bottom: 20px;
+                left: 20px;
+            }
+
+            .scroll-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .progress-line {
+                display: none;
+            }
+
+            .progress-step .step-label {
+                display: none;
+            }
+
+            .step-circle {
+                width: 35px;
+                height: 35px;
+                font-size: 0.8rem;
+            }
+
+            .request-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .stats-bar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .request-form-container {
+                padding: 1rem;
+            }
+
+            .chat-options {
+                min-width: 160px;
+                left: -12px;
+            }
+        }
+
+        /* Additional responsive improvements */
+        @media (max-width: 360px) {
+            .request-form-container {
+                margin: 0 10px;
+                padding: 0.75rem;
+            }
+
+            .step-header {
+                margin-bottom: 1.5rem;
+            }
+
+            .form-group {
+                margin-bottom: 1rem;
+            }
+
+            .modal-content {
+                margin: 20px 10px;
+                width: calc(100% - 20px);
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .navbar,
+            .floating-chat,
+            .scroll-to-top,
+            .background-animation {
+                display: none !important;
+            }
+
+            .request-section {
+                margin-top: 0;
+            }
+
+            .modal {
+                display: none !important;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --primary-blue: #0000ff;
+                --secondary-blue: #0066cc;
+                --dark-blue: #000080;
+                --success: #008000;
+                --error: #ff0000;
+                --warning: #ff8c00;
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
 </head>
 
-
 <body>
+    <!-- Background Animation -->
+    <div class="background-animation">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
                 <h2 data-ar="موردك" data-en="mowaridak" data-zh="莫尔达克">موردك</h2>
+                <div class="logo-animation"></div>
             </div>
             
             <div class="nav-controls">
@@ -27,12 +2022,12 @@
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="lang-dropdown" id="lang-dropdown">
-                        <button class="lang-option" data-lang="ar">العربية</button>
-                        <button class="lang-option" data-lang="en">English</button>
-                        <button class="lang-option" data-lang="zh">中文</button>
+                        <button class="lang-option" data-lang="ar">🇸🇦 العربية</button>
+                        <button class="lang-option" data-lang="en">🇺🇸 English</button>
+                        <button class="lang-option" data-lang="zh">🇨🇳 中文</button>
                     </div>
                 </div>
-                <a href="index.html" class="back-home">
+                <a href="#" class="back-home">
                     <i class="fas fa-home"></i>
                     <span data-ar="الرئيسية" data-en="Home" data-zh="首页">الرئيسية</span>
                 </a>
@@ -40,127 +2035,436 @@
         </div>
     </nav>
 
+    <!-- Progress Indicator -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-step active" data-step="1">
+                <div class="step-circle">
+                    <i class="fas fa-box"></i>
+                    <span class="step-number">1</span>
+                </div>
+                <span class="step-label" data-ar="معلومات المنتج" data-en="Product Info" data-zh="产品信息">معلومات المنتج</span>
+            </div>
+            <div class="progress-step" data-step="2">
+                <div class="step-circle">
+                    <i class="fas fa-user"></i>
+                    <span class="step-number">2</span>
+                </div>
+                <span class="step-label" data-ar="بياناتك" data-en="Your Details" data-zh="您的详细信息">بياناتك</span>
+            </div>
+            <div class="progress-step" data-step="3">
+                <div class="step-circle">
+                    <i class="fas fa-paperclip"></i>
+                    <span class="step-number">3</span>
+                </div>
+                <span class="step-label" data-ar="المرفقات" data-en="Attachments" data-zh="附件">المرفقات</span>
+            </div>
+            <div class="progress-step" data-step="4">
+                <div class="step-circle">
+                    <i class="fas fa-check"></i>
+                    <span class="step-number">4</span>
+                </div>
+                <span class="step-label" data-ar="المراجعة" data-en="Review" data-zh="审查">المراجعة</span>
+            </div>
+        </div>
+        <div class="progress-line">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
+
     <!-- Product Request Section -->
     <section class="request-section">
         <div class="container">
             <div class="request-header">
+                <div class="header-animation">
+                    <div class="floating-icons">
+                        <i class="fas fa-box"></i>
+                        <i class="fas fa-shipping-fast"></i>
+                        <i class="fas fa-globe"></i>
+                    </div>
+                </div>
                 <h1 data-ar="طلب منتج" data-en="Product Request" data-zh="产品请求">طلب منتج</h1>
                 <p data-ar="أرسل لنا تفاصيل المنتج الذي تريد استيراده وسنتواصل معك بأفضل العروض" data-en="Send us details of the product you want to import and we will contact you with the best offers" data-zh="向我们发送您想要进口的产品的详细信息，我们将与您联系，为您提供最佳报价">أرسل لنا تفاصيل المنتج الذي تريد استيراده وسنتواصل معك بأفضل العروض</p>
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label" data-ar="منتج" data-en="Products" data-zh="产品">منتج</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24</span>
+                        <span class="stat-label" data-ar="ساعة" data-en="Hours" data-zh="小时">ساعة</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">99%</span>
+                        <span class="stat-label" data-ar="رضا" data-en="Satisfaction" data-zh="满意度">رضا</span>
+                    </div>
+                </div>
             </div>
             
             <div class="request-form-container">
                 <form class="request-form" id="productRequestForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="productName" data-ar="اسم المنتج *" data-en="Product Name *" data-zh="产品名称 *">اسم المنتج *</label>
-                            <input type="text" id="productName" name="productName" required>
+                    <!-- Step 1: Product Information -->
+                    <div class="form-step active" data-step="1">
+                        <div class="step-header">
+                            <div class="step-icon">
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <h3 data-ar="معلومات المنتج" data-en="Product Information" data-zh="产品信息">معلومات المنتج</h3>
+                            <p data-ar="أخبرنا عن المنتج الذي تريد استيراده" data-en="Tell us about the product you want to import" data-zh="告诉我们您想要进口的产品">أخبرنا عن المنتج الذي تريد استيراده</p>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="productName" data-ar="اسم المنتج *" data-en="Product Name *" data-zh="产品名称 *">اسم المنتج *</label>
+                                <div class="input-wrapper">
+                                    <input type="text" id="productName" name="productName" required>
+                                    <div class="input-icon"><i class="fas fa-tag"></i></div>
+                                </div>
+                                <div class="input-feedback"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="category" data-ar="فئة المنتج *" data-en="Product Category *" data-zh="产品类别 *">فئة المنتج *</label>
+                                <div class="select-wrapper">
+                                    <select id="category" name="category" required>
+                                        <option value="" data-ar="اختر الفئة" data-en="Select Category" data-zh="选择类别">اختر الفئة</option>
+                                        <option value="electronics" data-ar="إلكترونيات" data-en="Electronics" data-zh="电子产品">إلكترونيات</option>
+                                        <option value="clothing" data-ar="ملابس" data-en="Clothing" data-zh="服装">ملابس</option>
+                                        <option value="home" data-ar="منزل وحديقة" data-en="Home & Garden" data-zh="家居园艺">منزل وحديقة</option>
+                                        <option value="beauty" data-ar="جمال وعناية" data-en="Beauty & Care" data-zh="美容护理">جمال وعناية</option>
+                                        <option value="sports" data-ar="رياضة" data-en="Sports" data-zh="运动">رياضة</option>
+                                        <option value="automotive" data-ar="سيارات" data-en="Automotive" data-zh="汽车">سيارات</option>
+                                        <option value="industrial" data-ar="صناعي" data-en="Industrial" data-zh="工业">صناعي</option>
+                                        <option value="other" data-ar="أخرى" data-en="Other" data-zh="其他">أخرى</option>
+                                    </select>
+                                    <div class="select-icon"><i class="fas fa-chevron-down"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="quantity" data-ar="الكمية المطلوبة *" data-en="Required Quantity *" data-zh="所需数量 *">الكمية المطلوبة *</label>
+                                <div class="input-wrapper">
+                                    <input type="number" id="quantity" name="quantity" min="1" required>
+                                    <div class="input-icon"><i class="fas fa-sort-numeric-up"></i></div>
+                                </div>
+                                <div class="quantity-suggestions">
+                                    <button type="button" class="qty-btn" data-qty="100">100</button>
+                                    <button type="button" class="qty-btn" data-qty="500">500</button>
+                                    <button type="button" class="qty-btn" data-qty="1000">1000</button>
+                                    <button type="button" class="qty-btn" data-qty="5000">5000</button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="budget" data-ar="الميزانية المتوقعة" data-en="Expected Budget" data-zh="预期预算">الميزانية المتوقعة</label>
+                                <div class="select-wrapper">
+                                    <select id="budget" name="budget">
+                                        <option value="" data-ar="اختر الميزانية" data-en="Select Budget" data-zh="选择预算">اختر الميزانية</option>
+                                        <option value="under-1000" data-ar="أقل من 1000$" data-en="Under $1,000" data-zh="低于1000美元">أقل من 1000$</option>
+                                        <option value="1000-5000" data-ar="1000$ - 5000$" data-en="$1,000 - $5,000" data-zh="1000-5000美元">1000$ - 5000$</option>
+                                        <option value="5000-10000" data-ar="5000$ - 10000$" data-en="$5,000 - $10,000" data-zh="5000-10000美元">5000$ - 10000$</option>
+                                        <option value="10000-50000" data-ar="10000$ - 50000$" data-en="$10,000 - $50,000" data-zh="10000-50000美元">10000$ - 50000$</option>
+                                        <option value="over-50000" data-ar="أكثر من 50000$" data-en="Over $50,000" data-zh="超过50000美元">أكثر من 50000$</option>
+                                    </select>
+                                    <div class="select-icon"><i class="fas fa-chevron-down"></i></div>
+                                </div>
+                            </div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="quantity" data-ar="الكمية المطلوبة *" data-en="Required Quantity *" data-zh="所需数量 *">الكمية المطلوبة *</label>
-                            <input type="number" id="quantity" name="quantity" min="1" required>
+                            <label for="details" data-ar="وصف تفصيلي للمنتج" data-en="Detailed Product Description" data-zh="详细产品描述">وصف تفصيلي للمنتج</label>
+                            <div class="textarea-wrapper">
+                                <textarea id="details" name="details" rows="4" placeholder="أدخل وصفاً مفصلاً للمنتج، المواصفات، الجودة المطلوبة، الألوان، الأحجام، إلخ..."></textarea>
+                                <div class="textarea-icon"><i class="fas fa-edit"></i></div>
+                            </div>
+                            <div class="char-counter">
+                                <span id="charCount">0</span> / 500
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name" data-ar="الاسم الكامل *" data-en="Full Name *" data-zh="全名 *">الاسم الكامل *</label>
-                            <input type="text" id="name" name="name" required>
+
+                    <!-- Step 2: Personal Information -->
+                    <div class="form-step" data-step="2">
+                        <div class="step-header">
+                            <div class="step-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h3 data-ar="بياناتك الشخصية" data-en="Your Personal Information" data-zh="您的个人信息">بياناتك الشخصية</h3>
+                            <p data-ar="نحتاج هذه المعلومات للتواصل معك" data-en="We need this information to contact you" data-zh="我们需要这些信息来联系您">نحتاج هذه المعلومات للتواصل معك</p>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name" data-ar="الاسم الكامل *" data-en="Full Name *" data-zh="全名 *">الاسم الكامل *</label>
+                                <div class="input-wrapper">
+                                    <input type="text" id="name" name="name" required>
+                                    <div class="input-icon"><i class="fas fa-user"></i></div>
+                                </div>
+                                <div class="input-feedback"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email" data-ar="البريد الإلكتروني" data-en="Email" data-zh="邮箱">البريد الإلكتروني</label>
+                                <div class="input-wrapper">
+                                    <input type="email" id="email" name="email">
+                                    <div class="input-icon"><i class="fas fa-envelope"></i></div>
+                                </div>
+                                <div class="input-feedback"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone" data-ar="رقم الهاتف *" data-en="Phone Number *" data-zh="电话号码 *">رقم الهاتف *</label>
+                                <div class="phone-input">
+                                    <select id="countryCode" name="countryCode">
+                                        <option value="+966">🇸🇦 +966</option>
+                                        <option value="+971">🇦🇪 +971</option>
+                                        <option value="+965">🇰🇼 +965</option>
+                                        <option value="+974">🇶🇦 +974</option>
+                                        <option value="+973">🇧🇭 +973</option>
+                                        <option value="+968">🇴🇲 +968</option>
+                                        <option value="+1">🇺🇸 +1</option>
+                                        <option value="+86">🇨🇳 +86</option>
+                                    </select>
+                                    <div class="input-wrapper">
+                                        <input type="tel" id="phone" name="phone" required>
+                                        <div class="input-icon"><i class="fas fa-phone"></i></div>
+                                    </div>
+                                </div>
+                                <div class="input-feedback"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="company" data-ar="اسم الشركة (اختياري)" data-en="Company Name (Optional)" data-zh="公司名称（可选）">اسم الشركة (اختياري)</label>
+                                <div class="input-wrapper">
+                                    <input type="text" id="company" name="company">
+                                    <div class="input-icon"><i class="fas fa-building"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="country" data-ar="البلد *" data-en="Country *" data-zh="国家 *">البلد *</label>
+                                <div class="select-wrapper">
+                                    <select id="country" name="country" required>
+                                        <option value="" data-ar="اختر البلد" data-en="Select Country" data-zh="选择国家">اختر البلد</option>
+                                        <option value="SA" data-ar="السعودية" data-en="Saudi Arabia" data-zh="沙特阿拉伯">🇸🇦 السعودية</option>
+                                        <option value="AE" data-ar="الإمارات" data-en="UAE" data-zh="阿联酋">🇦🇪 الإمارات</option>
+                                        <option value="KW" data-ar="الكويت" data-en="Kuwait" data-zh="科威特">🇰🇼 الكويت</option>
+                                        <option value="QA" data-ar="قطر" data-en="Qatar" data-zh="卡塔尔">🇶🇦 قطر</option>
+                                        <option value="BH" data-ar="البحرين" data-en="Bahrain" data-zh="巴林">🇧🇭 البحرين</option>
+                                        <option value="OM" data-ar="عمان" data-en="Oman" data-zh="阿曼">🇴🇲 عمان</option>
+                                        <option value="EG" data-ar="مصر" data-en="Egypt" data-zh="埃及">🇪🇬 مصر</option>
+                                        <option value="JO" data-ar="الأردن" data-en="Jordan" data-zh="约旦">🇯🇴 الأردن</option>
+                                    </select>
+                                    <div class="select-icon"><i class="fas fa-chevron-down"></i></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="urgency" data-ar="مدى الأولوية" data-en="Priority Level" data-zh="优先级">مدى الأولوية</label>
+                                <div class="priority-selector">
+                                    <input type="radio" id="low" name="urgency" value="low" checked>
+                                    <label for="low" class="priority-btn">
+                                        <span class="priority-dot"></span>
+                                        <span data-ar="منخفضة" data-en="Low" data-zh="低">منخفضة</span>
+                                    </label>
+                                    
+                                    <input type="radio" id="medium" name="urgency" value="medium">
+                                    <label for="medium" class="priority-btn">
+                                        <span class="priority-dot"></span>
+                                        <span data-ar="متوسطة" data-en="Medium" data-zh="中">متوسطة</span>
+                                    </label>
+                                    
+                                    <input type="radio" id="high" name="urgency" value="high">
+                                    <label for="high" class="priority-btn">
+                                        <span class="priority-dot"></span>
+                                        <span data-ar="عالية" data-en="High" data-zh="高">عالية</span>
+                                    </label>
+                                    
+                                    <input type="radio" id="urgent" name="urgency" value="urgent">
+                                    <label for="urgent" class="priority-btn">
+                                        <span class="priority-dot"></span>
+                                        <span data-ar="عاجلة" data-en="Urgent" data-zh="紧急">عاجلة</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Attachments -->
+                    <div class="form-step" data-step="3">
+                        <div class="step-header">
+                            <div class="step-icon">
+                                <i class="fas fa-paperclip"></i>
+                            </div>
+                            <h3 data-ar="المرفقات والصور" data-en="Attachments & Images" data-zh="附件和图片">المرفقات والصور</h3>
+                            <p data-ar="أضف صور المنتج أو أي مستندات مساعدة" data-en="Add product images or any supporting documents" data-zh="添加产品图片或任何支持文档">أضف صور المنتج أو أي مستندات مساعدة</p>
                         </div>
                         
                         <div class="form-group">
-                            <label for="email" data-ar="البريد الإلكتروني *" data-en="Email *" data-zh="邮箱 *">البريد الإلكتروني *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="phone" data-ar="رقم الهاتف *" data-en="Phone Number *" data-zh="电话号码 *">رقم الهاتف *</label>
-                            <input type="tel" id="phone" name="phone" required>
+                            <label data-ar="صور المنتج (حتى 10 صور)" data-en="Product Images (Up to 10 images)" data-zh="产品图片（最多10张）">صور المنتج (حتى 10 صور)</label>
+                            <div class="multi-file-upload" id="imageUpload">
+                                <div class="upload-area" id="uploadArea">
+                                    <div class="upload-icon">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                    </div>
+                                    <div class="upload-text">
+                                        <h4 data-ar="اسحب الصور هنا أو اضغط للاختيار" data-en="Drag images here or click to select" data-zh="将图片拖到这里或点击选择">اسحب الصور هنا أو اضغط للاختيار</h4>
+                                        <p data-ar="PNG, JPG, JPEG حتى 5MB لكل صورة" data-en="PNG, JPG, JPEG up to 5MB per image" data-zh="PNG、JPG、JPEG，每张图片最大5MB">PNG, JPG, JPEG حتى 5MB لكل صورة</p>
+                                    </div>
+                                    <input type="file" id="productImages" name="productImages" accept="image/*" multiple>
+                                </div>
+                                <div class="uploaded-images" id="uploadedImages"></div>
+                            </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label for="company" data-ar="اسم الشركة (اختياري)" data-en="Company Name (Optional)" data-zh="公司名称（可选）">اسم الشركة (اختياري)</label>
-                            <input type="text" id="company" name="company">
+                        <div class="form-features">
+                            <h3 data-ar="الخدمات المطلوبة" data-en="Required Services" data-zh="所需服务">الخدمات المطلوبة</h3>
+                            <div class="features-grid">
+                                <label class="feature-checkbox">
+                                    <input type="checkbox" name="features" value="quality-inspection">
+                                    <span class="checkmark"></span>
+                                    <div class="feature-content">
+                                        <i class="fas fa-search"></i>
+                                        <div class="feature-text">
+                                            <span data-ar="فحص الجودة" data-en="Quality Inspection" data-zh="质量检验">فحص الجودة</span>
+                                            <small data-ar="فحص شامل للمنتج قبل الشحن" data-en="Comprehensive product inspection before shipping" data-zh="发货前全面产品检验">فحص شامل للمنتج قبل الشحن</small>
+                                        </div>
+                                    </div>
+                                </label>
+                                
+                                <label class="feature-checkbox">
+                                    <input type="checkbox" name="features" value="fast-shipping">
+                                    <span class="checkmark"></span>
+                                    <div class="feature-content">
+                                        <i class="fas fa-shipping-fast"></i>
+                                        <div class="feature-text">
+                                            <span data-ar="شحن سريع" data-en="Fast Shipping" data-zh="快速运输">شحن سريع</span>
+                                            <small data-ar="تسليم خلال 7-14 يوم عمل" data-en="Delivery within 7-14 business days" data-zh="7-14个工作日内送达">تسليم خلال 7-14 يوم عمل</small>
+                                        </div>
+                                    </div>
+                                </label>
+                                
+                                <label class="feature-checkbox">
+                                    <input type="checkbox" name="features" value="custom-packaging">
+                                    <span class="checkmark"></span>
+                                    <div class="feature-content">
+                                        <i class="fas fa-box"></i>
+                                        <div class="feature-text">
+                                            <span data-ar="تغليف مخصص" data-en="Custom Packaging" data-zh="定制包装">تغليف مخصص</span>
+                                            <small data-ar="تغليف بعلامتك التجارية الخاصة" data-en="Packaging with your private label" data-zh="您的私人标签包装">تغليف بعلامتك التجارية الخاصة</small>
+                                        </div>
+                                    </div>
+                                </label>
+                                
+                                <label class="feature-checkbox">
+                                    <input type="checkbox" name="features" value="warranty">
+                                    <span class="checkmark"></span>
+                                    <div class="feature-content">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <div class="feature-text">
+                                            <span data-ar="ضمان" data-en="Warranty" data-zh="保修">ضمان</span>
+                                            <small data-ar="ضمان شامل ضد عيوب التصنيع" data-en="Comprehensive warranty against defects" data-zh="综合缺陷保修">ضمان شامل ضد عيوب التصنيع</small>
+                                        </div>
+                                    </div>
+                                </label>
+                                
+                                <label class="feature-checkbox">
+                                    <input type="checkbox" name="features" value="bulk-discount">
+                                    <span class="checkmark"></span>
+                                    <div class="feature-content">
+                                        <i class="fas fa-percentage"></i>
+                                        <div class="feature-text">
+                                            <span data-ar="خصم الكمية" data-en="Bulk Discount" data-zh="批量折扣">خصم الكمية</span>
+                                            <small data-ar="خصم تدريجي حسب حجم الطلب" data-en="Progressive discount based on order size" data-zh="根据订单规模的渐进折扣">خصم تدريجي حسب حجم الطلب</small>
+                                        </div>
+                                    </div>
+                                </label>
+                                
+                                <label class="feature-checkbox">
+                                    <input type="checkbox" name="features" value="documentation">
+                                    <span class="checkmark"></span>
+                                    <div class="feature-content">
+                                        <i class="fas fa-file-alt"></i>
+                                        <div class="feature-text">
+                                            <span data-ar="التوثيق الكامل" data-en="Full Documentation" data-zh="完整文档">التوثيق الكامل</span>
+                                            <small data-ar="جميع الأوراق والشهادات المطلوبة" data-en="All required papers and certificates" data-zh="所有必需的文件和证书">جميع الأوراق والشهادات المطلوبة</small>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="productImage" data-ar="صورة المنتج" data-en="Product Image" data-zh="产品图片">صورة المنتج</label>
-                        <div class="file-upload">
-                            <input type="file" id="productImage" name="productImage" accept="image/*">
-                            <div class="file-upload-display" id="fileUploadDisplay">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                                <span data-ar="اضغط هنا لرفع صورة المنتج" data-en="Click here to upload product image" data-zh="点击这里上传产品图片">اضغط هنا لرفع صورة المنتج</span>
+
+                    <!-- Step 4: Review -->
+                    <div class="form-step" data-step="4">
+                        <div class="step-header">
+                            <div class="step-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <h3 data-ar="مراجعة الطلب" data-en="Review Request" data-zh="审查请求">مراجعة الطلب</h3>
+                            <p data-ar="تأكد من صحة جميع المعلومات قبل الإرسال" data-en="Verify all information before submitting" data-zh="提交前请验证所有信息">تأكد من صحة جميع المعلومات قبل الإرسال</p>
+                        </div>
+                        
+                        <div class="review-summary" id="reviewSummary">
+                            <!-- Review content will be populated here -->
+                        </div>
+                        
+                        <div class="final-actions">
+                            <div class="contact-preference">
+                                <h4 data-ar="الطريقة المفضلة للتواصل" data-en="Preferred Contact Method" data-zh="首选联系方式">الطريقة المفضلة للتواصل</h4>
+                                <div class="contact-options">
+                                    <label class="contact-option">
+                                        <input type="radio" name="contactMethod" value="phone" checked>
+                                        <div class="option-content">
+                                            <i class="fas fa-phone"></i>
+                                            <span data-ar="هاتف" data-en="Phone" data-zh="电话">هاتف</span>
+                                        </div>
+                                    </label>
+                                    <label class="contact-option">
+                                        <input type="radio" name="contactMethod" value="email">
+                                        <div class="option-content">
+                                            <i class="fas fa-envelope"></i>
+                                            <span data-ar="إيميل" data-en="Email" data-zh="邮件">إيميل</span>
+                                        </div>
+                                    </label>
+                                    <label class="contact-option">
+                                        <input type="radio" name="contactMethod" value="whatsapp">
+                                        <div class="option-content">
+                                            <i class="fab fa-whatsapp"></i>
+                                            <span data-ar="واتساب" data-en="WhatsApp" data-zh="WhatsApp">واتساب</span>
+                                        </div>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="details" data-ar="تفاصيل إضافية عن المنتج" data-en="Additional Product Details" data-zh="产品附加详情">تفاصيل إضافية عن المنتج</label>
-                        <textarea id="details" name="details" rows="4" placeholder="أدخل أي تفاصيل إضافية حول المنتج، المواصفات، الجودة المطلوبة، إلخ..."></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="urgency" data-ar="مدى الأولوية" data-en="Priority Level" data-zh="优先级">مدى الأولوية</label>
-                        <select id="urgency" name="urgency">
-                            <option value="low" data-ar="منخفضة" data-en="Low" data-zh="低">منخفضة</option>
-                            <option value="medium" data-ar="متوسطة" data-en="Medium" data-zh="中" selected>متوسطة</option>
-                            <option value="high" data-ar="عالية" data-en="High" data-zh="高">عالية</option>
-                            <option value="urgent" data-ar="عاجلة" data-en="Urgent" data-zh="紧急">عاجلة</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-features">
-                        <h3 data-ar="المميزات المطلوبة" data-en="Required Features" data-zh="所需功能">المميزات المطلوبة</h3>
-                        <div class="features-grid">
-                            <label class="feature-checkbox">
-                                <input type="checkbox" name="features" value="quality-inspection">
-                                <span class="checkmark"></span>
-                                <span data-ar="فحص الجودة" data-en="Quality Inspection" data-zh="质量检验">فحص الجودة</span>
-                            </label>
-                            
-                            <label class="feature-checkbox">
-                                <input type="checkbox" name="features" value="fast-shipping">
-                                <span class="checkmark"></span>
-                                <span data-ar="شحن سريع" data-en="Fast Shipping" data-zh="快速运输">شحن سريع</span>
-                            </label>
-                            
-                            <label class="feature-checkbox">
-                                <input type="checkbox" name="features" value="custom-packaging">
-                                <span class="checkmark"></span>
-                                <span data-ar="تغليف مخصص" data-en="Custom Packaging" data-zh="定制包装">تغليف مخصص</span>
-                            </label>
-                            
-                            <label class="feature-checkbox">
-                                <input type="checkbox" name="features" value="warranty">
-                                <span class="checkmark"></span>
-                                <span data-ar="ضمان" data-en="Warranty" data-zh="保修">ضمان</span>
-                            </label>
-                            
-                            <label class="feature-checkbox">
-                                <input type="checkbox" name="features" value="bulk-discount">
-                                <span class="checkmark"></span>
-                                <span data-ar="خصم الكمية" data-en="Bulk Discount" data-zh="批量折扣">خصم الكمية</span>
-                            </label>
-                            
-                            <label class="feature-checkbox">
-                                <input type="checkbox" name="features" value="documentation">
-                                <span class="checkmark"></span>
-                                <span data-ar="التوثيق الكامل" data-en="Full Documentation" data-zh="完整文档">التوثيق الكامل</span>
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="form-actions">
-                        <button type="submit" class="btn-submit">
-                            <i class="fas fa-paper-plane"></i>
-                            <span data-ar="إرسال طلب المنتج" data-en="Send Product Request" data-zh="发送产品请求">إرسال طلب المنتج</span>
+                    <div class="form-navigation">
+                        <button type="button" class="btn-prev" id="prevBtn" style="display: none;">
+                            <i class="fas fa-arrow-right"></i>
+                            <span data-ar="السابق" data-en="Previous" data-zh="上一步">السابق</span>
                         </button>
-                        <button type="button" class="btn-consultation" onclick="openConsultation()">
-                            <i class="fas fa-comments"></i>
-                            <span data-ar="طلب استشارة مجانية" data-en="Request Free Consultation" data-zh="请求免费咨询">طلب استشارة مجانية</span>
+                        
+                        <div class="nav-center">
+                            <div class="step-indicator">
+                                <span id="currentStepNum">1</span> / <span id="totalStepsNum">4</span>
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="btn-next" id="nextBtn">
+                            <span data-ar="التالي" data-en="Next" data-zh="下一步">التالي</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        
+                        <button type="submit" class="btn-submit" id="submitBtn" style="display: none;">
+                            <i class="fas fa-paper-plane"></i>
+                            <span data-ar="إرسال الطلب" data-en="Submit Request" data-zh="提交请求">إرسال الطلب</span>
                         </button>
                     </div>
                 </form>
@@ -176,8 +2480,15 @@
                 <button class="close-modal" onclick="closeModal()">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="success-icon">
-                    <i class="fas fa-check-circle"></i>
+                <div class="success-animation">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="success-confetti"></div>
+                </div>
+                <div class="request-id">
+                    <span data-ar="رقم الطلب:" data-en="Request ID:" data-zh="请求编号：">رقم الطلب:</span>
+                    <strong id="requestId"></strong>
                 </div>
                 <p data-ar="شكراً لك! تم استلام طلبك وسنتواصل معك خلال 24 ساعة بأفضل العروض والأسعار." data-en="Thank you! Your request has been received and we will contact you within 24 hours with the best offers and prices." data-zh="谢谢！我们已收到您的请求，我们将在24小时内与您联系，为您提供最佳报价和价格。">شكراً لك! تم استلام طلبك وسنتواصل معك خلال 24 ساعة بأفضل العروض والأسعار.</p>
                 <div class="contact-info">
@@ -190,18 +2501,49 @@
                         <span>info@mowaridak.com</span>
                     </div>
                 </div>
+                <div class="next-steps">
+                    <h4 data-ar="الخطوات التالية:" data-en="Next Steps:" data-zh="下一步：">الخطوات التالية:</h4>
+                    <ul>
+                        <li data-ar="سنراجع طلبك خلال ساعتين" data-en="We'll review your request within 2 hours" data-zh="我们将在2小时内审查您的请求">سنراجع طلبك خلال ساعتين</li>
+                        <li data-ar="سنرسل لك عرض أسعار مفصل" data-en="We'll send you a detailed quote" data-zh="我们将向您发送详细报价">سنرسل لك عرض أسعار مفصل</li>
+                        <li data-ar="يمكنك تتبع حالة طلبك عبر الرقم المرجعي" data-en="You can track your request status using the reference number" data-zh="您可以使用参考号跟踪请求状态">يمكنك تتبع حالة طلبك عبر الرقم المرجعي</li>
+                    </ul>
+                </div>
             </div>
             <div class="modal-footer">
                 <button class="btn-primary" onclick="closeModal()">
                     <span data-ar="حسناً" data-en="OK" data-zh="好的">حسناً</span>
                 </button>
+                <button class="btn-secondary" onclick="newRequest()">
+                    <span data-ar="طلب جديد" data-en="New Request" data-zh="新请求">طلب جديد</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Modal -->
+    <div class="modal" id="loadingModal">
+        <div class="modal-content loading-content">
+            <div class="loading-animation">
+                <div class="loading-spinner"></div>
+                <h3 data-ar="جاري إرسال طلبك..." data-en="Sending your request..." data-zh="正在发送您的请求...">جاري إرسال طلبك...</h3>
+                <p data-ar="يرجى الانتظار..." data-en="Please wait..." data-zh="请稍候...">يرجى الانتظار...</p>
+                <div class="loading-progress">
+                    <div class="progress-dot active"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Floating Chat -->
     <div class="floating-chat">
-        <div class="chat-options">
+        <div class="chat-toggle" id="chatToggle">
+            <i class="fas fa-comments"></i>
+            <div class="pulse-ring"></div>
+        </div>
+        <div class="chat-options" id="chatOptions">
             <a href="https://wa.me/966566072502" class="chat-option whatsapp" target="_blank">
                 <i class="fab fa-whatsapp"></i>
                 <span data-ar="واتساب" data-en="WhatsApp" data-zh="WhatsApp">واتساب</span>
@@ -210,8 +2552,8 @@
                 <i class="fas fa-envelope"></i>
                 <span data-ar="إيميل" data-en="Email" data-zh="邮件">إيميل</span>
             </a>
-            <a href="contact.html" class="chat-option consultation">
-                <i class="fas fa-comments"></i>
+            <a href="#" class="chat-option consultation">
+                <i class="fas fa-headset"></i>
                 <span data-ar="استشارة مجانية" data-en="Free Consultation" data-zh="免费咨询">استشارة مجانية</span>
             </a>
         </div>
@@ -222,356 +2564,26 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <style>
-        .request-section {
-            padding: 120px 20px 80px;
-            background: var(--light-gray);
-            min-height: 100vh;
-        }
-        
-        .request-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .request-header h1 {
-            color: var(--primary-blue);
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .request-header p {
-            color: var(--gray);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-        
-        .request-form-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--dark-gray);
-            font-weight: 500;
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid var(--light-blue);
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: var(--transition);
-            background: var(--white);
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-        
-        .file-upload {
-            position: relative;
-        }
-        
-        .file-upload input[type="file"] {
-            position: absolute;
-            opacity: 0;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-        }
-        
-        .file-upload-display {
-            border: 2px dashed var(--light-blue);
-            border-radius: 10px;
-            padding: 2rem;
-            text-align: center;
-            color: var(--gray);
-            transition: var(--transition);
-            cursor: pointer;
-        }
-        
-        .file-upload-display:hover {
-            border-color: var(--primary-blue);
-            background: var(--light-blue);
-        }
-        
-        .file-upload-display i {
-            font-size: 2rem;
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-        }
-        
-        .form-features {
-            margin-bottom: 2rem;
-        }
-        
-        .form-features h3 {
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-        
-        .feature-checkbox {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 8px;
-            transition: var(--transition);
-        }
-        
-        .feature-checkbox:hover {
-            background: var(--light-blue);
-        }
-        
-        .feature-checkbox input {
-            display: none;
-        }
-        
-        .feature-checkbox .checkmark {
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--light-blue);
-            border-radius: 4px;
-            margin-right: 10px;
-            position: relative;
-            transition: var(--transition);
-        }
-        
-        .feature-checkbox input:checked + .checkmark {
-            background: var(--primary-blue);
-            border-color: var(--primary-blue);
-        }
-        
-        .feature-checkbox input:checked + .checkmark::after {
-            content: '';
-            position: absolute;
-            left: 6px;
-            top: 2px;
-            width: 6px;
-            height: 10px;
-            border: solid var(--white);
-            border-width: 0 2px 2px 0;
-            transform: rotate(45deg);
-        }
-        
-        .form-actions {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-        
-        .btn-submit, .btn-consultation {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 25px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .btn-submit {
-            background: var(--primary-blue);
-            color: var(--white);
-        }
-        
-        .btn-submit:hover {
-            background: var(--dark-blue);
-            transform: translateY(-2px);
-        }
-        
-        .btn-consultation {
-            background: var(--success);
-            color: var(--white);
-        }
-        
-        .btn-consultation:hover {
-            background: #0d9488;
-            transform: translateY(-2px);
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .modal.show {
-            display: flex;
-        }
-        
-        .modal-content {
-            background: var(--white);
-            border-radius: 15px;
-            max-width: 500px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            position: relative;
-            animation: fadeInUp 0.3s ease;
-        }
-        
-        .modal-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--light-blue);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .modal-header h3 {
-            color: var(--primary-blue);
-            margin: 0;
-        }
-        
-        .close-modal {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--gray);
-            padding: 5px;
-            border-radius: 5px;
-            transition: var(--transition);
-        }
-        
-        .close-modal:hover {
-            background: var(--light-blue);
-            color: var(--primary-blue);
-        }
-        
-        .modal-body {
-            padding: 2rem;
-            text-align: center;
-        }
-        
-        .success-icon {
-            font-size: 4rem;
-            color: var(--success);
-            margin-bottom: 1rem;
-        }
-        
-        .modal-body p {
-            color: var(--gray);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-        
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--primary-blue);
-        }
-        
-        .modal-footer {
-            padding: 1.5rem;
-            border-top: 1px solid var(--light-blue);
-            text-align: center;
-        }
-        
-        .back-home {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--primary-blue);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-        
-        .back-home:hover {
-            color: var(--dark-blue);
-        }
-        
-        @media (max-width: 768px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .form-actions {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn-submit, .btn-consultation {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .request-form-container {
-                padding: 1.5rem;
-            }
-        }
-    </style>
-
     <script>
-        // Include the main script functionality for language switching
+        // Global variables
+        let currentStep = 1;
+        let totalSteps = 4;
+        let uploadedImages = [];
+        let currentLanguage = localStorage.getItem('language') || 'ar';
+
         document.addEventListener('DOMContentLoaded', function() {
-            // Language functionality
+            initializeLanguage();
+            initializeForm();
+            initializeFileUpload();
+            initializeValidation();
+            setupEventListeners();
+            initializeFloatingChat();
+            updateProgressFill();
+        });
+
+        function initializeLanguage() {
             const langBtn = document.getElementById('lang-btn');
             const langDropdown = document.getElementById('lang-dropdown');
-            let currentLanguage = localStorage.getItem('language') || 'ar';
             
             function setLanguage(lang) {
                 currentLanguage = lang;
@@ -599,10 +2611,8 @@
                 }
             }
             
-            // Initialize language
             setLanguage(currentLanguage);
             
-            // Language selector events
             langBtn.addEventListener('click', function(e) {
                 e.stopPropagation();
                 langDropdown.classList.toggle('show');
@@ -619,64 +2629,189 @@
             document.addEventListener('click', function() {
                 langDropdown.classList.remove('show');
             });
-            
-            // File upload functionality
-            const fileInput = document.getElementById('productImage');
-            const fileDisplay = document.getElementById('fileUploadDisplay');
-            
+        }
+
+        function initializeForm() {
+            updateStepDisplay();
+            updateProgressBar();
+            updateStepNumbers();
+        }
+
+        function updateStepNumbers() {
+            document.getElementById('currentStepNum').textContent = currentStep;
+            document.getElementById('totalStepsNum').textContent = totalSteps;
+        }
+
+        function updateProgressFill() {
+            const progressFill = document.querySelector('.progress-fill');
+            const percentage = ((currentStep - 1) / (totalSteps - 1)) * 100;
+            progressFill.style.width = `${percentage}%`;
+        }
+
+        function initializeFileUpload() {
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('productImages');
+            const uploadedImagesContainer = document.getElementById('uploadedImages');
+
+            uploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.parentElement.classList.add('dragover');
+            });
+
+            uploadArea.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                this.parentElement.classList.remove('dragover');
+            });
+
+            uploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.parentElement.classList.remove('dragover');
+                const files = Array.from(e.dataTransfer.files);
+                handleFiles(files);
+            });
+
             fileInput.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
+                const files = Array.from(e.target.files);
+                handleFiles(files);
+            });
+
+            function handleFiles(files) {
+                const imageFiles = files.filter(file => file.type.startsWith('image/'));
+                
+                if (uploadedImages.length + imageFiles.length > 10) {
+                    showNotification('يمكنك رفع 10 صور كحد أقصى', 'error');
+                    return;
+                }
+
+                imageFiles.forEach(file => {
+                    if (file.size > 5 * 1024 * 1024) {
+                        showNotification(`حجم الصورة ${file.name} كبير جداً`, 'error');
+                        return;
+                    }
+
                     const reader = new FileReader();
                     reader.onload = function(e) {
-                        fileDisplay.innerHTML = `
-                            <img src="${e.target.result}" alt="Product Image" style="max-width: 200px; max-height: 150px; border-radius: 8px;">
-                            <p style="margin-top: 10px; color: var(--success);">تم رفع الصورة بنجاح</p>
-                        `;
+                        const imageData = {
+                            file: file,
+                            url: e.target.result,
+                            name: file.name
+                        };
+                        uploadedImages.push(imageData);
+                        displayUploadedImages();
+                        showNotification('تم رفع الصورة بنجاح', 'success');
                     };
                     reader.readAsDataURL(file);
+                });
+            }
+
+            function displayUploadedImages() {
+                uploadedImagesContainer.innerHTML = uploadedImages.map((image, index) => `
+                    <div class="image-preview">
+                        <img src="${image.url}" alt="${image.name}">
+                        <button type="button" class="remove-image" onclick="removeImage(${index})">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            window.removeImage = function(index) {
+                uploadedImages.splice(index, 1);
+                displayUploadedImages();
+                showNotification('تم حذف الصورة', 'info');
+            };
+        }
+
+        function initializeValidation() {
+            const inputs = document.querySelectorAll('input[required], select[required]');
+            
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateField(this);
+                });
+
+                input.addEventListener('input', function() {
+                    if (this.classList.contains('invalid')) {
+                        validateField(this);
+                    }
+                });
+            });
+
+            const detailsTextarea = document.getElementById('details');
+            const charCount = document.getElementById('charCount');
+            
+            detailsTextarea.addEventListener('input', function() {
+                const count = this.value.length;
+                charCount.textContent = count;
+                
+                if (count > 500) {
+                    charCount.style.color = 'var(--error)';
+                    this.value = this.value.substring(0, 500);
+                } else {
+                    charCount.style.color = 'var(--gray)';
                 }
             });
+        }
+
+        function validateField(field) {
+            const feedback = field.parentElement.querySelector('.input-feedback') || 
+                           field.closest('.form-group').querySelector('.input-feedback');
+            let isValid = true;
+            let message = '';
+
+            if (field.hasAttribute('required') && !field.value.trim()) {
+                isValid = false;
+                message = 'هذا الحقل مطلوب';
+            } else if (field.type === 'email' && field.value) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(field.value)) {
+                    isValid = false;
+                    message = 'البريد الإلكتروني غير صحيح';
+                }
+            } else if (field.type === 'tel' && field.value) {
+                const phoneRegex = /^[0-9+\-\s()]+$/;
+                if (!phoneRegex.test(field.value) || field.value.length < 8) {
+                    isValid = false;
+                    message = 'رقم الهاتف غير صحيح';
+                }
+            } else if (field.type === 'number' && field.value) {
+                if (parseInt(field.value) < 1) {
+                    isValid = false;
+                    message = 'الكمية يجب أن تكون أكبر من صفر';
+                }
+            }
+
+            field.classList.remove('valid', 'invalid');
+            field.classList.add(isValid ? 'valid' : 'invalid');
             
-            // Form submission
+            if (feedback) {
+                feedback.textContent = message;
+                feedback.classList.remove('valid', 'invalid');
+                if (message) {
+                    feedback.classList.add(isValid ? 'valid' : 'invalid');
+                }
+            }
+
+            return isValid;
+        }
+
+        function setupEventListeners() {
+            document.getElementById('nextBtn').addEventListener('click', nextStep);
+            document.getElementById('prevBtn').addEventListener('click', prevStep);
+            document.getElementById('submitBtn').addEventListener('click', submitForm);
+
+            document.querySelectorAll('.qty-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.getElementById('quantity').value = this.dataset.qty;
+                    validateField(document.getElementById('quantity'));
+                });
+            });
+
             document.getElementById('productRequestForm').addEventListener('submit', function(e) {
                 e.preventDefault();
-                
-                const formData = new FormData(this);
-                const features = Array.from(document.querySelectorAll('input[name="features"]:checked')).map(cb => cb.value);
-                
-                const requestData = {
-                    id: 'REQ-' + Date.now(),
-                    productName: formData.get('productName'),
-                    quantity: formData.get('quantity'),
-                    name: formData.get('name'),
-                    email: formData.get('email'),
-                    phone: formData.get('phone'),
-                    company: formData.get('company'),
-                    details: formData.get('details'),
-                    urgency: formData.get('urgency'),
-                    features: features,
-                    date: new Date().toISOString(),
-                    image: fileDisplay.querySelector('img') ? fileDisplay.querySelector('img').src : null
-                };
-                
-                // Save to localStorage
-                const existingRequests = JSON.parse(localStorage.getItem('productRequests') || '[]');
-                existingRequests.push(requestData);
-                localStorage.setItem('productRequests', JSON.stringify(existingRequests));
-                
-                // Show success modal
-                document.getElementById('successModal').classList.add('show');
-                
-                // Reset form
-                this.reset();
-                fileDisplay.innerHTML = `
-                    <i class="fas fa-cloud-upload-alt"></i>
-                    <span>اضغط هنا لرفع صورة المنتج</span>
-                `;
+                submitForm();
             });
-            
-            // Scroll to top
+
             const scrollToTop = document.getElementById('scrollToTop');
             window.addEventListener('scroll', function() {
                 if (window.pageYOffset > 300) {
@@ -689,22 +2824,419 @@
             scrollToTop.addEventListener('click', function() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
-        });
-        
+        }
+
+        function initializeFloatingChat() {
+            const chatToggle = document.getElementById('chatToggle');
+            const chatOptions = document.getElementById('chatOptions');
+
+            chatToggle.addEventListener('click', function() {
+                chatOptions.classList.toggle('show');
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.floating-chat')) {
+                    chatOptions.classList.remove('show');
+                }
+            });
+        }
+
+        function nextStep() {
+            if (validateCurrentStep()) {
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    updateStepDisplay();
+                    updateProgressBar();
+                    updateStepNumbers();
+                    updateProgressFill();
+                    
+                    if (currentStep === 4) {
+                        generateReviewSummary();
+                    }
+                    
+                    scrollToTop();
+                }
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStepDisplay();
+                updateProgressBar();
+                updateStepNumbers();
+                updateProgressFill();
+                scrollToTop();
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function validateCurrentStep() {
+            const currentStepElement = document.querySelector(`.form-step[data-step="${currentStep}"]`);
+            const requiredFields = currentStepElement.querySelectorAll('input[required], select[required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (!validateField(field)) {
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                showNotification('يرجى ملء جميع الحقول المطلوبة', 'error');
+                const firstInvalid = currentStepElement.querySelector('.invalid');
+                if (firstInvalid) {
+                    firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    firstInvalid.focus();
+                }
+            }
+
+            return isValid;
+        }
+
+        function updateStepDisplay() {
+            document.querySelectorAll('.form-step').forEach(step => {
+                step.classList.remove('active');
+            });
+
+            document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+
+            prevBtn.style.display = currentStep === 1 ? 'none' : 'flex';
+            nextBtn.style.display = currentStep === totalSteps ? 'none' : 'flex';
+            submitBtn.style.display = currentStep === totalSteps ? 'flex' : 'none';
+        }
+
+        function updateProgressBar() {
+            document.querySelectorAll('.progress-step').forEach((step, index) => {
+                const stepNumber = index + 1;
+                step.classList.remove('active', 'completed');
+                
+                if (stepNumber < currentStep) {
+                    step.classList.add('completed');
+                } else if (stepNumber === currentStep) {
+                    step.classList.add('active');
+                }
+            });
+        }
+
+        function generateReviewSummary() {
+            const formData = new FormData(document.getElementById('productRequestForm'));
+            const features = Array.from(document.querySelectorAll('input[name="features"]:checked')).map(cb => {
+                const label = cb.closest('.feature-checkbox').querySelector('.feature-text span').textContent;
+                return label;
+            });
+            
+            const reviewSummary = document.getElementById('reviewSummary');
+            
+            reviewSummary.innerHTML = `
+                <div class="review-section">
+                    <h4>معلومات المنتج</h4>
+                    <div class="review-item">
+                        <span>اسم المنتج:</span>
+                        <strong>${formData.get('productName') || 'غير محدد'}</strong>
+                    </div>
+                    <div class="review-item">
+                        <span>الفئة:</span>
+                        <strong>${getSelectText('category')}</strong>
+                    </div>
+                    <div class="review-item">
+                        <span>الكمية:</span>
+                        <strong>${formData.get('quantity') || 'غير محدد'}</strong>
+                    </div>
+                    <div class="review-item">
+                        <span>الميزانية:</span>
+                        <strong>${getSelectText('budget')}</strong>
+                    </div>
+                    ${formData.get('details') ? `
+                    <div class="review-item">
+                        <span>الوصف:</span>
+                        <strong>${formData.get('details').substring(0, 100)}${formData.get('details').length > 100 ? '...' : ''}</strong>
+                    </div>
+                    ` : ''}
+                </div>
+                
+                <div class="review-section">
+                    <h4>بياناتك الشخصية</h4>
+                    <div class="review-item">
+                        <span>الاسم:</span>
+                        <strong>${formData.get('name') || 'غير محدد'}</strong>
+                    </div>
+                    <div class="review-item">
+                        <span>البريد الإلكتروني:</span>
+                        <strong>${formData.get('email') || 'غير محدد'}</strong>
+                    </div>
+                    <div class="review-item">
+                        <span>الهاتف:</span>
+                        <strong>${formData.get('countryCode')} ${formData.get('phone') || 'غير محدد'}</strong>
+                    </div>
+                    <div class="review-item">
+                        <span>البلد:</span>
+                        <strong>${getSelectText('country')}</strong>
+                    </div>
+                    ${formData.get('company') ? `
+                    <div class="review-item">
+                        <span>الشركة:</span>
+                        <strong>${formData.get('company')}</strong>
+                    </div>
+                    ` : ''}
+                    <div class="review-item">
+                        <span>الأولوية:</span>
+                        <strong>${getPriorityText()}</strong>
+                    </div>
+                </div>
+                
+                <div class="review-section">
+                    <h4>الخدمات والتفضيلات</h4>
+                    <div class="review-item">
+                        <span>الخدمات المطلوبة:</span>
+                        <strong>${features.length > 0 ? features.join(', ') : 'لا توجد خدمات محددة'}</strong>
+                    </div>
+                    <div class="review-item">
+                        <span>طريقة التواصل المفضلة:</span>
+                        <strong>${getContactMethodText()}</strong>
+                    </div>
+                </div>
+                
+                ${uploadedImages.length > 0 ? `
+                <div class="review-section">
+                    <h4>الصور المرفقة (${uploadedImages.length})</h4>
+                    <div class="review-images">
+                        ${uploadedImages.map(img => `<img src="${img.url}" alt="${img.name}">`).join('')}
+                    </div>
+                </div>
+                ` : ''}
+            `;
+        }
+
+        function getSelectText(selectId) {
+            const select = document.getElementById(selectId);
+            const selectedOption = select.options[select.selectedIndex];
+            return selectedOption ? selectedOption.text : 'غير محدد';
+        }
+
+        function getPriorityText() {
+            const selected = document.querySelector('input[name="urgency"]:checked');
+            if (selected) {
+                const label = selected.nextElementSibling.querySelector('span').textContent;
+                return label;
+            }
+            return 'غير محدد';
+        }
+
+        function getContactMethodText() {
+            const selected = document.querySelector('input[name="contactMethod"]:checked');
+            if (selected) {
+                const label = selected.nextElementSibling.querySelector('span').textContent;
+                return label;
+            }
+            return 'غير محدد';
+        }
+
+        function submitForm() {
+            // Show loading modal
+            document.getElementById('loadingModal').classList.add('show');
+
+            // Animate loading dots
+            setTimeout(() => {
+                const dots = document.querySelectorAll('.progress-dot');
+                dots.forEach((dot, index) => {
+                    setTimeout(() => {
+                        dot.classList.add('active');
+                    }, index * 500);
+                });
+            }, 500);
+
+            setTimeout(() => {
+                const formData = new FormData(document.getElementById('productRequestForm'));
+                const features = Array.from(document.querySelectorAll('input[name="features"]:checked')).map(cb => cb.value);
+                const contactMethod = document.querySelector('input[name="contactMethod"]:checked').value;
+                
+                const requestData = {
+                    id: 'REQ-' + Date.now(),
+                    productName: formData.get('productName'),
+                    category: formData.get('category'),
+                    quantity: formData.get('quantity'),
+                    budget: formData.get('budget'),
+                    details: formData.get('details'),
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    phone: formData.get('countryCode') + formData.get('phone'),
+                    company: formData.get('company'),
+                    country: formData.get('country'),
+                    urgency: formData.get('urgency'),
+                    features: features,
+                    contactMethod: contactMethod,
+                    images: uploadedImages.map(img => img.url),
+                    date: new Date().toISOString(),
+                    status: 'new'
+                };
+                
+                const existingRequests = JSON.parse(localStorage.getItem('productRequests') || '[]');
+                existingRequests.push(requestData);
+                localStorage.setItem('productRequests', JSON.stringify(existingRequests));
+                
+                document.getElementById('loadingModal').classList.remove('show');
+                
+                document.getElementById('requestId').textContent = requestData.id;
+                document.getElementById('successModal').classList.add('show');
+                
+                resetForm();
+            }, 3000);
+        }
+
+        function resetForm() {
+            document.getElementById('productRequestForm').reset();
+            uploadedImages = [];
+            document.getElementById('uploadedImages').innerHTML = '';
+            currentStep = 1;
+            updateStepDisplay();
+            updateProgressBar();
+            updateStepNumbers();
+            updateProgressFill();
+            
+            document.querySelectorAll('.valid, .invalid').forEach(el => {
+                el.classList.remove('valid', 'invalid');
+            });
+            
+            document.querySelectorAll('.input-feedback').forEach(el => {
+                el.textContent = '';
+            });
+
+            document.getElementById('charCount').textContent = '0';
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+            `;
+            
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                ${document.documentElement.dir === 'rtl' ? 'left' : 'right'}: 20px;
+                background: var(--${type === 'success' ? 'success' : type === 'error' ? 'error' : 'primary-blue'});
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 10px;
+                box-shadow: var(--shadow-lg);
+                z-index: 3000;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                animation: slideIn${document.documentElement.dir === 'rtl' ? 'Left' : 'Right'} 0.3s ease;
+                max-width: 300px;
+                font-weight: 500;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = `slideOut${document.documentElement.dir === 'rtl' ? 'Left' : 'Right'} 0.3s ease`;
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
         function closeModal() {
             document.getElementById('successModal').classList.remove('show');
         }
-        
-        function openConsultation() {
-            window.location.href = 'contact.html';
+
+        function newRequest() {
+            closeModal();
+            resetForm();
+            scrollToTop();
         }
-        
+
         // Close modal when clicking outside
         document.getElementById('successModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeModal();
             }
         });
+
+        document.getElementById('loadingModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                // Prevent closing loading modal by clicking outside
+                e.stopPropagation();
+            }
+        });
+
+        // Add notification animations
+        const notificationStyles = document.createElement('style');
+        notificationStyles.textContent = `
+            @keyframes slideInRight {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            
+            @keyframes slideOutRight {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+
+            @keyframes slideInLeft {
+                from { transform: translateX(-100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            
+            @keyframes slideOutLeft {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(-100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(notificationStyles);
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && e.target.type !== 'textarea') {
+                if (currentStep < totalSteps) {
+                    nextStep();
+                } else {
+                    submitForm();
+                }
+            }
+            
+            if (e.key === 'Escape') {
+                document.getElementById('successModal').classList.remove('show');
+                document.querySelectorAll('.lang-dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('show');
+                });
+                document.getElementById('chatOptions').classList.remove('show');
+            }
+        });
+
+        // Add smooth scroll behavior for better UX
+        document.documentElement.style.scrollBehavior = 'smooth';
+
+        // Performance optimization: lazy load background animations
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    } else {
+                        entry.target.style.animationPlayState = 'paused';
+                    }
+                });
+            });
+
+            document.querySelectorAll('.shape').forEach(shape => {
+                observer.observe(shape);
+            });
+        }
     </script>
 </body>
 </html>

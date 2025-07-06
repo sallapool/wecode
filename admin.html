@@ -37,9 +37,90 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-        
-        .admin-container {
+
+        /* Login Screen Styles */
+        .login-container {
             display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            padding: 20px;
+        }
+
+        .login-box {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-logo {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .login-title {
+            font-size: 1.8rem;
+            color: var(--dark-gray);
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .login-input {
+            padding: 15px;
+            border: 2px solid var(--light-blue);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
+            text-align: center;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .login-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .login-btn {
+            padding: 15px;
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .login-btn:hover {
+            background: var(--dark-blue);
+            transform: translateY(-2px);
+        }
+
+        .error-message {
+            color: var(--error);
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* Admin Dashboard Styles */
+        .admin-container {
+            display: none;
             min-height: 100vh;
             position: relative;
         }
@@ -1043,6 +1124,14 @@
             .stat-number {
                 font-size: 1.5rem;
             }
+
+            .login-box {
+                padding: 30px 20px;
+            }
+
+            .login-title {
+                font-size: 1.5rem;
+            }
         }
         
         /* Scrollbar Styling */
@@ -1074,15 +1163,43 @@
     </style>
 </head>
 <body>
-    <!-- Mobile Overlay -->
-    <div class="mobile-overlay" id="mobileOverlay"></div>
-    
-    <!-- Mobile Menu Toggle -->
-    <button class="mobile-menu-toggle" id="mobileMenuToggle">
-        <i class="fas fa-bars"></i>
-    </button>
-    
-    <div class="admin-container">
+    <!-- Login Screen -->
+    <div class="login-container" id="loginContainer">
+        <div class="login-box">
+            <div class="login-logo">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h2 class="login-title">تسجيل الدخول إلى لوحة التحكم</h2>
+            <form class="login-form" onsubmit="handleLogin(event)">
+                <input 
+                    type="password" 
+                    class="login-input" 
+                    id="passwordInput" 
+                    placeholder="كلمة المرور" 
+                    required
+                    autocomplete="current-password"
+                >
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    دخول
+                </button>
+                <div class="error-message" id="errorMessage">
+                    كلمة المرور غير صحيحة
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div class="admin-container" id="adminContainer">
+        <!-- Mobile Overlay -->
+        <div class="mobile-overlay" id="mobileOverlay"></div>
+        
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        
         <!-- Sidebar -->
         <div class="sidebar" id="sidebar">
             <div class="sidebar-header">
@@ -1096,14 +1213,6 @@
                 <div class="menu-item active" data-section="dashboard">
                     <i class="fas fa-home"></i>
                     <span>الرئيسية</span>
-                </div>
-                <div class="menu-item" data-section="users">
-                    <i class="fas fa-users"></i>
-                    <span>المستخدمون</span>
-                </div>
-                <div class="menu-item" data-section="orders">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span>الطلبات</span>
                 </div>
                 <div class="menu-item" data-section="products">
                     <i class="fas fa-box"></i>
@@ -1142,146 +1251,46 @@
                 <div class="dashboard-cards">
                     <div class="dashboard-card">
                         <div class="card-header">
-                            <div class="card-title">إجمالي المستخدمين</div>
-                            <div class="card-icon users">
-                                <i class="fas fa-users"></i>
-                            </div>
-                        </div>
-                        <div class="card-number" id="totalUsers">245</div>
-                        <div class="card-subtitle">+12% من الشهر الماضي</div>
-                    </div>
-                    
-                    <div class="dashboard-card">
-                        <div class="card-header">
-                            <div class="card-title">الطلبات النشطة</div>
-                            <div class="card-icon orders">
-                                <i class="fas fa-shopping-cart"></i>
-                            </div>
-                        </div>
-                        <div class="card-number" id="activeOrders">89</div>
-                        <div class="card-subtitle">+5% من الشهر الماضي</div>
-                    </div>
-                    
-                    <div class="dashboard-card">
-                        <div class="card-header">
                             <div class="card-title">طلبات المنتجات</div>
                             <div class="card-icon products">
                                 <i class="fas fa-box"></i>
                             </div>
                         </div>
-                        <div class="card-number" id="productRequests">156</div>
-                        <div class="card-subtitle">+8% من الشهر الماضي</div>
+                        <div class="card-number" id="productRequestsCount">0</div>
+                        <div class="card-subtitle">إجمالي الطلبات المستلمة</div>
                     </div>
                     
                     <div class="dashboard-card">
                         <div class="card-header">
-                            <div class="card-title">إجمالي الإيرادات</div>
-                            <div class="card-icon revenue">
-                                <i class="fas fa-dollar-sign"></i>
+                            <div class="card-title">الاستشارات</div>
+                            <div class="card-icon orders">
+                                <i class="fas fa-comments"></i>
                             </div>
                         </div>
-                        <div class="card-number">$45,678</div>
-                        <div class="card-subtitle">+15% من الشهر الماضي</div>
+                        <div class="card-number" id="consultationsCount">0</div>
+                        <div class="card-subtitle">إجمالي الاستشارات المستلمة</div>
                     </div>
-                </div>
-            </div>
-            
-            <!-- Users Section -->
-            <div class="content-section" id="users">
-                <div class="data-table">
-                    <div class="table-header">
-                        <div class="table-title">إدارة المستخدمين</div>
-                        <div class="table-controls">
-                            <input type="text" class="search-box" id="usersSearch" placeholder="البحث عن المستخدمين...">
-                            <select class="filter-select" id="usersFilter">
-                                <option value="">جميع المستخدمين</option>
-                                <option value="active">نشط</option>
-                                <option value="inactive">غير نشط</option>
-                            </select>
-                            <button class="export-btn" onclick="exportUsers()">
-                                <i class="fas fa-download"></i>
-                                تصدير
-                            </button>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <div class="card-title">الطلبات الجديدة</div>
+                            <div class="card-icon users">
+                                <i class="fas fa-bell"></i>
+                            </div>
                         </div>
+                        <div class="card-number" id="newRequestsCount">0</div>
+                        <div class="card-subtitle">طلبات اليوم</div>
                     </div>
                     
-                    <!-- Desktop Table -->
-                    <div class="table-content">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>الاسم</th>
-                                    <th>البريد الإلكتروني</th>
-                                    <th>الهاتف</th>
-                                    <th>تاريخ التسجيل</th>
-                                    <th>الحالة</th>
-                                    <th>الإجراءات</th>
-                                </tr>
-                            </thead>
-                            <tbody id="usersTableBody">
-                                <!-- Users will be loaded here -->
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <!-- Mobile Cards -->
-                    <div class="mobile-cards" id="usersMobileCards">
-                        <!-- Mobile cards will be loaded here -->
-                    </div>
-                    
-                    <div class="pagination" id="usersPagination">
-                        <!-- Pagination will be loaded here -->
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Orders Section -->
-            <div class="content-section" id="orders">
-                <div class="data-table">
-                    <div class="table-header">
-                        <div class="table-title">إدارة الطلبات</div>
-                        <div class="table-controls">
-                            <input type="text" class="search-box" id="ordersSearch" placeholder="البحث عن الطلبات...">
-                            <select class="filter-select" id="ordersFilter">
-                                <option value="">جميع الطلبات</option>
-                                <option value="pending">قيد التنفيذ</option>
-                                <option value="completed">مكتمل</option>
-                                <option value="cancelled">ملغي</option>
-                            </select>
-                            <button class="export-btn" onclick="exportOrders()">
-                                <i class="fas fa-download"></i>
-                                تصدير
-                            </button>
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <div class="card-title">معدل الاستجابة</div>
+                            <div class="card-icon revenue">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <!-- Desktop Table -->
-                    <div class="table-content">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>رقم الطلب</th>
-                                    <th>العميل</th>
-                                    <th>نوع الخدمة</th>
-                                    <th>التاريخ</th>
-                                    <th>المبلغ</th>
-                                    <th>الحالة</th>
-                                    <th>الإجراءات</th>
-                                </tr>
-                            </thead>
-                            <tbody id="ordersTableBody">
-                                <!-- Orders will be loaded here -->
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <!-- Mobile Cards -->
-                    <div class="mobile-cards" id="ordersMobileCards">
-                        <!-- Mobile cards will be loaded here -->
-                    </div>
-                    
-                    <div class="pagination" id="ordersPagination">
-                        <!-- Pagination will be loaded here -->
+                        <div class="card-number">95%</div>
+                        <div class="card-subtitle">معدل الرد على الطلبات</div>
                     </div>
                 </div>
             </div>
@@ -1406,53 +1415,68 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" onclick="closeModal()">إغلاق</button>
-                <button class="btn btn-primary" id="modalSaveBtn">حفظ</button>
+                <button class="btn btn-primary" id="modalSaveBtn" style="display: none;">حفظ</button>
             </div>
         </div>
     </div>
     
     <script>
-        // Sample data
-        const sampleUsers = [
-            { id: 1, name: 'أحمد محمد', email: 'ahmed@example.com', phone: '+966501234567', date: '2024-01-15', status: 'active' },
-            { id: 2, name: 'فاطمة أحمد', email: 'fatima@example.com', phone: '+966507654321', date: '2024-01-10', status: 'inactive' },
-            { id: 3, name: 'محمد علي', email: 'mohammed@example.com', phone: '+966509876543', date: '2024-01-08', status: 'active' },
-            { id: 4, name: 'سارة حسن', email: 'sara@example.com', phone: '+966502468135', date: '2024-01-05', status: 'active' },
-            { id: 5, name: 'عبدالله أحمد', email: 'abdullah@example.com', phone: '+966501357924', date: '2024-01-03', status: 'inactive' }
-        ];
+        // Admin password
+        const ADMIN_PASSWORD = 'om90';
         
-        const sampleOrders = [
-            { id: 'ORD-001', customer: 'أحمد محمد', service: 'خدمة الاستيراد', date: '2024-01-20', amount: '$2,500', status: 'pending' },
-            { id: 'ORD-002', customer: 'فاطمة أحمد', service: 'خدمة الفحص', date: '2024-01-18', amount: '$800', status: 'completed' },
-            { id: 'ORD-003', customer: 'محمد علي', service: 'خدمة الشحن', date: '2024-01-16', amount: '$1,200', status: 'pending' },
-            { id: 'ORD-004', customer: 'سارة حسن', service: 'خدمة التمثيل', date: '2024-01-14', amount: '$950', status: 'completed' },
-            { id: 'ORD-005', customer: 'عبدالله أحمد', service: 'دراسة الجدوى', date: '2024-01-12', amount: '$600', status: 'cancelled' }
-        ];
-        
-        const sampleConsultations = [
-            { id: 1, name: 'خالد محمد', email: 'khalid@example.com', phone: '+966501111111', type: 'استشارة استيراد', date: '2024-01-22', status: 'new', message: 'أريد استيراد منتجات إلكترونية من الصين' },
-            { id: 2, name: 'نورا أحمد', email: 'nora@example.com', phone: '+966502222222', type: 'استشارة شحن', date: '2024-01-21', status: 'replied', message: 'ما هي تكلفة الشحن البحري؟' },
-            { id: 3, name: 'يوسف علي', email: 'youssef@example.com', phone: '+966503333333', type: 'استشارة جودة', date: '2024-01-20', status: 'new', message: 'كيف يتم فحص جودة المنتجات؟' }
-        ];
+        // Check if user is already logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('adminLoggedIn') === 'true') {
+                showAdminDashboard();
+            }
+            
+            // Initialize admin dashboard
+            initializeAdmin();
+            updateDashboardStats();
+            loadProductRequests();
+            loadConsultations();
+            setupSearchAndFilters();
+        });
+
+        // Login functionality
+        function handleLogin(event) {
+            event.preventDefault();
+            const password = document.getElementById('passwordInput').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            if (password === ADMIN_PASSWORD) {
+                localStorage.setItem('adminLoggedIn', 'true');
+                showAdminDashboard();
+                errorMessage.style.display = 'none';
+            } else {
+                errorMessage.style.display = 'block';
+                document.getElementById('passwordInput').value = '';
+                document.getElementById('passwordInput').focus();
+            }
+        }
+
+        function showAdminDashboard() {
+            document.getElementById('loginContainer').style.display = 'none';
+            document.getElementById('adminContainer').style.display = 'flex';
+            updateDashboardStats();
+            loadProductRequests();
+            loadConsultations();
+        }
+
+        function logout() {
+            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                localStorage.removeItem('adminLoggedIn');
+                document.getElementById('loginContainer').style.display = 'flex';
+                document.getElementById('adminContainer').style.display = 'none';
+                document.getElementById('passwordInput').value = '';
+            }
+        }
         
         // Pagination variables
         let currentPage = {
-            users: 1,
-            orders: 1,
             consultations: 1
         };
-        const itemsPerPage = 5;
-        
-        // Admin Dashboard JavaScript
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeAdmin();
-            loadUsers();
-            loadOrders();
-            loadProductRequests();
-            loadConsultations();
-            updateDashboardStats();
-            setupSearchAndFilters();
-        });
+        const itemsPerPage = 10;
         
         function initializeAdmin() {
             // Get elements
@@ -1463,22 +1487,28 @@
             const menuItems = document.querySelectorAll('.menu-item');
             
             // Desktop sidebar toggle
-            sidebarToggle.addEventListener('click', function() {
-                if (window.innerWidth > 1024) {
-                    sidebar.classList.toggle('collapsed');
-                }
-            });
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', function() {
+                    if (window.innerWidth > 1024) {
+                        sidebar.classList.toggle('collapsed');
+                    }
+                });
+            }
             
             // Mobile menu toggle
-            mobileMenuToggle.addEventListener('click', function() {
-                sidebar.classList.toggle('show');
-                mobileOverlay.classList.toggle('show');
-            });
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('show');
+                    mobileOverlay.classList.toggle('show');
+                });
+            }
             
             // Close mobile menu when clicking overlay
-            mobileOverlay.addEventListener('click', function() {
-                closeMobileMenu();
-            });
+            if (mobileOverlay) {
+                mobileOverlay.addEventListener('click', function() {
+                    closeMobileMenu();
+                });
+            }
             
             // Menu navigation
             menuItems.forEach(item => {
@@ -1508,9 +1538,8 @@
                 const activeSection = document.querySelector('.content-section.active');
                 if (activeSection) {
                     const sectionId = activeSection.id;
-                    if (sectionId === 'users') loadUsers();
-                    if (sectionId === 'orders') loadOrders();
                     if (sectionId === 'consultations') loadConsultations();
+                    if (sectionId === 'products') loadProductRequests();
                 }
             });
             
@@ -1526,8 +1555,8 @@
             const sidebar = document.getElementById('sidebar');
             const mobileOverlay = document.getElementById('mobileOverlay');
             
-            sidebar.classList.remove('show');
-            mobileOverlay.classList.remove('show');
+            if (sidebar) sidebar.classList.remove('show');
+            if (mobileOverlay) mobileOverlay.classList.remove('show');
         }
         
         function showSection(sectionId) {
@@ -1543,199 +1572,56 @@
         }
         
         function setupSearchAndFilters() {
-            // Users search and filter
-            document.getElementById('usersSearch').addEventListener('input', function() {
-                loadUsers();
-            });
-            
-            document.getElementById('usersFilter').addEventListener('change', function() {
-                loadUsers();
-            });
-            
-            // Orders search and filter
-            document.getElementById('ordersSearch').addEventListener('input', function() {
-                loadOrders();
-            });
-            
-            document.getElementById('ordersFilter').addEventListener('change', function() {
-                loadOrders();
-            });
-            
             // Consultations search and filter
-            document.getElementById('consultationsSearch').addEventListener('input', function() {
-                loadConsultations();
-            });
+            const consultationsSearch = document.getElementById('consultationsSearch');
+            const consultationsFilter = document.getElementById('consultationsFilter');
+            const productsSearch = document.getElementById('productsSearch');
             
-            document.getElementById('consultationsFilter').addEventListener('change', function() {
-                loadConsultations();
-            });
+            if (consultationsSearch) {
+                consultationsSearch.addEventListener('input', function() {
+                    loadConsultations();
+                });
+            }
+            
+            if (consultationsFilter) {
+                consultationsFilter.addEventListener('change', function() {
+                    loadConsultations();
+                });
+            }
             
             // Products search
-            document.getElementById('productsSearch').addEventListener('input', function() {
-                loadProductRequests();
-            });
+            if (productsSearch) {
+                productsSearch.addEventListener('input', function() {
+                    loadProductRequests();
+                });
+            }
         }
         
         function updateDashboardStats() {
             const productRequests = JSON.parse(localStorage.getItem('productRequests') || '[]');
             const consultations = JSON.parse(localStorage.getItem('consultations') || '[]');
             
-            document.getElementById('totalUsers').textContent = sampleUsers.length;
-            document.getElementById('activeOrders').textContent = sampleOrders.filter(o => o.status === 'pending').length;
-            document.getElementById('productRequests').textContent = productRequests.length;
-        }
-        
-        function loadUsers() {
-            const searchTerm = document.getElementById('usersSearch').value.toLowerCase();
-            const statusFilter = document.getElementById('usersFilter').value;
+            // Get today's date
+            const today = new Date().toDateString();
+            const newRequestsToday = [...productRequests, ...consultations].filter(item => {
+                return new Date(item.date).toDateString() === today;
+            }).length;
             
-            let filteredUsers = sampleUsers.filter(user => {
-                const matchesSearch = user.name.toLowerCase().includes(searchTerm) || 
-                                    user.email.toLowerCase().includes(searchTerm) ||
-                                    user.phone.includes(searchTerm);
-                const matchesFilter = !statusFilter || user.status === statusFilter;
-                return matchesSearch && matchesFilter;
-            });
+            // Update dashboard cards
+            const productRequestsCountEl = document.getElementById('productRequestsCount');
+            const consultationsCountEl = document.getElementById('consultationsCount');
+            const newRequestsCountEl = document.getElementById('newRequestsCount');
             
-            const totalPages = Math.ceil(filteredUsers.length / itemsPerPage);
-            const startIndex = (currentPage.users - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            const paginatedUsers = filteredUsers.slice(startIndex, endIndex);
-            
-            // Load desktop table
-            const tableBody = document.getElementById('usersTableBody');
-            tableBody.innerHTML = paginatedUsers.map(user => `
-                <tr>
-                    <td>${user.name}</td>
-                    <td>${user.email}</td>
-                    <td>${user.phone}</td>
-                    <td>${new Date(user.date).toLocaleDateString('ar-SA')}</td>
-                    <td><span class="status-badge status-${user.status === 'active' ? 'active' : 'inactive'}">${user.status === 'active' ? 'نشط' : 'غير نشط'}</span></td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="btn btn-small btn-view" onclick="viewUser(${user.id})">عرض</button>
-                            <button class="btn btn-small btn-edit" onclick="editUser(${user.id})">تعديل</button>
-                            <button class="btn btn-small btn-delete" onclick="deleteUser(${user.id})">حذف</button>
-                        </div>
-                    </td>
-                </tr>
-            `).join('');
-            
-            // Load mobile cards
-            const mobileCards = document.getElementById('usersMobileCards');
-            mobileCards.innerHTML = paginatedUsers.map(user => `
-                <div class="mobile-card">
-                    <div class="mobile-card-header">
-                        <div class="mobile-card-title">${user.name}</div>
-                        <span class="status-badge status-${user.status === 'active' ? 'active' : 'inactive'}">${user.status === 'active' ? 'نشط' : 'غير نشط'}</span>
-                    </div>
-                    <div class="mobile-card-content">
-                        <div class="mobile-card-row">
-                            <span class="mobile-card-label">البريد الإلكتروني:</span>
-                            <span class="mobile-card-value">${user.email}</span>
-                        </div>
-                        <div class="mobile-card-row">
-                            <span class="mobile-card-label">الهاتف:</span>
-                            <span class="mobile-card-value">${user.phone}</span>
-                        </div>
-                        <div class="mobile-card-row">
-                            <span class="mobile-card-label">تاريخ التسجيل:</span>
-                            <span class="mobile-card-value">${new Date(user.date).toLocaleDateString('ar-SA')}</span>
-                        </div>
-                    </div>
-                    <div class="mobile-card-actions">
-                        <button class="btn btn-small btn-view" onclick="viewUser(${user.id})">عرض</button>
-                        <button class="btn btn-small btn-edit" onclick="editUser(${user.id})">تعديل</button>
-                        <button class="btn btn-small btn-delete" onclick="deleteUser(${user.id})">حذف</button>
-                    </div>
-                </div>
-            `).join('');
-            
-            // Load pagination
-            loadPagination('users', totalPages, currentPage.users);
-        }
-        
-        function loadOrders() {
-            const searchTerm = document.getElementById('ordersSearch').value.toLowerCase();
-            const statusFilter = document.getElementById('ordersFilter').value;
-            
-            let filteredOrders = sampleOrders.filter(order => {
-                const matchesSearch = order.id.toLowerCase().includes(searchTerm) || 
-                                    order.customer.toLowerCase().includes(searchTerm) ||
-                                    order.service.toLowerCase().includes(searchTerm);
-                const matchesFilter = !statusFilter || order.status === statusFilter;
-                return matchesSearch && matchesFilter;
-            });
-            
-            const totalPages = Math.ceil(filteredOrders.length / itemsPerPage);
-            const startIndex = (currentPage.orders - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            const paginatedOrders = filteredOrders.slice(startIndex, endIndex);
-            
-            // Load desktop table
-            const tableBody = document.getElementById('ordersTableBody');
-            tableBody.innerHTML = paginatedOrders.map(order => `
-                <tr>
-                    <td>${order.id}</td>
-                    <td>${order.customer}</td>
-                    <td>${order.service}</td>
-                    <td>${new Date(order.date).toLocaleDateString('ar-SA')}</td>
-                    <td>${order.amount}</td>
-                    <td><span class="status-badge status-${order.status}">${getStatusText(order.status)}</span></td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="btn btn-small btn-view" onclick="viewOrder('${order.id}')">عرض</button>
-                            <button class="btn btn-small btn-edit" onclick="editOrder('${order.id}')">تعديل</button>
-                            <button class="btn btn-small btn-delete" onclick="deleteOrder('${order.id}')">حذف</button>
-                        </div>
-                    </td>
-                </tr>
-            `).join('');
-            
-            // Load mobile cards
-            const mobileCards = document.getElementById('ordersMobileCards');
-            mobileCards.innerHTML = paginatedOrders.map(order => `
-                <div class="mobile-card">
-                    <div class="mobile-card-header">
-                        <div class="mobile-card-title">${order.id}</div>
-                        <span class="status-badge status-${order.status}">${getStatusText(order.status)}</span>
-                    </div>
-                    <div class="mobile-card-content">
-                        <div class="mobile-card-row">
-                            <span class="mobile-card-label">العميل:</span>
-                            <span class="mobile-card-value">${order.customer}</span>
-                        </div>
-                        <div class="mobile-card-row">
-                            <span class="mobile-card-label">نوع الخدمة:</span>
-                            <span class="mobile-card-value">${order.service}</span>
-                        </div>
-                        <div class="mobile-card-row">
-                            <span class="mobile-card-label">التاريخ:</span>
-                            <span class="mobile-card-value">${new Date(order.date).toLocaleDateString('ar-SA')}</span>
-                        </div>
-                        <div class="mobile-card-row">
-                            <span class="mobile-card-label">المبلغ:</span>
-                            <span class="mobile-card-value">${order.amount}</span>
-                        </div>
-                    </div>
-                    <div class="mobile-card-actions">
-                        <button class="btn btn-small btn-view" onclick="viewOrder('${order.id}')">عرض</button>
-                        <button class="btn btn-small btn-edit" onclick="editOrder('${order.id}')">تعديل</button>
-                        <button class="btn btn-small btn-delete" onclick="deleteOrder('${order.id}')">حذف</button>
-                    </div>
-                </div>
-            `).join('');
-            
-            // Load pagination
-            loadPagination('orders', totalPages, currentPage.orders);
+            if (productRequestsCountEl) productRequestsCountEl.textContent = productRequests.length;
+            if (consultationsCountEl) consultationsCountEl.textContent = consultations.length;
+            if (newRequestsCountEl) newRequestsCountEl.textContent = newRequestsToday;
         }
         
         function loadConsultations() {
-            const searchTerm = document.getElementById('consultationsSearch').value.toLowerCase();
-            const statusFilter = document.getElementById('consultationsFilter').value;
+            const searchTerm = document.getElementById('consultationsSearch')?.value.toLowerCase() || '';
+            const statusFilter = document.getElementById('consultationsFilter')?.value || '';
             
             let consultations = JSON.parse(localStorage.getItem('consultations') || '[]');
-            consultations = [...consultations, ...sampleConsultations];
             
             let filteredConsultations = consultations.filter(consultation => {
                 const matchesSearch = consultation.name.toLowerCase().includes(searchTerm) || 
@@ -1750,72 +1636,81 @@
             const endIndex = startIndex + itemsPerPage;
             const paginatedConsultations = filteredConsultations.slice(startIndex, endIndex);
             
+            const tableBody = document.getElementById('consultationsTableBody');
+            const mobileCards = document.getElementById('consultationsMobileCards');
+            
             if (filteredConsultations.length === 0) {
-                document.getElementById('consultationsTableBody').innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--gray); padding: 30px; font-size: 1.1rem;">لا توجد استشارات حالياً</td></tr>';
-                document.getElementById('consultationsMobileCards').innerHTML = '<div style="padding: 30px; text-align: center; color: var(--gray); font-size: 1.1rem;">لا توجد استشارات حالياً</div>';
+                if (tableBody) {
+                    tableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--gray); padding: 30px; font-size: 1.1rem;">لا توجد استشارات حالياً</td></tr>';
+                }
+                if (mobileCards) {
+                    mobileCards.innerHTML = '<div style="padding: 30px; text-align: center; color: var(--gray); font-size: 1.1rem;">لا توجد استشارات حالياً</div>';
+                }
                 return;
             }
             
             // Load desktop table
-            const tableBody = document.getElementById('consultationsTableBody');
-            tableBody.innerHTML = paginatedConsultations.map(consultation => `
-                <tr>
-                    <td>${consultation.name}</td>
-                    <td>${consultation.email}</td>
-                    <td>${consultation.phone}</td>
-                    <td>${consultation.type}</td>
-                    <td>${new Date(consultation.date).toLocaleDateString('ar-SA')}</td>
-                    <td><span class="status-badge status-${consultation.status === 'new' ? 'pending' : consultation.status === 'replied' ? 'completed' : 'cancelled'}">${getConsultationStatusText(consultation.status)}</span></td>
-                    <td>
-                        <div class="action-buttons">
+            if (tableBody) {
+                tableBody.innerHTML = paginatedConsultations.map(consultation => `
+                    <tr>
+                        <td>${consultation.name}</td>
+                        <td>${consultation.email}</td>
+                        <td>${consultation.phone}</td>
+                        <td>${consultation.type}</td>
+                        <td>${new Date(consultation.date).toLocaleDateString('ar-SA')}</td>
+                        <td><span class="status-badge status-${consultation.status === 'new' ? 'pending' : consultation.status === 'replied' ? 'completed' : 'cancelled'}">${getConsultationStatusText(consultation.status)}</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn btn-small btn-view" onclick="viewConsultation('${consultation.id}')">عرض</button>
+                                <button class="btn btn-small btn-edit" onclick="editConsultation('${consultation.id}')">تعديل</button>
+                                <button class="btn btn-small btn-delete" onclick="deleteConsultation('${consultation.id}')">حذف</button>
+                            </div>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+            
+            // Load mobile cards
+            if (mobileCards) {
+                mobileCards.innerHTML = paginatedConsultations.map(consultation => `
+                    <div class="mobile-card">
+                        <div class="mobile-card-header">
+                            <div class="mobile-card-title">${consultation.name}</div>
+                            <span class="status-badge status-${consultation.status === 'new' ? 'pending' : consultation.status === 'replied' ? 'completed' : 'cancelled'}">${getConsultationStatusText(consultation.status)}</span>
+                        </div>
+                        <div class="mobile-card-content">
+                            <div class="mobile-card-row">
+                                <span class="mobile-card-label">البريد الإلكتروني:</span>
+                                <span class="mobile-card-value">${consultation.email}</span>
+                            </div>
+                            <div class="mobile-card-row">
+                                <span class="mobile-card-label">الهاتف:</span>
+                                <span class="mobile-card-value">${consultation.phone}</span>
+                            </div>
+                            <div class="mobile-card-row">
+                                <span class="mobile-card-label">نوع الاستشارة:</span>
+                                <span class="mobile-card-value">${consultation.type}</span>
+                            </div>
+                            <div class="mobile-card-row">
+                                <span class="mobile-card-label">التاريخ:</span>
+                                <span class="mobile-card-value">${new Date(consultation.date).toLocaleDateString('ar-SA')}</span>
+                            </div>
+                        </div>
+                        <div class="mobile-card-actions">
                             <button class="btn btn-small btn-view" onclick="viewConsultation('${consultation.id}')">عرض</button>
                             <button class="btn btn-small btn-edit" onclick="editConsultation('${consultation.id}')">تعديل</button>
                             <button class="btn btn-small btn-delete" onclick="deleteConsultation('${consultation.id}')">حذف</button>
                         </div>
-                    </td>
-                </tr>
-            `).join('');
-            
-            // Load mobile cards
-            const mobileCards = document.getElementById('consultationsMobileCards');
-            mobileCards.innerHTML = paginatedConsultations.map(consultation => `
-                <div class="mobile-card">
-                    <div class="mobile-card-header">
-                        <div class="mobile-card-title">${consultation.name}</div>
-                        <span class="status-badge status-${consultation.status === 'new' ? 'pending' : consultation.status === 'replied' ? 'completed' : 'cancelled'}">${getConsultationStatusText(consultation.status)}</span>
                     </div>
-                    <div class="mobile-card-content">
-                        <div class="mobile-card-row">
-                            <span class="mobile-card-label">البريد الإلكتروني:</span>
-                            <span class="mobile-card-value">${consultation.email}</span>
-                        </div>
-                        <div class="mobile-card-row">
-                            <span class="mobile-card-label">الهاتف:</span>
-                            <span class="mobile-card-value">${consultation.phone}</span>
-                        </div>
-                        <div class="mobile-card-row">
-                            <span class="mobile-card-label">نوع الاستشارة:</span>
-                            <span class="mobile-card-value">${consultation.type}</span>
-                        </div>
-                        <div class="mobile-card-row">
-                            <span class="mobile-card-label">التاريخ:</span>
-                            <span class="mobile-card-value">${new Date(consultation.date).toLocaleDateString('ar-SA')}</span>
-                        </div>
-                    </div>
-                    <div class="mobile-card-actions">
-                        <button class="btn btn-small btn-view" onclick="viewConsultation('${consultation.id}')">عرض</button>
-                        <button class="btn btn-small btn-edit" onclick="editConsultation('${consultation.id}')">تعديل</button>
-                        <button class="btn btn-small btn-delete" onclick="deleteConsultation('${consultation.id}')">حذف</button>
-                    </div>
-                </div>
-            `).join('');
+                `).join('');
+            }
             
             // Load pagination
             loadPagination('consultations', totalPages, currentPage.consultations);
         }
         
         function loadProductRequests() {
-            const searchTerm = document.getElementById('productsSearch').value.toLowerCase();
+            const searchTerm = document.getElementById('productsSearch')?.value.toLowerCase() || '';
             const productRequestsList = document.getElementById('productRequestsList');
             const requests = JSON.parse(localStorage.getItem('productRequests') || '[]');
             
@@ -1824,6 +1719,8 @@
                        request.name.toLowerCase().includes(searchTerm) ||
                        request.email.toLowerCase().includes(searchTerm);
             });
+            
+            if (!productRequestsList) return;
             
             if (filteredRequests.length === 0) {
                 productRequestsList.innerHTML = '<div style="padding: 30px; text-align: center; color: var(--gray); font-size: 1.1rem;">لا توجد طلبات منتجات حالياً</div>';
@@ -1875,8 +1772,8 @@
         function loadPagination(type, totalPages, currentPageNum) {
             const paginationContainer = document.getElementById(`${type}Pagination`);
             
-            if (totalPages <= 1) {
-                paginationContainer.innerHTML = '';
+            if (!paginationContainer || totalPages <= 1) {
+                if (paginationContainer) paginationContainer.innerHTML = '';
                 return;
             }
             
@@ -1903,18 +1800,7 @@
         function changePage(type, page) {
             currentPage[type] = page;
             
-            if (type === 'users') loadUsers();
-            if (type === 'orders') loadOrders();
             if (type === 'consultations') loadConsultations();
-        }
-        
-        function getStatusText(status) {
-            const statusMap = {
-                'pending': 'قيد التنفيذ',
-                'completed': 'مكتمل',
-                'cancelled': 'ملغي'
-            };
-            return statusMap[status] || status;
         }
         
         function getConsultationStatusText(status) {
@@ -1927,41 +1813,6 @@
         }
         
         // View functions
-        function viewUser(id) {
-            const user = sampleUsers.find(u => u.id === id);
-            if (user) {
-                document.getElementById('modalTitle').textContent = 'تفاصيل المستخدم';
-                document.getElementById('modalBody').innerHTML = `
-                    <div class="request-details">
-                        <div><strong>الاسم:</strong> ${user.name}</div>
-                        <div><strong>البريد الإلكتروني:</strong> ${user.email}</div>
-                        <div><strong>الهاتف:</strong> ${user.phone}</div>
-                        <div><strong>تاريخ التسجيل:</strong> ${new Date(user.date).toLocaleDateString('ar-SA')}</div>
-                        <div><strong>الحالة:</strong> ${user.status === 'active' ? 'نشط' : 'غير نشط'}</div>
-                    </div>
-                `;
-                showModal();
-            }
-        }
-        
-        function viewOrder(id) {
-            const order = sampleOrders.find(o => o.id === id);
-            if (order) {
-                document.getElementById('modalTitle').textContent = 'تفاصيل الطلب';
-                document.getElementById('modalBody').innerHTML = `
-                    <div class="request-details">
-                        <div><strong>رقم الطلب:</strong> ${order.id}</div>
-                        <div><strong>العميل:</strong> ${order.customer}</div>
-                        <div><strong>نوع الخدمة:</strong> ${order.service}</div>
-                        <div><strong>التاريخ:</strong> ${new Date(order.date).toLocaleDateString('ar-SA')}</div>
-                        <div><strong>المبلغ:</strong> ${order.amount}</div>
-                        <div><strong>الحالة:</strong> ${getStatusText(order.status)}</div>
-                    </div>
-                `;
-                showModal();
-            }
-        }
-        
         function viewProductRequest(id) {
             const requests = JSON.parse(localStorage.getItem('productRequests') || '[]');
             const request = requests.find(r => r.id === id);
@@ -1986,7 +1837,6 @@
         
         function viewConsultation(id) {
             let consultations = JSON.parse(localStorage.getItem('consultations') || '[]');
-            consultations = [...consultations, ...sampleConsultations];
             const consultation = consultations.find(c => c.id == id);
             
             if (consultation) {
@@ -2007,22 +1857,6 @@
         }
         
         // Delete functions
-        function deleteUser(id) {
-            if (confirm('هل أنت متأكد من حذف هذا المستخدم؟')) {
-                // In a real application, you would delete from the database
-                alert('تم حذف المستخدم بنجاح');
-                loadUsers();
-            }
-        }
-        
-        function deleteOrder(id) {
-            if (confirm('هل أنت متأكد من حذف هذا الطلب؟')) {
-                // In a real application, you would delete from the database
-                alert('تم حذف الطلب بنجاح');
-                loadOrders();
-            }
-        }
-        
         function deleteProductRequest(id) {
             if (confirm('هل أنت متأكد من حذف هذا الطلب؟')) {
                 const requests = JSON.parse(localStorage.getItem('productRequests') || '[]');
@@ -2030,6 +1864,7 @@
                 localStorage.setItem('productRequests', JSON.stringify(updatedRequests));
                 loadProductRequests();
                 updateDashboardStats();
+                alert('تم حذف الطلب بنجاح');
             }
         }
         
@@ -2039,54 +1874,155 @@
                 const updatedConsultations = consultations.filter(c => c.id != id);
                 localStorage.setItem('consultations', JSON.stringify(updatedConsultations));
                 loadConsultations();
+                updateDashboardStats();
+                alert('تم حذف الاستشارة بنجاح');
             }
         }
         
-        // Edit functions (placeholder)
-        function editUser(id) {
-            alert('وظيفة التعديل قيد التطوير');
-        }
-        
-        function editOrder(id) {
-            alert('وظيفة التعديل قيد التطوير');
-        }
-        
+        // Edit functions
         function editProductRequest(id) {
-            alert('وظيفة التعديل قيد التطوير');
+            const requests = JSON.parse(localStorage.getItem('productRequests') || '[]');
+            const request = requests.find(r => r.id === id);
+            
+            if (request) {
+                document.getElementById('modalTitle').textContent = 'تعديل طلب المنتج';
+                document.getElementById('modalBody').innerHTML = `
+                    <div class="form-group">
+                        <label for="editProductName">اسم المنتج</label>
+                        <input type="text" id="editProductName" value="${request.productName}">
+                    </div>
+                    <div class="form-group">
+                        <label for="editQuantity">الكمية</label>
+                        <input type="number" id="editQuantity" value="${request.quantity}">
+                    </div>
+                    <div class="form-group">
+                        <label for="editName">الاسم</label>
+                        <input type="text" id="editName" value="${request.name}">
+                    </div>
+                    <div class="form-group">
+                        <label for="editEmail">البريد الإلكتروني</label>
+                        <input type="email" id="editEmail" value="${request.email}">
+                    </div>
+                    <div class="form-group">
+                        <label for="editPhone">الهاتف</label>
+                        <input type="tel" id="editPhone" value="${request.phone}">
+                    </div>
+                    <div class="form-group">
+                        <label for="editDetails">التفاصيل</label>
+                        <textarea id="editDetails">${request.details || ''}</textarea>
+                    </div>
+                `;
+                
+                const saveBtn = document.getElementById('modalSaveBtn');
+                saveBtn.style.display = 'inline-flex';
+                saveBtn.onclick = function() {
+                    saveProductRequest(id);
+                };
+                
+                showModal();
+            }
         }
         
         function editConsultation(id) {
-            alert('وظيفة التعديل قيد التطوير');
+            const consultations = JSON.parse(localStorage.getItem('consultations') || '[]');
+            const consultation = consultations.find(c => c.id == id);
+            
+            if (consultation) {
+                document.getElementById('modalTitle').textContent = 'تعديل الاستشارة';
+                document.getElementById('modalBody').innerHTML = `
+                    <div class="form-group">
+                        <label for="editConsultationName">الاسم</label>
+                        <input type="text" id="editConsultationName" value="${consultation.name}">
+                    </div>
+                    <div class="form-group">
+                        <label for="editConsultationEmail">البريد الإلكتروني</label>
+                        <input type="email" id="editConsultationEmail" value="${consultation.email}">
+                    </div>
+                    <div class="form-group">
+                        <label for="editConsultationPhone">الهاتف</label>
+                        <input type="tel" id="editConsultationPhone" value="${consultation.phone}">
+                    </div>
+                    <div class="form-group">
+                        <label for="editConsultationType">نوع الاستشارة</label>
+                        <input type="text" id="editConsultationType" value="${consultation.type}">
+                    </div>
+                    <div class="form-group">
+                        <label for="editConsultationMessage">الرسالة</label>
+                        <textarea id="editConsultationMessage">${consultation.message}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="editConsultationStatus">الحالة</label>
+                        <select id="editConsultationStatus">
+                            <option value="new" ${consultation.status === 'new' ? 'selected' : ''}>جديد</option>
+                            <option value="replied" ${consultation.status === 'replied' ? 'selected' : ''}>تم الرد</option>
+                            <option value="closed" ${consultation.status === 'closed' ? 'selected' : ''}>مغلق</option>
+                        </select>
+                    </div>
+                `;
+                
+                const saveBtn = document.getElementById('modalSaveBtn');
+                saveBtn.style.display = 'inline-flex';
+                saveBtn.onclick = function() {
+                    saveConsultation(id);
+                };
+                
+                showModal();
+            }
+        }
+        
+        function saveProductRequest(id) {
+            const requests = JSON.parse(localStorage.getItem('productRequests') || '[]');
+            const requestIndex = requests.findIndex(r => r.id === id);
+            
+            if (requestIndex !== -1) {
+                requests[requestIndex] = {
+                    ...requests[requestIndex],
+                    productName: document.getElementById('editProductName').value,
+                    quantity: document.getElementById('editQuantity').value,
+                    name: document.getElementById('editName').value,
+                    email: document.getElementById('editEmail').value,
+                    phone: document.getElementById('editPhone').value,
+                    details: document.getElementById('editDetails').value
+                };
+                
+                localStorage.setItem('productRequests', JSON.stringify(requests));
+                loadProductRequests();
+                closeModal();
+                alert('تم حفظ التغييرات بنجاح');
+            }
+        }
+        
+        function saveConsultation(id) {
+            const consultations = JSON.parse(localStorage.getItem('consultations') || '[]');
+            const consultationIndex = consultations.findIndex(c => c.id == id);
+            
+            if (consultationIndex !== -1) {
+                consultations[consultationIndex] = {
+                    ...consultations[consultationIndex],
+                    name: document.getElementById('editConsultationName').value,
+                    email: document.getElementById('editConsultationEmail').value,
+                    phone: document.getElementById('editConsultationPhone').value,
+                    type: document.getElementById('editConsultationType').value,
+                    message: document.getElementById('editConsultationMessage').value,
+                    status: document.getElementById('editConsultationStatus').value
+                };
+                
+                localStorage.setItem('consultations', JSON.stringify(consultations));
+                loadConsultations();
+                closeModal();
+                alert('تم حفظ التغييرات بنجاح');
+            }
         }
         
         // Export functions
-        function exportUsers() {
-            const data = sampleUsers.map(user => ({
-                'الاسم': user.name,
-                'البريد الإلكتروني': user.email,
-                'الهاتف': user.phone,
-                'تاريخ التسجيل': new Date(user.date).toLocaleDateString('ar-SA'),
-                'الحالة': user.status === 'active' ? 'نشط' : 'غير نشط'
-            }));
-            
-            downloadCSV(data, 'المستخدمون.csv');
-        }
-        
-        function exportOrders() {
-            const data = sampleOrders.map(order => ({
-                'رقم الطلب': order.id,
-                'العميل': order.customer,
-                'نوع الخدمة': order.service,
-                'التاريخ': new Date(order.date).toLocaleDateString('ar-SA'),
-                'المبلغ': order.amount,
-                'الحالة': getStatusText(order.status)
-            }));
-            
-            downloadCSV(data, 'الطلبات.csv');
-        }
-        
         function exportProductRequests() {
             const requests = JSON.parse(localStorage.getItem('productRequests') || '[]');
+            
+            if (requests.length === 0) {
+                alert('لا توجد بيانات للتصدير');
+                return;
+            }
+            
             const data = requests.map(request => ({
                 'رقم الطلب': request.id,
                 'اسم المنتج': request.productName,
@@ -2094,6 +2030,7 @@
                 'الاسم': request.name,
                 'البريد الإلكتروني': request.email,
                 'الهاتف': request.phone,
+                'التفاصيل': request.details || '',
                 'التاريخ': new Date(request.date).toLocaleDateString('ar-SA')
             }));
             
@@ -2102,13 +2039,18 @@
         
         function exportConsultations() {
             let consultations = JSON.parse(localStorage.getItem('consultations') || '[]');
-            consultations = [...consultations, ...sampleConsultations];
+            
+            if (consultations.length === 0) {
+                alert('لا توجد بيانات للتصدير');
+                return;
+            }
             
             const data = consultations.map(consultation => ({
                 'الاسم': consultation.name,
                 'البريد الإلكتروني': consultation.email,
                 'الهاتف': consultation.phone,
                 'نوع الاستشارة': consultation.type,
+                'الرسالة': consultation.message,
                 'التاريخ': new Date(consultation.date).toLocaleDateString('ar-SA'),
                 'الحالة': getConsultationStatusText(consultation.status)
             }));
@@ -2117,11 +2059,6 @@
         }
         
         function downloadCSV(data, filename) {
-            if (data.length === 0) {
-                alert('لا توجد بيانات للتصدير');
-                return;
-            }
-            
             const headers = Object.keys(data[0]);
             const csvContent = [
                 headers.join(','),
@@ -2159,13 +2096,8 @@
         
         function closeModal() {
             document.getElementById('modal').classList.remove('show');
+            document.getElementById('modalSaveBtn').style.display = 'none';
             document.body.style.overflow = 'auto';
-        }
-        
-        function logout() {
-            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
-                window.location.href = 'login.html';
-            }
         }
         
         // Close modal when clicking outside
