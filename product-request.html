@@ -31,7 +31,7 @@
                         <button class="lang-option" data-lang="zh">🇨🇳 中文</button>
                     </div>
                 </div>
-                <a href="#" class="back-home">
+                <a href="/services" class="back-home">
                     <i class="fas fa-home"></i>
                     <span data-ar="الرئيسية" data-en="Home" data-zh="首页">الرئيسية</span>
                 </a>
@@ -999,7 +999,7 @@
 
         .form-group input.invalid,
         .form-group select.invalid {
-            border-color: var(--error);
+            border-color: var(--success);
         }
 
         .input-feedback {
@@ -2366,6 +2366,7 @@
 
             if (!isValid) {
                 showNotification('يرجى ملء جميع الحقول المطلوبة', 'error');
+                
             }
 
             return isValid;

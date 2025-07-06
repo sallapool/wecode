@@ -3,16 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة التحكم - موردك</title>
+    <title>لوحة تحكم الإدارة - موردك</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         :root {
             --primary-blue: #2563eb;
             --secondary-blue: #3b82f6;
@@ -28,678 +22,727 @@
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
+            --gradient: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            --border-radius: 12px;
         }
-        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Cairo', sans-serif;
-            background: var(--light-gray);
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
             color: var(--dark-gray);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Login Screen Styles */
+        /* Login Screen */
         .login-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            animation: float 20s ease-in-out infinite;
         }
 
         .login-box {
-            background: var(--white);
-            padding: 40px;
-            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: 20px;
             box-shadow: var(--shadow-lg);
-            width: 100%;
-            max-width: 400px;
             text-align: center;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            z-index: 2;
+            animation: slideUp 0.6s ease;
         }
 
         .login-logo {
-            font-size: 3rem;
-            color: var(--primary-blue);
-            margin-bottom: 20px;
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            color: var(--white);
+            font-size: 2rem;
+            box-shadow: var(--shadow-lg);
         }
 
         .login-title {
-            font-size: 1.8rem;
-            color: var(--dark-gray);
-            margin-bottom: 30px;
-            font-weight: 600;
+            color: var(--primary-blue);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
         }
 
-        .login-form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        .login-subtitle {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
         }
 
-        .login-input {
-            padding: 15px;
+        .password-group {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1rem;
             border: 2px solid var(--light-blue);
-            border-radius: 10px;
-            font-size: 1rem;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
             transition: var(--transition);
+            background: var(--white);
+            font-family: inherit;
             text-align: center;
-            font-family: 'Cairo', sans-serif;
+            letter-spacing: 2px;
         }
 
-        .login-input:focus {
+        .password-input:focus {
             outline: none;
             border-color: var(--primary-blue);
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
+        .password-toggle {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .password-toggle:hover {
+            color: var(--primary-blue);
+        }
+
         .login-btn {
-            padding: 15px;
-            background: var(--primary-blue);
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient);
             color: var(--white);
             border: none;
-            border-radius: 10px;
+            border-radius: var(--border-radius);
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
-            font-family: 'Cairo', sans-serif;
+            margin-bottom: 1rem;
         }
 
         .login-btn:hover {
-            background: var(--dark-blue);
             transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
         }
 
-        .error-message {
+        .login-error {
             color: var(--error);
             font-size: 0.9rem;
-            margin-top: 10px;
-            display: none;
+            margin-top: 1rem;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: var(--transition);
         }
 
-        /* Admin Dashboard Styles */
+        .login-error.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Admin Dashboard */
         .admin-container {
             display: none;
             min-height: 100vh;
-            position: relative;
         }
-        
-        /* Mobile Menu Overlay */
-        .mobile-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .mobile-overlay.show {
+
+        .admin-container.show {
             display: block;
-            opacity: 1;
         }
-        
-        /* Mobile Menu Toggle */
-        .mobile-menu-toggle {
-            display: none;
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            z-index: 1002;
-            background: var(--primary-blue);
-            color: var(--white);
-            border: none;
-            border-radius: 8px;
-            padding: 12px;
-            cursor: pointer;
+
+        /* Header */
+        .admin-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
             box-shadow: var(--shadow);
-            transition: var(--transition);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        
-        .mobile-menu-toggle:hover {
-            background: var(--dark-blue);
-            transform: scale(1.05);
-        }
-        
-        .mobile-menu-toggle i {
-            font-size: 1.2rem;
-        }
-        
-        .sidebar {
-            width: 280px;
-            background: var(--white);
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: fixed;
-            height: 100vh;
-            overflow-y: auto;
-            z-index: 1001;
-            right: 0;
-        }
-        
-        .sidebar.collapsed {
-            width: 80px;
-        }
-        
-        .sidebar-header {
-            padding: 20px;
-            border-bottom: 1px solid var(--light-blue);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: var(--primary-blue);
-            color: var(--white);
-        }
-        
-        .sidebar-header h2 {
-            font-size: 1.5rem;
-            transition: var(--transition);
-            white-space: nowrap;
-        }
-        
-        .sidebar.collapsed .sidebar-header h2 {
-            display: none;
-        }
-        
-        .sidebar-toggle {
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 1.2rem;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 5px;
-            transition: var(--transition);
-        }
-        
-        .sidebar-toggle:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .sidebar-menu {
-            padding: 20px 0;
-        }
-        
-        .menu-item {
-            padding: 15px 20px;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-right: 3px solid transparent;
-            position: relative;
-            white-space: nowrap;
-        }
-        
-        .menu-item:hover {
-            background: var(--light-blue);
-            border-right-color: var(--primary-blue);
-        }
-        
-        .menu-item.active {
-            background: var(--light-blue);
-            border-right-color: var(--primary-blue);
-            color: var(--primary-blue);
-        }
-        
-        .menu-item i {
-            font-size: 1.1rem;
-            width: 20px;
-            text-align: center;
-            flex-shrink: 0;
-        }
-        
-        .menu-item span {
-            transition: var(--transition);
-        }
-        
-        .sidebar.collapsed .menu-item span {
-            display: none;
-        }
-        
-        .main-content {
-            flex: 1;
-            margin-right: 280px;
-            padding: 20px;
-            transition: var(--transition);
-            min-height: 100vh;
-        }
-        
-        .sidebar.collapsed + .main-content {
-            margin-right: 80px;
-        }
-        
-        .top-bar {
-            background: var(--white);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-            gap: 15px;
         }
-        
-        .top-bar h1 {
-            color: var(--primary-blue);
-            font-size: 1.8rem;
-            font-weight: 600;
-        }
-        
-        .admin-actions {
+
+        .admin-logo {
             display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            padding: 10px 18px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: var(--transition);
-            text-decoration: none;
-            display: inline-flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            white-space: nowrap;
+            gap: 1rem;
         }
-        
-        .btn-primary {
-            background: var(--primary-blue);
-            color: var(--white);
-        }
-        
-        .btn-primary:hover {
-            background: var(--dark-blue);
-            transform: translateY(-1px);
-        }
-        
-        .btn-secondary {
-            background: var(--gray);
-            color: var(--white);
-        }
-        
-        .btn-secondary:hover {
-            background: var(--dark-gray);
-            transform: translateY(-1px);
-        }
-        
-        .dashboard-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .dashboard-card {
-            background: var(--white);
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 1px solid transparent;
-        }
-        
-        .dashboard-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--light-blue);
-        }
-        
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .card-title {
-            font-size: 1.1rem;
-            color: var(--dark-gray);
-            font-weight: 600;
-        }
-        
-        .card-icon {
+
+        .logo-icon {
             width: 50px;
             height: 50px;
-            border-radius: 12px;
+            background: var(--gradient);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4rem;
             color: var(--white);
+            font-size: 1.5rem;
         }
-        
-        .card-icon.users { background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue)); }
-        .card-icon.orders { background: linear-gradient(135deg, var(--success), #059669); }
-        .card-icon.products { background: linear-gradient(135deg, var(--warning), #d97706); }
-        .card-icon.revenue { background: linear-gradient(135deg, var(--error), #dc2626); }
-        
-        .card-number {
-            font-size: 2.2rem;
-            font-weight: 700;
+
+        .logo-text h2 {
             color: var(--primary-blue);
-            margin-bottom: 8px;
+            font-size: 1.5rem;
+            margin-bottom: 0.2rem;
         }
-        
-        .card-subtitle {
+
+        .logo-text p {
             color: var(--gray);
             font-size: 0.9rem;
         }
-        
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-toggle:hover {
+            background: var(--dark-blue);
+        }
+
+        .logout-btn {
+            background: var(--error);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logout-btn:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+        }
+
+        /* Sidebar */
+        .admin-layout {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: calc(100vh - 80px);
+        }
+
+        .sidebar {
+            width: 280px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 80px;
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+            transition: var(--transition);
+        }
+
+        .sidebar.mobile-hidden {
+            transform: translateX(-100%);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0 1rem;
+        }
+
+        .sidebar-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            color: var(--dark-gray);
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .sidebar-link:hover {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            transform: translateX(5px);
+        }
+
+        .sidebar-link.active {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .sidebar-link i {
+            font-size: 1.2rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            background: var(--error);
+            color: var(--white);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            overflow-x: auto;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .stat-title {
+            color: var(--gray);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+
+        .stat-icon.new { background: var(--primary-blue); }
+        .stat-icon.urgent { background: var(--error); }
+        .stat-icon.completed { background: var(--success); }
+        .stat-icon.total { background: var(--warning); }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-change {
+            font-size: 0.9rem;
+            color: var(--success);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* Content Sections */
         .content-section {
             display: none;
             animation: fadeIn 0.3s ease;
         }
-        
+
         .content-section.active {
             display: block;
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .data-table {
-            background: var(--white);
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            overflow: hidden;
-        }
-        
-        .table-header {
-            padding: 25px;
-            border-bottom: 1px solid var(--light-blue);
+
+        .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 2rem;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 1rem;
         }
-        
-        .table-title {
-            font-size: 1.4rem;
-            color: var(--dark-gray);
-            font-weight: 600;
+
+        .section-title {
+            color: var(--primary-blue);
+            font-size: 2rem;
+            font-weight: 700;
         }
-        
-        .table-controls {
+
+        .section-actions {
             display: flex;
-            gap: 10px;
+            gap: 1rem;
             flex-wrap: wrap;
-            align-items: center;
         }
-        
-        .search-box {
-            padding: 12px 16px;
-            border: 1px solid var(--light-blue);
-            border-radius: 8px;
-            width: 100%;
-            max-width: 300px;
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
-        
-        .search-box:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-        
-        .filter-select {
-            padding: 12px 16px;
-            border: 1px solid var(--light-blue);
-            border-radius: 8px;
-            font-size: 0.9rem;
-            background: var(--white);
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
             cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-size: 0.9rem;
         }
-        
-        .export-btn {
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .btn-success {
             background: var(--success);
             color: var(--white);
-            padding: 12px 16px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
-        
-        .export-btn:hover {
-            background: #059669;
-        }
-        
-        /* Mobile Cards for Tables */
-        .mobile-cards {
-            display: none;
-        }
-        
-        .mobile-card {
-            background: var(--white);
-            border: 1px solid var(--light-blue);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .mobile-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .mobile-card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--light-blue);
-        }
-        
-        .mobile-card-title {
-            font-weight: 600;
-            color: var(--primary-blue);
-            font-size: 1.1rem;
-        }
-        
-        .mobile-card-content {
-            display: grid;
-            gap: 10px;
-        }
-        
-        .mobile-card-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 0;
-        }
-        
-        .mobile-card-label {
-            font-weight: 500;
-            color: var(--dark-gray);
-            font-size: 0.9rem;
-        }
-        
-        .mobile-card-value {
-            color: var(--gray);
-            font-size: 0.9rem;
-            text-align: left;
-            max-width: 60%;
-            word-break: break-word;
-        }
-        
-        .mobile-card-actions {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid var(--light-blue);
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-        
-        .table-content {
-            overflow-x: auto;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 800px;
-        }
-        
-        th, td {
-            padding: 16px;
-            text-align: right;
-            border-bottom: 1px solid var(--light-blue);
-            white-space: nowrap;
-        }
-        
-        th {
-            background: var(--light-gray);
-            font-weight: 600;
-            color: var(--dark-gray);
-            font-size: 0.9rem;
-        }
-        
-        tr:hover {
-            background: var(--light-blue);
-        }
-        
-        .status-badge {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            display: inline-block;
-        }
-        
-        .status-pending {
+
+        .btn-warning {
             background: var(--warning);
             color: var(--white);
         }
-        
-        .status-completed {
-            background: var(--success);
-            color: var(--white);
-        }
-        
-        .status-cancelled {
+
+        .btn-danger {
             background: var(--error);
             color: var(--white);
         }
-        
-        .status-active {
-            background: var(--success);
-            color: var(--white);
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
         }
-        
-        .status-inactive {
-            background: var(--gray);
-            color: var(--white);
+
+        /* Filters */
+        .filters-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
         }
-        
-        .action-buttons {
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            align-items: end;
+        }
+
+        .filter-group {
             display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 0.5rem;
         }
-        
-        .btn-small {
-            padding: 6px 12px;
-            font-size: 0.8rem;
-            border-radius: 6px;
-            min-width: auto;
-            border: none;
-            cursor: pointer;
+
+        .filter-label {
+            font-weight: 600;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        .filter-input {
+            padding: 0.75rem;
+            border: 2px solid var(--light-blue);
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
             transition: var(--transition);
         }
-        
+
+        .filter-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+
+        /* Table */
+        .table-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .requests-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .requests-table th,
+        .requests-table td {
+            padding: 1rem;
+            text-align: right;
+            border-bottom: 1px solid var(--light-blue);
+        }
+
+        .requests-table th {
+            background: var(--light-gray);
+            font-weight: 600;
+            color: var(--dark-gray);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .requests-table tr:hover {
+            background: var(--light-blue);
+        }
+
+        .status-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .status-new {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-blue);
+        }
+
+        .status-urgent {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error);
+        }
+
+        .status-completed {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .priority-badge {
+            padding: 0.2rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .priority-low { background: #dcfce7; color: #166534; }
+        .priority-medium { background: #fef3c7; color: #92400e; }
+        .priority-high { background: #fed7aa; color: #c2410c; }
+        .priority-urgent { background: #fecaca; color: #dc2626; }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 0.4rem 0.8rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.05);
+        }
+
         .btn-view {
             background: var(--primary-blue);
             color: var(--white);
         }
-        
-        .btn-view:hover {
-            background: var(--dark-blue);
-        }
-        
+
         .btn-edit {
             background: var(--warning);
             color: var(--white);
         }
-        
-        .btn-edit:hover {
-            background: #d97706;
-        }
-        
+
         .btn-delete {
             background: var(--error);
             color: var(--white);
         }
-        
-        .btn-delete:hover {
-            background: #dc2626;
+
+        /* Mobile Cards */
+        .mobile-cards {
+            display: none;
         }
-        
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--dark-gray);
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid var(--light-blue);
-            border-radius: 8px;
-            font-size: 1rem;
+
+        .request-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 1rem;
+            overflow: hidden;
             transition: var(--transition);
         }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+
+        .request-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
         }
-        
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
+
+        .card-header {
+            padding: 1rem;
+            background: var(--light-gray);
+            border-bottom: 1px solid var(--light-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        
+
+        .card-title {
+            font-weight: 600;
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+        }
+
+        .card-body {
+            padding: 1rem;
+        }
+
+        .card-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--light-blue);
+        }
+
+        .card-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .card-label {
+            font-weight: 600;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .card-value {
+            color: var(--dark-gray);
+            font-weight: 500;
+        }
+
+        .card-actions {
+            padding: 1rem;
+            background: var(--light-gray);
+            border-top: 1px solid var(--light-blue);
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -707,458 +750,412 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             z-index: 2000;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            backdrop-filter: blur(5px);
+            padding: 1rem;
         }
-        
+
         .modal.show {
             display: flex;
         }
-        
+
         .modal-content {
             background: var(--white);
-            border-radius: 12px;
-            max-width: 600px;
+            border-radius: var(--border-radius);
+            max-width: 800px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
             position: relative;
+            animation: slideUp 0.3s ease;
         }
-        
+
         .modal-header {
-            padding: 25px;
+            padding: 1.5rem;
             border-bottom: 1px solid var(--light-blue);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: var(--light-gray);
         }
-        
+
         .modal-title {
-            font-size: 1.4rem;
-            color: var(--dark-gray);
-            font-weight: 600;
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            font-weight: 700;
         }
-        
+
         .close-modal {
             background: none;
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--gray);
-            padding: 8px;
-            border-radius: 6px;
+            padding: 0.5rem;
+            border-radius: 50%;
             transition: var(--transition);
         }
-        
+
         .close-modal:hover {
             background: var(--light-blue);
             color: var(--primary-blue);
         }
-        
+
         .modal-body {
-            padding: 25px;
+            padding: 2rem;
         }
-        
-        .modal-footer {
-            padding: 25px;
-            border-top: 1px solid var(--light-blue);
-            display: flex;
-            justify-content: flex-end;
-            gap: 12px;
+
+        .detail-section {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--light-blue);
         }
-        
-        .product-request-item {
-            background: var(--white);
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            margin-bottom: 20px;
-            border: 1px solid var(--light-blue);
-            transition: var(--transition);
+
+        .detail-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
         }
-        
-        .product-request-item:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .request-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .request-id {
-            font-weight: 600;
+
+        .detail-section h4 {
             color: var(--primary-blue);
-            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-        
-        .request-date {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-        
-        .request-details {
+
+        .detail-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 1rem;
         }
-        
-        .request-details div {
+
+        .detail-item {
             display: flex;
             flex-direction: column;
+            gap: 0.3rem;
         }
-        
-        .request-details label {
-            font-weight: 500;
-            color: var(--dark-gray);
-            margin-bottom: 5px;
+
+        .detail-label {
+            font-weight: 600;
+            color: var(--gray);
             font-size: 0.9rem;
         }
-        
-        .request-details span {
-            color: var(--gray);
+
+        .detail-value {
+            color: var(--dark-gray);
+            font-weight: 500;
             word-break: break-word;
         }
-        
-        .request-image {
-            width: 100%;
-            max-width: 250px;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border: 1px solid var(--light-blue);
+
+        .images-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
         }
-        
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin-top: 20px;
-            padding: 20px;
-        }
-        
-        .pagination button {
-            padding: 8px 12px;
-            border: 1px solid var(--light-blue);
-            background: var(--white);
-            color: var(--gray);
-            border-radius: 6px;
-            cursor: pointer;
+
+        .image-item {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
             transition: var(--transition);
         }
-        
-        .pagination button:hover {
-            background: var(--light-blue);
-            color: var(--primary-blue);
+
+        .image-item:hover {
+            transform: scale(1.05);
         }
-        
-        .pagination button.active {
-            background: var(--primary-blue);
+
+        .image-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .image-item:hover .image-overlay {
+            opacity: 1;
+        }
+
+        .image-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .image-btn {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
             color: var(--white);
-            border-color: var(--primary-blue);
+            transition: var(--transition);
         }
-        
-        .pagination button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+
+        .image-btn.view {
+            background: var(--primary-blue);
         }
-        
-        .stats-summary {
-            background: var(--white);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            margin-bottom: 20px;
+
+        .image-btn.delete {
+            background: var(--error);
+        }
+
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--light-blue);
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            background: var(--light-gray);
+        }
+
+        /* Edit Form */
+        .edit-form {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
+            gap: 1.5rem;
         }
-        
-        .stat-item {
-            text-align: center;
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
         }
-        
-        .stat-number {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-blue);
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
-        
-        .stat-label {
-            color: var(--gray);
-            font-size: 0.9rem;
-            margin-top: 5px;
+
+        .form-label {
+            font-weight: 600;
+            color: var(--dark-gray);
         }
-        
-        /* Mobile Responsive Styles */
-        @media (max-width: 1024px) {
-            .mobile-menu-toggle {
-                display: block;
+
+        .form-input {
+            padding: 0.75rem;
+            border: 2px solid var(--light-blue);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* Notifications */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius);
+            color: var(--white);
+            font-weight: 600;
+            z-index: 3000;
+            animation: slideInRight 0.3s ease;
+            max-width: 350px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .notification.success { background: var(--success); }
+        .notification.error { background: var(--error); }
+        .notification.info { background: var(--primary-blue); }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
-            
-            .sidebar {
-                width: 100%;
-                max-width: 320px;
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes slideInRight {
+            from {
                 transform: translateX(100%);
-                transition: transform 0.3s ease;
+                opacity: 0;
             }
-            
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .sidebar {
+                position: fixed;
+                left: 0;
+                top: 80px;
+                height: calc(100vh - 80px);
+                z-index: 1500;
+                transform: translateX(-100%);
+            }
+
             .sidebar.show {
                 transform: translateX(0);
             }
-            
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
             .main-content {
-                margin-right: 0;
-                padding: 15px;
-                padding-top: 70px;
+                padding: 1rem;
             }
-            
-            .sidebar.collapsed + .main-content {
-                margin-right: 0;
-            }
-            
-            .dashboard-cards {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 15px;
-            }
-            
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .table-header {
+
+            .admin-layout {
                 flex-direction: column;
-                align-items: stretch;
             }
-            
-            .table-controls {
-                width: 100%;
-                justify-content: space-between;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
             }
-            
-            .search-box {
-                max-width: none;
-                flex: 1;
+
+            .logo-text h2 {
+                font-size: 1.2rem;
             }
-            
-            .request-details {
-                grid-template-columns: 1fr;
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
             }
-            
-            .admin-actions {
+
+            .section-actions {
                 width: 100%;
                 justify-content: center;
             }
-            
-            .top-bar {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .top-bar h1 {
-                font-size: 1.5rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 10px;
-                padding-top: 65px;
-            }
-            
-            .dashboard-cards {
+
+            .filters-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .dashboard-card {
-                padding: 20px;
-            }
-            
-            .card-header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            
-            .card-number {
-                font-size: 1.8rem;
-            }
-            
-            /* Hide desktop table, show mobile cards */
-            .table-content {
+
+            .table-container {
                 display: none;
             }
-            
+
             .mobile-cards {
                 display: block;
             }
-            
-            .mobile-card-actions .btn-small {
-                flex: 1;
-                justify-content: center;
-            }
-            
-            .modal-content {
-                margin: 10px;
-                width: calc(100% - 20px);
-            }
-            
-            .sidebar-header {
-                padding: 15px;
-            }
-            
-            .sidebar-header h2 {
-                font-size: 1.3rem;
-            }
-            
-            .menu-item {
-                padding: 15px;
-            }
-            
-            .product-request-item {
-                padding: 20px;
-            }
-            
-            .request-image {
-                max-width: 100%;
-                height: 150px;
-            }
-            
-            .stats-summary {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .pagination {
-                flex-wrap: wrap;
-                gap: 5px;
-            }
-            
-            .table-controls {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .main-content {
-                padding: 8px;
-                padding-top: 60px;
-            }
-            
-            .mobile-menu-toggle {
-                padding: 10px;
-                top: 10px;
-                left: 10px;
-            }
-            
-            .top-bar {
-                padding: 15px;
-                margin-bottom: 15px;
-            }
-            
-            .dashboard-card {
-                padding: 15px;
-            }
-            
-            .card-number {
-                font-size: 1.6rem;
-            }
-            
-            .table-header {
-                padding: 15px;
-            }
-            
-            .table-title {
-                font-size: 1.2rem;
-            }
-            
-            .product-request-item {
-                padding: 15px;
-            }
-            
-            .modal-header,
-            .modal-body,
-            .modal-footer {
-                padding: 15px;
-            }
-            
-            .modal-title {
-                font-size: 1.2rem;
-            }
-            
-            .btn {
-                padding: 8px 14px;
-                font-size: 0.85rem;
-            }
-            
-            .form-group input,
-            .form-group select,
-            .form-group textarea {
-                padding: 10px 12px;
-            }
-            
-            .mobile-card {
-                padding: 15px;
-            }
-            
-            .mobile-card-actions {
-                flex-direction: column;
-            }
-            
-            .stats-summary {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
-            .stat-number {
-                font-size: 1.5rem;
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             }
 
+            .stat-card {
+                padding: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .modal-content {
+                margin: 0.5rem;
+                width: calc(100% - 1rem);
+            }
+
+            .modal-body {
+                padding: 1rem;
+            }
+
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .images-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+
+            .image-item img {
+                height: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
             .login-box {
-                padding: 30px 20px;
+                padding: 2rem 1.5rem;
             }
 
             .login-title {
                 font-size: 1.5rem;
             }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card-actions {
+                flex-direction: column;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .modal-footer {
+                flex-direction: column;
+            }
         }
-        
-        /* Scrollbar Styling */
-        .sidebar::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        .sidebar::-webkit-scrollbar-track {
-            background: var(--light-gray);
-        }
-        
-        .sidebar::-webkit-scrollbar-thumb {
-            background: var(--primary-blue);
-            border-radius: 3px;
-        }
-        
-        .table-content::-webkit-scrollbar {
-            height: 6px;
-        }
-        
-        .table-content::-webkit-scrollbar-track {
-            background: var(--light-gray);
-        }
-        
-        .table-content::-webkit-scrollbar-thumb {
-            background: var(--primary-blue);
-            border-radius: 3px;
+
+        /* Print Styles */
+        @media print {
+            .sidebar,
+            .mobile-menu-toggle,
+            .logout-btn,
+            .action-buttons,
+            .modal {
+                display: none !important;
+            }
+
+            .main-content {
+                padding: 0;
+            }
+
+            .admin-layout {
+                display: block;
+            }
         }
     </style>
 </head>
@@ -1169,22 +1166,22 @@
             <div class="login-logo">
                 <i class="fas fa-shield-alt"></i>
             </div>
-            <h2 class="login-title">تسجيل الدخول إلى لوحة التحكم</h2>
-            <form class="login-form" onsubmit="handleLogin(event)">
-                <input 
-                    type="password" 
-                    class="login-input" 
-                    id="passwordInput" 
-                    placeholder="كلمة المرور" 
-                    required
-                    autocomplete="current-password"
-                >
+            <h1 class="login-title">لوحة تحكم الإدارة</h1>
+            <p class="login-subtitle">أدخل كلمة المرور للوصول إلى لوحة التحكم</p>
+            
+            <form id="loginForm">
+                <div class="password-group">
+                    <input type="password" id="passwordInput" class="password-input" placeholder="كلمة المرور" required>
+                    <button type="button" class="password-toggle" id="passwordToggle">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
                 <button type="submit" class="login-btn">
                     <i class="fas fa-sign-in-alt"></i>
                     دخول
                 </button>
-                <div class="error-message" id="errorMessage">
-                    كلمة المرور غير صحيحة
+                <div class="login-error" id="loginError">
+                    كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى.
                 </div>
             </form>
         </div>
@@ -1192,950 +1189,1046 @@
 
     <!-- Admin Dashboard -->
     <div class="admin-container" id="adminContainer">
-        <!-- Mobile Overlay -->
-        <div class="mobile-overlay" id="mobileOverlay"></div>
-        
-        <!-- Mobile Menu Toggle -->
-        <button class="mobile-menu-toggle" id="mobileMenuToggle">
-            <i class="fas fa-bars"></i>
-        </button>
-        
-        <!-- Sidebar -->
-        <div class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <h2>لوحة التحكم</h2>
-                <button class="sidebar-toggle" id="sidebarToggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-            
-            <div class="sidebar-menu">
-                <div class="menu-item active" data-section="dashboard">
-                    <i class="fas fa-home"></i>
-                    <span>الرئيسية</span>
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="header-content">
+                <div class="admin-logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h2>موردك   </h2>
+                    </div>
                 </div>
-                <div class="menu-item" data-section="products">
-                    <i class="fas fa-box"></i>
-                    <span>طلبات المنتجات</span>
-                </div>
-                <div class="menu-item" data-section="consultations">
-                    <i class="fas fa-comments"></i>
-                    <span>الاستشارات</span>
-                </div>
-                <div class="menu-item" data-section="settings">
-                    <i class="fas fa-cog"></i>
-                    <span>الإعدادات</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Top Bar -->
-            <div class="top-bar">
-                <h1>مرحباً بك في لوحة التحكم</h1>
-                <div class="admin-actions">
-                    <a href="index.html" class="btn btn-primary">
-                        <i class="fas fa-home"></i>
-                        الموقع الرئيسي
-                    </a>
-                    <button class="btn btn-secondary" onclick="logout()">
+                
+                <div class="header-actions">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <button class="logout-btn" id="logoutBtn">
                         <i class="fas fa-sign-out-alt"></i>
-                        تسجيل الخروج
+                        تسجيل خروج
                     </button>
                 </div>
             </div>
-            
-            <!-- Dashboard Content -->
-            <div class="content-section active" id="dashboard">
-                <div class="dashboard-cards">
-                    <div class="dashboard-card">
-                        <div class="card-header">
-                            <div class="card-title">طلبات المنتجات</div>
-                            <div class="card-icon products">
-                                <i class="fas fa-box"></i>
-                            </div>
-                        </div>
-                        <div class="card-number" id="productRequestsCount">0</div>
-                        <div class="card-subtitle">إجمالي الطلبات المستلمة</div>
-                    </div>
-                    
-                    <div class="dashboard-card">
-                        <div class="card-header">
-                            <div class="card-title">الاستشارات</div>
-                            <div class="card-icon orders">
-                                <i class="fas fa-comments"></i>
-                            </div>
-                        </div>
-                        <div class="card-number" id="consultationsCount">0</div>
-                        <div class="card-subtitle">إجمالي الاستشارات المستلمة</div>
-                    </div>
-                    
-                    <div class="dashboard-card">
-                        <div class="card-header">
-                            <div class="card-title">الطلبات الجديدة</div>
-                            <div class="card-icon users">
-                                <i class="fas fa-bell"></i>
-                            </div>
-                        </div>
-                        <div class="card-number" id="newRequestsCount">0</div>
-                        <div class="card-subtitle">طلبات اليوم</div>
-                    </div>
-                    
-                    <div class="dashboard-card">
-                        <div class="card-header">
-                            <div class="card-title">معدل الاستجابة</div>
-                            <div class="card-icon revenue">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                        </div>
-                        <div class="card-number">95%</div>
-                        <div class="card-subtitle">معدل الرد على الطلبات</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Products Section -->
-            <div class="content-section" id="products">
-                <div class="data-table">
-                    <div class="table-header">
-                        <div class="table-title">طلبات المنتجات</div>
-                        <div class="table-controls">
-                            <input type="text" class="search-box" id="productsSearch" placeholder="البحث عن الطلبات...">
-                            <button class="export-btn" onclick="exportProductRequests()">
-                                <i class="fas fa-download"></i>
-                                تصدير
+        </header>
+
+        <!-- Main Layout -->
+        <div class="admin-layout">
+            <!-- Sidebar -->
+            <aside class="sidebar" id="sidebar">
+                <ul class="sidebar-menu">
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link active" data-section="dashboard">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>لوحة المعلومات</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link" data-section="requests">
+                            <i class="fas fa-inbox"></i>
+                            <span>الطلبات</span>
+                            <span class="notification-badge" id="newRequestsBadge">0</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link" data-section="analytics">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>التحليلات</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link" data-section="export">
+                            <i class="fas fa-download"></i>
+                            <span>تصدير البيانات</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link" data-section="settings">
+                            <i class="fas fa-cog"></i>
+                            <span>الإعدادات</span>
+                        </a>
+                    </li>
+                </ul>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Dashboard Section -->
+                <section class="content-section active" id="dashboard">
+                    <div class="section-header">
+                        <h1 class="section-title">لوحة المعلومات</h1>
+                        <div class="section-actions">
+                            <button class="btn btn-primary" onclick="refreshData()">
+                                <i class="fas fa-sync-alt"></i>
+                                تحديث البيانات
                             </button>
                         </div>
                     </div>
-                    <div id="productRequestsList">
-                        <!-- Product requests will be loaded here -->
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <span class="stat-title">طلبات جديدة</span>
+                                <div class="stat-icon new">
+                                    <i class="fas fa-plus-circle"></i>
+                                </div>
+                            </div>
+                            <div class="stat-number" id="newRequestsCount">0</div>
+                            <div class="stat-change">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+12% من الأسبوع الماضي</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <span class="stat-title">طلبات عاجلة</span>
+                                <div class="stat-icon urgent">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                            </div>
+                            <div class="stat-number" id="urgentRequestsCount">0</div>
+                            <div class="stat-change">
+                                <i class="fas fa-arrow-down"></i>
+                                <span>-5% من الأسبوع الماضي</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <span class="stat-title">طلبات مكتملة</span>
+                                <div class="stat-icon completed">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                            </div>
+                            <div class="stat-number" id="completedRequestsCount">0</div>
+                            <div class="stat-change">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+8% من الأسبوع الماضي</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <span class="stat-title">إجمالي الطلبات</span>
+                                <div class="stat-icon total">
+                                    <i class="fas fa-list"></i>
+                                </div>
+                            </div>
+                            <div class="stat-number" id="totalRequestsCount">0</div>
+                            <div class="stat-change">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+15% من الأسبوع الماضي</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            
-            <!-- Consultations Section -->
-            <div class="content-section" id="consultations">
-                <div class="data-table">
-                    <div class="table-header">
-                        <div class="table-title">الاستشارات</div>
-                        <div class="table-controls">
-                            <input type="text" class="search-box" id="consultationsSearch" placeholder="البحث عن الاستشارات...">
-                            <select class="filter-select" id="consultationsFilter">
-                                <option value="">جميع الاستشارات</option>
-                                <option value="new">جديد</option>
-                                <option value="replied">تم الرد</option>
-                                <option value="closed">مغلق</option>
-                            </select>
-                            <button class="export-btn" onclick="exportConsultations()">
-                                <i class="fas fa-download"></i>
-                                تصدير
+                </section>
+
+                <!-- Requests Section -->
+                <section class="content-section" id="requests">
+                    <div class="section-header">
+                        <h1 class="section-title">إدارة الطلبات</h1>
+                        <div class="section-actions">
+                            <button class="btn btn-success" onclick="exportToCSV()">
+                                <i class="fas fa-file-csv"></i>
+                                تصدير CSV
+                            </button>
+                            <button class="btn btn-warning" onclick="clearAllRequests()">
+                                <i class="fas fa-trash-alt"></i>
+                                حذف الكل
                             </button>
                         </div>
                     </div>
-                    
+
+                    <!-- Filters -->
+                    <div class="filters-container">
+                        <div class="filters-grid">
+                            <div class="filter-group">
+                                <label class="filter-label">البحث</label>
+                                <input type="text" id="searchFilter" class="filter-input" placeholder="ابحث في الطلبات...">
+                            </div>
+                            <div class="filter-group">
+                                <label class="filter-label">الحالة</label>
+                                <select id="statusFilter" class="filter-input">
+                                    <option value="">جميع الحالات</option>
+                                    <option value="new">جديد</option>
+                                    <option value="urgent">عاجل</option>
+                                    <option value="completed">مكتمل</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label class="filter-label">الأولوية</label>
+                                <select id="priorityFilter" class="filter-input">
+                                    <option value="">جميع الأولويات</option>
+                                    <option value="low">منخفضة</option>
+                                    <option value="medium">متوسطة</option>
+                                    <option value="high">عالية</option>
+                                    <option value="urgent">عاجلة</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label class="filter-label">من تاريخ</label>
+                                <input type="date" id="dateFromFilter" class="filter-input">
+                            </div>
+                            <div class="filter-group">
+                                <label class="filter-label">إلى تاريخ</label>
+                                <input type="date" id="dateToFilter" class="filter-input">
+                            </div>
+                            <div class="filter-group">
+                                <button class="btn btn-primary" onclick="applyFilters()" style="margin-top: 1.5rem;">
+                                    <i class="fas fa-filter"></i>
+                                    تطبيق الفلاتر
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Desktop Table -->
-                    <div class="table-content">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>الاسم</th>
-                                    <th>البريد الإلكتروني</th>
-                                    <th>الهاتف</th>
-                                    <th>نوع الاستشارة</th>
-                                    <th>التاريخ</th>
-                                    <th>الحالة</th>
-                                    <th>الإجراءات</th>
-                                </tr>
-                            </thead>
-                            <tbody id="consultationsTableBody">
-                                <!-- Consultations will be loaded here -->
-                            </tbody>
-                        </table>
+                    <div class="table-container">
+                        <div class="table-responsive">
+                            <table class="requests-table">
+                                <thead>
+                                    <tr>
+                                        <th>التاريخ</th>
+                                        <th>اسم العميل</th>
+                                        <th>المنتج</th>
+                                        <th>الكمية</th>
+                                        <th>الأولوية</th>
+                                        <th>الحالة</th>
+                                        <th>الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="requestsTableBody">
+                                    <!-- Table rows will be populated here -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    
+
                     <!-- Mobile Cards -->
-                    <div class="mobile-cards" id="consultationsMobileCards">
-                        <!-- Mobile cards will be loaded here -->
+                    <div class="mobile-cards" id="mobileCards">
+                        <!-- Mobile cards will be populated here -->
                     </div>
-                    
-                    <div class="pagination" id="consultationsPagination">
-                        <!-- Pagination will be loaded here -->
+                </section>
+
+                <!-- Analytics Section -->
+                <section class="content-section" id="analytics">
+                    <div class="section-header">
+                        <h1 class="section-title">التحليلات والإحصائيات</h1>
                     </div>
-                </div>
-            </div>
-            
-            <!-- Settings Section -->
-            <div class="content-section" id="settings">
-                <div class="data-table">
-                    <div class="table-header">
-                        <div class="table-title">إعدادات النظام</div>
+                    <div style="text-align: center; padding: 3rem; color: var(--gray);">
+                        <i class="fas fa-chart-line" style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                        <h3>قريباً...</h3>
+                        <p>سيتم إضافة التحليلات والإحصائيات المفصلة قريباً</p>
                     </div>
-                    <div class="modal-body">
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="siteName">اسم الموقع</label>
-                                <input type="text" id="siteName" value="موردك">
+                </section>
+
+                <!-- Export Section -->
+                <section class="content-section" id="export">
+                    <div class="section-header">
+                        <h1 class="section-title">تصدير البيانات</h1>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card" style="cursor: pointer;" onclick="exportToCSV()">
+                            <div class="stat-header">
+                                <span class="stat-title">تصدير CSV</span>
+                                <div class="stat-icon" style="background: var(--success);">
+                                    <i class="fas fa-file-csv"></i>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="siteEmail">البريد الإلكتروني</label>
-                                <input type="email" id="siteEmail" value="info@mowaridak.com">
-                            </div>
-                            <div class="form-group">
-                                <label for="sitePhone">رقم الهاتف</label>
-                                <input type="tel" id="sitePhone" value="+966566072502">
-                            </div>
-                            <div class="form-group">
-                                <label for="whatsappNumber">رقم الواتساب</label>
-                                <input type="tel" id="whatsappNumber" value="+966566072502">
-                            </div>
+                            <p style="color: var(--gray); margin-top: 1rem;">تصدير جميع الطلبات بصيغة CSV</p>
                         </div>
-                        <div class="form-group">
-                            <label for="siteDescription">وصف الموقع</label>
-                            <textarea id="siteDescription">بوابتك الآمنة للاستيراد من الصين</textarea>
+                        <div class="stat-card" style="cursor: pointer;" onclick="exportToJSON()">
+                            <div class="stat-header">
+                                <span class="stat-title">نسخ احتياطي JSON</span>
+                                <div class="stat-icon" style="background: var(--warning);">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                            </div>
+                            <p style="color: var(--gray); margin-top: 1rem;">تصدير نسخة احتياطية كاملة</p>
                         </div>
-                        <button class="btn btn-primary" onclick="saveSettings()">حفظ التغييرات</button>
                     </div>
-                </div>
-            </div>
+                </section>
+
+                <!-- Settings Section -->
+                <section class="content-section" id="settings">
+                    <div class="section-header">
+                        <h1 class="section-title">الإعدادات</h1>
+                    </div>
+                    <div style="text-align: center; padding: 3rem; color: var(--gray);">
+                        <i class="fas fa-cog" style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                        <h3>قريباً...</h3>
+                        <p>سيتم إضافة إعدادات النظام قريباً</p>
+                    </div>
+                </section>
+            </main>
         </div>
     </div>
-    
-    <!-- Modal -->
-    <div class="modal" id="modal">
+
+    <!-- View Request Modal -->
+    <div class="modal" id="viewModal">
         <div class="modal-content">
             <div class="modal-header">
-                <div class="modal-title" id="modalTitle">تفاصيل الطلب</div>
-                <button class="close-modal" onclick="closeModal()">
+                <h3 class="modal-title">تفاصيل الطلب</h3>
+                <button class="close-modal" onclick="closeModal('viewModal')">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <div class="modal-body" id="modalBody">
-                <!-- Modal content will be loaded here -->
+            <div class="modal-body" id="viewModalBody">
+                <!-- Content will be populated here -->
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closeModal()">إغلاق</button>
-                <button class="btn btn-primary" id="modalSaveBtn" style="display: none;">حفظ</button>
+                <button class="btn btn-primary" onclick="closeModal('viewModal')">إغلاق</button>
             </div>
         </div>
     </div>
-    
+
+    <!-- Edit Request Modal -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">تعديل الطلب</h3>
+                <button class="close-modal" onclick="closeModal('editModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="edit-form" id="editForm">
+                    <!-- Form content will be populated here -->
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" onclick="saveRequest()">
+                    <i class="fas fa-save"></i>
+                    حفظ التغييرات
+                </button>
+                <button class="btn btn-danger" onclick="closeModal('editModal')">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Viewer Modal -->
+    <div class="modal" id="imageModal">
+        <div class="modal-content" style="max-width: 90vw; max-height: 90vh;">
+            <div class="modal-header">
+                <h3 class="modal-title">عرض الصورة</h3>
+                <button class="close-modal" onclick="closeModal('imageModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" style="text-align: center; padding: 1rem;">
+                <img id="modalImage" style="max-width: 100%; max-height: 70vh; object-fit: contain; border-radius: var(--border-radius);">
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Admin password
-        const ADMIN_PASSWORD = 'm900';
-        
-        // Check if user is already logged in
+        // Global variables
+        let currentRequests = [];
+        let filteredRequests = [];
+        let currentEditingIndex = -1;
+        const ADMIN_PASSWORD = '9090';
+
+        // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
-            if (localStorage.getItem('adminLoggedIn') === 'true') {
-                showAdminDashboard();
-            }
-            
-            // Initialize admin dashboard
-            initializeAdmin();
-            updateDashboardStats();
-            loadProductRequests();
-            loadConsultations();
-            setupSearchAndFilters();
+            checkAuthStatus();
+            setupEventListeners();
+            loadRequests();
         });
 
-        // Login functionality
-        function handleLogin(event) {
-            event.preventDefault();
-            const password = document.getElementById('passwordInput').value;
-            const errorMessage = document.getElementById('errorMessage');
-            
-            if (password === ADMIN_PASSWORD) {
-                localStorage.setItem('adminLoggedIn', 'true');
-                showAdminDashboard();
-                errorMessage.style.display = 'none';
+        function checkAuthStatus() {
+            const isAuthenticated = sessionStorage.getItem('adminAuthenticated');
+            if (isAuthenticated === 'true') {
+                showAdminPanel();
             } else {
-                errorMessage.style.display = 'block';
-                document.getElementById('passwordInput').value = '';
-                document.getElementById('passwordInput').focus();
+                showLoginScreen();
             }
         }
 
-        function showAdminDashboard() {
-            document.getElementById('loginContainer').style.display = 'none';
-            document.getElementById('adminContainer').style.display = 'flex';
-            updateDashboardStats();
-            loadProductRequests();
-            loadConsultations();
-        }
-
-        function logout() {
-            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
-                localStorage.removeItem('adminLoggedIn');
-                document.getElementById('loginContainer').style.display = 'flex';
-                document.getElementById('adminContainer').style.display = 'none';
-                document.getElementById('passwordInput').value = '';
-            }
-        }
-        
-        // Pagination variables
-        let currentPage = {
-            consultations: 1
-        };
-        const itemsPerPage = 10;
-        
-        function initializeAdmin() {
-            // Get elements
-            const sidebarToggle = document.getElementById('sidebarToggle');
-            const sidebar = document.getElementById('sidebar');
-            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-            const mobileOverlay = document.getElementById('mobileOverlay');
-            const menuItems = document.querySelectorAll('.menu-item');
+        function setupEventListeners() {
+            // Login form
+            document.getElementById('loginForm').addEventListener('submit', handleLogin);
+            document.getElementById('passwordToggle').addEventListener('click', togglePasswordVisibility);
             
-            // Desktop sidebar toggle
-            if (sidebarToggle) {
-                sidebarToggle.addEventListener('click', function() {
-                    if (window.innerWidth > 1024) {
-                        sidebar.classList.toggle('collapsed');
-                    }
-                });
-            }
+            // Logout button
+            document.getElementById('logoutBtn').addEventListener('click', logout);
             
             // Mobile menu toggle
-            if (mobileMenuToggle) {
-                mobileMenuToggle.addEventListener('click', function() {
-                    sidebar.classList.toggle('show');
-                    mobileOverlay.classList.toggle('show');
-                });
-            }
+            document.getElementById('mobileMenuToggle').addEventListener('click', toggleMobileMenu);
             
-            // Close mobile menu when clicking overlay
-            if (mobileOverlay) {
-                mobileOverlay.addEventListener('click', function() {
-                    closeMobileMenu();
-                });
-            }
-            
-            // Menu navigation
-            menuItems.forEach(item => {
-                item.addEventListener('click', function() {
+            // Sidebar navigation
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
                     const section = this.getAttribute('data-section');
                     showSection(section);
                     
-                    // Update active menu item
-                    menuItems.forEach(i => i.classList.remove('active'));
+                    // Update active state
+                    document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
                     this.classList.add('active');
                     
-                    // Close mobile menu when selecting an item
+                    // Hide mobile menu
                     if (window.innerWidth <= 1024) {
-                        closeMobileMenu();
+                        document.getElementById('sidebar').classList.remove('show');
                     }
                 });
             });
             
-            // Handle window resize
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 1024) {
-                    closeMobileMenu();
-                    sidebar.classList.remove('collapsed');
-                }
-                
-                // Reload current section to adjust for mobile/desktop view
-                const activeSection = document.querySelector('.content-section.active');
-                if (activeSection) {
-                    const sectionId = activeSection.id;
-                    if (sectionId === 'consultations') loadConsultations();
-                    if (sectionId === 'products') loadProductRequests();
-                }
-            });
+            // Filters
+            document.getElementById('searchFilter').addEventListener('input', applyFilters);
+            document.getElementById('statusFilter').addEventListener('change', applyFilters);
+            document.getElementById('priorityFilter').addEventListener('change', applyFilters);
+            document.getElementById('dateFromFilter').addEventListener('change', applyFilters);
+            document.getElementById('dateToFilter').addEventListener('change', applyFilters);
             
-            // Close mobile menu on escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && window.innerWidth <= 1024) {
-                    closeMobileMenu();
-                }
+            // Close modals when clicking outside
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeModal(this.id);
+                    }
+                });
             });
         }
-        
-        function closeMobileMenu() {
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const password = document.getElementById('passwordInput').value;
+            const errorElement = document.getElementById('loginError');
+            
+            if (password === ADMIN_PASSWORD) {
+                sessionStorage.setItem('adminAuthenticated', 'true');
+                showAdminPanel();
+                showNotification('تم تسجيل الدخول بنجاح', 'success');
+            } else {
+                errorElement.classList.add('show');
+                document.getElementById('passwordInput').value = '';
+                setTimeout(() => {
+                    errorElement.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('passwordInput');
+            const toggleIcon = document.querySelector('#passwordToggle i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.className = 'fas fa-eye-slash';
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.className = 'fas fa-eye';
+            }
+        }
+
+        function logout() {
+            sessionStorage.removeItem('adminAuthenticated');
+            showLoginScreen();
+            showNotification('تم تسجيل الخروج بنجاح', 'info');
+        }
+
+        function showLoginScreen() {
+            document.getElementById('loginContainer').style.display = 'flex';
+            document.getElementById('adminContainer').classList.remove('show');
+            document.getElementById('passwordInput').value = '';
+        }
+
+        function showAdminPanel() {
+            document.getElementById('loginContainer').style.display = 'none';
+            document.getElementById('adminContainer').classList.add('show');
+            loadRequests();
+            updateStats();
+        }
+
+        function toggleMobileMenu() {
             const sidebar = document.getElementById('sidebar');
-            const mobileOverlay = document.getElementById('mobileOverlay');
-            
-            if (sidebar) sidebar.classList.remove('show');
-            if (mobileOverlay) mobileOverlay.classList.remove('show');
+            sidebar.classList.toggle('show');
         }
-        
+
         function showSection(sectionId) {
-            const sections = document.querySelectorAll('.content-section');
-            sections.forEach(section => {
+            document.querySelectorAll('.content-section').forEach(section => {
                 section.classList.remove('active');
             });
-            
-            const targetSection = document.getElementById(sectionId);
-            if (targetSection) {
-                targetSection.classList.add('active');
-            }
+            document.getElementById(sectionId).classList.add('active');
         }
-        
-        function setupSearchAndFilters() {
-            // Consultations search and filter
-            const consultationsSearch = document.getElementById('consultationsSearch');
-            const consultationsFilter = document.getElementById('consultationsFilter');
-            const productsSearch = document.getElementById('productsSearch');
-            
-            if (consultationsSearch) {
-                consultationsSearch.addEventListener('input', function() {
-                    loadConsultations();
-                });
-            }
-            
-            if (consultationsFilter) {
-                consultationsFilter.addEventListener('change', function() {
-                    loadConsultations();
-                });
-            }
-            
-            // Products search
-            if (productsSearch) {
-                productsSearch.addEventListener('input', function() {
-                    loadProductRequests();
-                });
-            }
+
+        function loadRequests() {
+            currentRequests = JSON.parse(localStorage.getItem('productRequests') || '[]');
+            filteredRequests = [...currentRequests];
+            renderRequests();
+            updateStats();
         }
-        
-        function updateDashboardStats() {
-            const productRequests = JSON.parse(localStorage.getItem('productRequests') || '[]');
-            const consultations = JSON.parse(localStorage.getItem('consultations') || '[]');
+
+        function updateStats() {
+            const newRequests = currentRequests.filter(req => req.status === 'new' || !req.status);
+            const urgentRequests = currentRequests.filter(req => req.urgency === 'urgent');
+            const completedRequests = currentRequests.filter(req => req.status === 'completed');
             
-            // Get today's date
-            const today = new Date().toDateString();
-            const newRequestsToday = [...productRequests, ...consultations].filter(item => {
-                return new Date(item.date).toDateString() === today;
-            }).length;
-            
-            // Update dashboard cards
-            const productRequestsCountEl = document.getElementById('productRequestsCount');
-            const consultationsCountEl = document.getElementById('consultationsCount');
-            const newRequestsCountEl = document.getElementById('newRequestsCount');
-            
-            if (productRequestsCountEl) productRequestsCountEl.textContent = productRequests.length;
-            if (consultationsCountEl) consultationsCountEl.textContent = consultations.length;
-            if (newRequestsCountEl) newRequestsCountEl.textContent = newRequestsToday;
+            document.getElementById('newRequestsCount').textContent = newRequests.length;
+            document.getElementById('urgentRequestsCount').textContent = urgentRequests.length;
+            document.getElementById('completedRequestsCount').textContent = completedRequests.length;
+            document.getElementById('totalRequestsCount').textContent = currentRequests.length;
+            document.getElementById('newRequestsBadge').textContent = newRequests.length;
         }
-        
-        function loadConsultations() {
-            const searchTerm = document.getElementById('consultationsSearch')?.value.toLowerCase() || '';
-            const statusFilter = document.getElementById('consultationsFilter')?.value || '';
+
+        function renderRequests() {
+            renderDesktopTable();
+            renderMobileCards();
+        }
+
+        function renderDesktopTable() {
+            const tbody = document.getElementById('requestsTableBody');
+            tbody.innerHTML = '';
             
-            let consultations = JSON.parse(localStorage.getItem('consultations') || '[]');
-            
-            let filteredConsultations = consultations.filter(consultation => {
-                const matchesSearch = consultation.name.toLowerCase().includes(searchTerm) || 
-                                    consultation.email.toLowerCase().includes(searchTerm) ||
-                                    consultation.type.toLowerCase().includes(searchTerm);
-                const matchesFilter = !statusFilter || consultation.status === statusFilter;
-                return matchesSearch && matchesFilter;
+            filteredRequests.forEach((request, index) => {
+                const row = document.createElement('tr');
+                const date = new Date(request.date).toLocaleDateString('ar-SA');
+                const status = request.status || 'new';
+                const priority = request.urgency || 'medium';
+                
+                row.innerHTML = `
+                    <td>${date}</td>
+                    <td>${request.name}</td>
+                    <td>${request.productName}</td>
+                    <td>${request.quantity}</td>
+                    <td><span class="priority-badge priority-${priority}">${getPriorityText(priority)}</span></td>
+                    <td><span class="status-badge status-${status}">${getStatusText(status)}</span></td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn btn-view" onclick="viewRequest(${index})">
+                                <i class="fas fa-eye"></i>
+                                عرض
+                            </button>
+                            <button class="action-btn btn-edit" onclick="editRequest(${index})">
+                                <i class="fas fa-edit"></i>
+                                تعديل
+                            </button>
+                            <button class="action-btn btn-delete" onclick="deleteRequest(${index})">
+                                <i class="fas fa-trash"></i>
+                                حذف
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(row);
             });
-            
-            const totalPages = Math.ceil(filteredConsultations.length / itemsPerPage);
-            const startIndex = (currentPage.consultations - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            const paginatedConsultations = filteredConsultations.slice(startIndex, endIndex);
-            
-            const tableBody = document.getElementById('consultationsTableBody');
-            const mobileCards = document.getElementById('consultationsMobileCards');
-            
-            if (filteredConsultations.length === 0) {
-                if (tableBody) {
-                    tableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--gray); padding: 30px; font-size: 1.1rem;">لا توجد استشارات حالياً</td></tr>';
-                }
-                if (mobileCards) {
-                    mobileCards.innerHTML = '<div style="padding: 30px; text-align: center; color: var(--gray); font-size: 1.1rem;">لا توجد استشارات حالياً</div>';
-                }
-                return;
-            }
-            
-            // Load desktop table
-            if (tableBody) {
-                tableBody.innerHTML = paginatedConsultations.map(consultation => `
-                    <tr>
-                        <td>${consultation.name}</td>
-                        <td>${consultation.email}</td>
-                        <td>${consultation.phone}</td>
-                        <td>${consultation.type}</td>
-                        <td>${new Date(consultation.date).toLocaleDateString('ar-SA')}</td>
-                        <td><span class="status-badge status-${consultation.status === 'new' ? 'pending' : consultation.status === 'replied' ? 'completed' : 'cancelled'}">${getConsultationStatusText(consultation.status)}</span></td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn btn-small btn-view" onclick="viewConsultation('${consultation.id}')">عرض</button>
-                                <button class="btn btn-small btn-edit" onclick="editConsultation('${consultation.id}')">تعديل</button>
-                                <button class="btn btn-small btn-delete" onclick="deleteConsultation('${consultation.id}')">حذف</button>
-                            </div>
-                        </td>
-                    </tr>
-                `).join('');
-            }
-            
-            // Load mobile cards
-            if (mobileCards) {
-                mobileCards.innerHTML = paginatedConsultations.map(consultation => `
-                    <div class="mobile-card">
-                        <div class="mobile-card-header">
-                            <div class="mobile-card-title">${consultation.name}</div>
-                            <span class="status-badge status-${consultation.status === 'new' ? 'pending' : consultation.status === 'replied' ? 'completed' : 'cancelled'}">${getConsultationStatusText(consultation.status)}</span>
-                        </div>
-                        <div class="mobile-card-content">
-                            <div class="mobile-card-row">
-                                <span class="mobile-card-label">البريد الإلكتروني:</span>
-                                <span class="mobile-card-value">${consultation.email}</span>
-                            </div>
-                            <div class="mobile-card-row">
-                                <span class="mobile-card-label">الهاتف:</span>
-                                <span class="mobile-card-value">${consultation.phone}</span>
-                            </div>
-                            <div class="mobile-card-row">
-                                <span class="mobile-card-label">نوع الاستشارة:</span>
-                                <span class="mobile-card-value">${consultation.type}</span>
-                            </div>
-                            <div class="mobile-card-row">
-                                <span class="mobile-card-label">التاريخ:</span>
-                                <span class="mobile-card-value">${new Date(consultation.date).toLocaleDateString('ar-SA')}</span>
-                            </div>
-                        </div>
-                        <div class="mobile-card-actions">
-                            <button class="btn btn-small btn-view" onclick="viewConsultation('${consultation.id}')">عرض</button>
-                            <button class="btn btn-small btn-edit" onclick="editConsultation('${consultation.id}')">تعديل</button>
-                            <button class="btn btn-small btn-delete" onclick="deleteConsultation('${consultation.id}')">حذف</button>
-                        </div>
-                    </div>
-                `).join('');
-            }
-            
-            // Load pagination
-            loadPagination('consultations', totalPages, currentPage.consultations);
         }
-        
-        function loadProductRequests() {
-            const searchTerm = document.getElementById('productsSearch')?.value.toLowerCase() || '';
-            const productRequestsList = document.getElementById('productRequestsList');
-            const requests = JSON.parse(localStorage.getItem('productRequests') || '[]');
+
+        function renderMobileCards() {
+            const container = document.getElementById('mobileCards');
+            container.innerHTML = '';
             
-            let filteredRequests = requests.filter(request => {
-                return request.productName.toLowerCase().includes(searchTerm) ||
-                       request.name.toLowerCase().includes(searchTerm) ||
-                       request.email.toLowerCase().includes(searchTerm);
+            filteredRequests.forEach((request, index) => {
+                const card = document.createElement('div');
+                card.className = 'request-card';
+                const date = new Date(request.date).toLocaleDateString('ar-SA');
+                const status = request.status || 'new';
+                const priority = request.urgency || 'medium';
+                
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="card-title">${request.productName}</div>
+                        <span class="status-badge status-${status}">${getStatusText(status)}</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-row">
+                            <span class="card-label">العميل:</span>
+                            <span class="card-value">${request.name}</span>
+                        </div>
+                        <div class="card-row">
+                            <span class="card-label">الكمية:</span>
+                            <span class="card-value">${request.quantity}</span>
+                        </div>
+                        <div class="card-row">
+                            <span class="card-label">الأولوية:</span>
+                            <span class="priority-badge priority-${priority}">${getPriorityText(priority)}</span>
+                        </div>
+                        <div class="card-row">
+                            <span class="card-label">التاريخ:</span>
+                            <span class="card-value">${date}</span>
+                        </div>
+                        <div class="card-row">
+                            <span class="card-label">الهاتف:</span>
+                            <span class="card-value">${request.phone}</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="action-btn btn-view" onclick="viewRequest(${index})">
+                            <i class="fas fa-eye"></i>
+                            عرض
+                        </button>
+                        <button class="action-btn btn-edit" onclick="editRequest(${index})">
+                            <i class="fas fa-edit"></i>
+                            تعديل
+                        </button>
+                        <button class="action-btn btn-delete" onclick="deleteRequest(${index})">
+                            <i class="fas fa-trash"></i>
+                            حذف
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
             });
+        }
+
+        function viewRequest(index) {
+            const request = filteredRequests[index];
+            const modalBody = document.getElementById('viewModalBody');
             
-            if (!productRequestsList) return;
-            
-            if (filteredRequests.length === 0) {
-                productRequestsList.innerHTML = '<div style="padding: 30px; text-align: center; color: var(--gray); font-size: 1.1rem;">لا توجد طلبات منتجات حالياً</div>';
-                return;
-            }
-            
-            productRequestsList.innerHTML = filteredRequests.map(request => `
-                <div class="product-request-item">
-                    <div class="request-header">
-                        <div class="request-id">طلب رقم: ${request.id}</div>
-                        <div class="request-date">${new Date(request.date).toLocaleDateString('ar-SA')}</div>
-                    </div>
-                    <div class="request-details">
-                        <div>
-                            <label>اسم المنتج:</label>
-                            <span>${request.productName}</span>
+            modalBody.innerHTML = `
+                <div class="detail-section">
+                    <h4><i class="fas fa-box"></i> معلومات المنتج</h4>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">اسم المنتج</span>
+                            <span class="detail-value">${request.productName}</span>
                         </div>
-                        <div>
-                            <label>الكمية:</label>
-                            <span>${request.quantity}</span>
+                        <div class="detail-item">
+                            <span class="detail-label">الفئة</span>
+                            <span class="detail-value">${request.category || 'غير محدد'}</span>
                         </div>
-                        <div>
-                            <label>الاسم:</label>
-                            <span>${request.name}</span>
+                        <div class="detail-item">
+                            <span class="detail-label">الكمية</span>
+                            <span class="detail-value">${request.quantity}</span>
                         </div>
-                        <div>
-                            <label>البريد الإلكتروني:</label>
-                            <span>${request.email}</span>
+                        <div class="detail-item">
+                            <span class="detail-label">الميزانية</span>
+                            <span class="detail-value">${request.budget || 'غير محدد'}</span>
                         </div>
-                        <div>
-                            <label>الهاتف:</label>
-                            <span>${request.phone}</span>
+                        ${request.details ? `
+                        <div class="detail-item" style="grid-column: 1 / -1;">
+                            <span class="detail-label">الوصف التفصيلي</span>
+                            <span class="detail-value">${request.details}</span>
                         </div>
-                        <div>
-                            <label>تفاصيل إضافية:</label>
-                            <span>${request.details || 'لا توجد تفاصيل إضافية'}</span>
-                        </div>
-                    </div>
-                    ${request.image ? `<img src="${request.image}" alt="صورة المنتج" class="request-image">` : ''}
-                    <div class="action-buttons">
-                        <button class="btn btn-small btn-view" onclick="viewProductRequest('${request.id}')">عرض</button>
-                        <button class="btn btn-small btn-edit" onclick="editProductRequest('${request.id}')">تعديل</button>
-                        <button class="btn btn-small btn-delete" onclick="deleteProductRequest('${request.id}')">حذف</button>
+                        ` : ''}
                     </div>
                 </div>
-            `).join('');
-        }
-        
-        function loadPagination(type, totalPages, currentPageNum) {
-            const paginationContainer = document.getElementById(`${type}Pagination`);
-            
-            if (!paginationContainer || totalPages <= 1) {
-                if (paginationContainer) paginationContainer.innerHTML = '';
-                return;
-            }
-            
-            let paginationHTML = '';
-            
-            // Previous button
-            paginationHTML += `<button onclick="changePage('${type}', ${currentPageNum - 1})" ${currentPageNum === 1 ? 'disabled' : ''}>السابق</button>`;
-            
-            // Page numbers
-            for (let i = 1; i <= totalPages; i++) {
-                if (i === currentPageNum) {
-                    paginationHTML += `<button class="active">${i}</button>`;
-                } else {
-                    paginationHTML += `<button onclick="changePage('${type}', ${i})">${i}</button>`;
-                }
-            }
-            
-            // Next button
-            paginationHTML += `<button onclick="changePage('${type}', ${currentPageNum + 1})" ${currentPageNum === totalPages ? 'disabled' : ''}>التالي</button>`;
-            
-            paginationContainer.innerHTML = paginationHTML;
-        }
-        
-        function changePage(type, page) {
-            currentPage[type] = page;
-            
-            if (type === 'consultations') loadConsultations();
-        }
-        
-        function getConsultationStatusText(status) {
-            const statusMap = {
-                'new': 'جديد',
-                'replied': 'تم الرد',
-                'closed': 'مغلق'
-            };
-            return statusMap[status] || status;
-        }
-        
-        // View functions
-        function viewProductRequest(id) {
-            const requests = JSON.parse(localStorage.getItem('productRequests') || '[]');
-            const request = requests.find(r => r.id === id);
-            
-            if (request) {
-                document.getElementById('modalTitle').textContent = 'تفاصيل طلب المنتج';
-                document.getElementById('modalBody').innerHTML = `
-                    <div class="request-details">
-                        <div><strong>اسم المنتج:</strong> ${request.productName}</div>
-                        <div><strong>الكمية:</strong> ${request.quantity}</div>
-                        <div><strong>الاسم:</strong> ${request.name}</div>
-                        <div><strong>البريد الإلكتروني:</strong> ${request.email}</div>
-                        <div><strong>الهاتف:</strong> ${request.phone}</div>
-                        <div><strong>التفاصيل:</strong> ${request.details || 'لا توجد تفاصيل إضافية'}</div>
-                        <div><strong>التاريخ:</strong> ${new Date(request.date).toLocaleDateString('ar-SA')}</div>
-                    </div>
-                    ${request.image ? `<img src="${request.image}" alt="صورة المنتج" style="width: 100%; max-width: 300px; border-radius: 8px; margin-top: 15px;">` : ''}
-                `;
-                showModal();
-            }
-        }
-        
-        function viewConsultation(id) {
-            let consultations = JSON.parse(localStorage.getItem('consultations') || '[]');
-            const consultation = consultations.find(c => c.id == id);
-            
-            if (consultation) {
-                document.getElementById('modalTitle').textContent = 'تفاصيل الاستشارة';
-                document.getElementById('modalBody').innerHTML = `
-                    <div class="request-details">
-                        <div><strong>الاسم:</strong> ${consultation.name}</div>
-                        <div><strong>البريد الإلكتروني:</strong> ${consultation.email}</div>
-                        <div><strong>الهاتف:</strong> ${consultation.phone}</div>
-                        <div><strong>نوع الاستشارة:</strong> ${consultation.type}</div>
-                        <div><strong>الرسالة:</strong> ${consultation.message}</div>
-                        <div><strong>التاريخ:</strong> ${new Date(consultation.date).toLocaleDateString('ar-SA')}</div>
-                        <div><strong>الحالة:</strong> ${getConsultationStatusText(consultation.status)}</div>
-                    </div>
-                `;
-                showModal();
-            }
-        }
-        
-        // Delete functions
-        function deleteProductRequest(id) {
-            if (confirm('هل أنت متأكد من حذف هذا الطلب؟')) {
-                const requests = JSON.parse(localStorage.getItem('productRequests') || '[]');
-                const updatedRequests = requests.filter(r => r.id !== id);
-                localStorage.setItem('productRequests', JSON.stringify(updatedRequests));
-                loadProductRequests();
-                updateDashboardStats();
-                alert('تم حذف الطلب بنجاح');
-            }
-        }
-        
-        function deleteConsultation(id) {
-            if (confirm('هل أنت متأكد من حذف هذه الاستشارة؟')) {
-                const consultations = JSON.parse(localStorage.getItem('consultations') || '[]');
-                const updatedConsultations = consultations.filter(c => c.id != id);
-                localStorage.setItem('consultations', JSON.stringify(updatedConsultations));
-                loadConsultations();
-                updateDashboardStats();
-                alert('تم حذف الاستشارة بنجاح');
-            }
-        }
-        
-        // Edit functions
-        function editProductRequest(id) {
-            const requests = JSON.parse(localStorage.getItem('productRequests') || '[]');
-            const request = requests.find(r => r.id === id);
-            
-            if (request) {
-                document.getElementById('modalTitle').textContent = 'تعديل طلب المنتج';
-                document.getElementById('modalBody').innerHTML = `
-                    <div class="form-group">
-                        <label for="editProductName">اسم المنتج</label>
-                        <input type="text" id="editProductName" value="${request.productName}">
-                    </div>
-                    <div class="form-group">
-                        <label for="editQuantity">الكمية</label>
-                        <input type="number" id="editQuantity" value="${request.quantity}">
-                    </div>
-                    <div class="form-group">
-                        <label for="editName">الاسم</label>
-                        <input type="text" id="editName" value="${request.name}">
-                    </div>
-                    <div class="form-group">
-                        <label for="editEmail">البريد الإلكتروني</label>
-                        <input type="email" id="editEmail" value="${request.email}">
-                    </div>
-                    <div class="form-group">
-                        <label for="editPhone">الهاتف</label>
-                        <input type="tel" id="editPhone" value="${request.phone}">
-                    </div>
-                    <div class="form-group">
-                        <label for="editDetails">التفاصيل</label>
-                        <textarea id="editDetails">${request.details || ''}</textarea>
-                    </div>
-                `;
                 
-                const saveBtn = document.getElementById('modalSaveBtn');
-                saveBtn.style.display = 'inline-flex';
-                saveBtn.onclick = function() {
-                    saveProductRequest(id);
-                };
+                <div class="detail-section">
+                    <h4><i class="fas fa-user"></i> بيانات العميل</h4>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">الاسم الكامل</span>
+                            <span class="detail-value">${request.name}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">رقم الهاتف</span>
+                            <span class="detail-value">${request.phone}</span>
+                        </div>
+                        ${request.email ? `
+                        <div class="detail-item">
+                            <span class="detail-label">البريد الإلكتروني</span>
+                            <span class="detail-value">${request.email}</span>
+                        </div>
+                        ` : ''}
+                        ${request.company ? `
+                        <div class="detail-item">
+                            <span class="detail-label">الشركة</span>
+                            <span class="detail-value">${request.company}</span>
+                        </div>
+                        ` : ''}
+                        <div class="detail-item">
+                            <span class="detail-label">البلد</span>
+                            <span class="detail-value">${request.country || 'غير محدد'}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">الأولوية</span>
+                            <span class="detail-value">
+                                <span class="priority-badge priority-${request.urgency || 'medium'}">${getPriorityText(request.urgency || 'medium')}</span>
+                            </span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">طريقة التواصل المفضلة</span>
+                            <span class="detail-value">${getContactMethodText(request.contactMethod || 'phone')}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">تاريخ الطلب</span>
+                            <span class="detail-value">${new Date(request.date).toLocaleString('ar-SA')}</span>
+                        </div>
+                    </div>
+                </div>
                 
-                showModal();
-            }
-        }
-        
-        function editConsultation(id) {
-            const consultations = JSON.parse(localStorage.getItem('consultations') || '[]');
-            const consultation = consultations.find(c => c.id == id);
+                ${request.images && request.images.length > 0 ? `
+                <div class="detail-section">
+                    <h4><i class="fas fa-images"></i> الصور المرفقة (${request.images.length})</h4>
+                    <div class="images-grid">
+                        ${request.images.map((image, imgIndex) => `
+                            <div class="image-item">
+                                <img src="${image}" alt="صورة المنتج ${imgIndex + 1}">
+                                <div class="image-overlay">
+                                    <div class="image-actions">
+                                        <button class="image-btn view" onclick="viewImage('${image}')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="image-btn delete" onclick="deleteImage(${index}, ${imgIndex})">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                ` : ''}
+            `;
             
-            if (consultation) {
-                document.getElementById('modalTitle').textContent = 'تعديل الاستشارة';
-                document.getElementById('modalBody').innerHTML = `
+            showModal('viewModal');
+        }
+
+        function editRequest(index) {
+            currentEditingIndex = index;
+            const request = filteredRequests[index];
+            const form = document.getElementById('editForm');
+            
+            form.innerHTML = `
+                <div class="form-row">
                     <div class="form-group">
-                        <label for="editConsultationName">الاسم</label>
-                        <input type="text" id="editConsultationName" value="${consultation.name}">
+                        <label class="form-label">اسم المنتج *</label>
+                        <input type="text" class="form-input" name="productName" value="${request.productName}" required>
                     </div>
                     <div class="form-group">
-                        <label for="editConsultationEmail">البريد الإلكتروني</label>
-                        <input type="email" id="editConsultationEmail" value="${consultation.email}">
-                    </div>
-                    <div class="form-group">
-                        <label for="editConsultationPhone">الهاتف</label>
-                        <input type="tel" id="editConsultationPhone" value="${consultation.phone}">
-                    </div>
-                    <div class="form-group">
-                        <label for="editConsultationType">نوع الاستشارة</label>
-                        <input type="text" id="editConsultationType" value="${consultation.type}">
-                    </div>
-                    <div class="form-group">
-                        <label for="editConsultationMessage">الرسالة</label>
-                        <textarea id="editConsultationMessage">${consultation.message}</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="editConsultationStatus">الحالة</label>
-                        <select id="editConsultationStatus">
-                            <option value="new" ${consultation.status === 'new' ? 'selected' : ''}>جديد</option>
-                            <option value="replied" ${consultation.status === 'replied' ? 'selected' : ''}>تم الرد</option>
-                            <option value="closed" ${consultation.status === 'closed' ? 'selected' : ''}>مغلق</option>
+                        <label class="form-label">الفئة</label>
+                        <select class="form-input" name="category">
+                            <option value="">اختر الفئة</option>
+                            <option value="electronics" ${request.category === 'electronics' ? 'selected' : ''}>إلكترونيات</option>
+                            <option value="clothing" ${request.category === 'clothing' ? 'selected' : ''}>ملابس وأزياء</option>
+                            <option value="home" ${request.category === 'home' ? 'selected' : ''}>منزل وحديقة</option>
+                            <option value="beauty" ${request.category === 'beauty' ? 'selected' : ''}>جمال وعناية</option>
+                            <option value="sports" ${request.category === 'sports' ? 'selected' : ''}>رياضة ولياقة</option>
+                            <option value="automotive" ${request.category === 'automotive' ? 'selected' : ''}>سيارات وقطع غيار</option>
+                            <option value="industrial" ${request.category === 'industrial' ? 'selected' : ''}>معدات صناعية</option>
+                            <option value="toys" ${request.category === 'toys' ? 'selected' : ''}>ألعاب وترفيه</option>
+                            <option value="food" ${request.category === 'food' ? 'selected' : ''}>أغذية ومشروبات</option>
+                            <option value="medical" ${request.category === 'medical' ? 'selected' : ''}>طبي وصحي</option>
+                            <option value="other" ${request.category === 'other' ? 'selected' : ''}>أخرى</option>
                         </select>
                     </div>
-                `;
+                </div>
                 
-                const saveBtn = document.getElementById('modalSaveBtn');
-                saveBtn.style.display = 'inline-flex';
-                saveBtn.onclick = function() {
-                    saveConsultation(id);
-                };
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">الكمية *</label>
+                        <input type="number" class="form-input" name="quantity" value="${request.quantity}" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">الميزانية</label>
+                        <input type="text" class="form-input" name="budget" value="${request.budget || ''}">
+                    </div>
+                </div>
                 
-                showModal();
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">الاسم الكامل *</label>
+                        <input type="text" class="form-input" name="name" value="${request.name}" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">رقم الهاتف *</label>
+                        <input type="tel" class="form-input" name="phone" value="${request.phone}" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">البريد الإلكتروني</label>
+                        <input type="email" class="form-input" name="email" value="${request.email || ''}">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">الشركة</label>
+                        <input type="text" class="form-input" name="company" value="${request.company || ''}">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">البلد</label>
+                        <input type="text" class="form-input" name="country" value="${request.country || ''}">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">الأولوية</label>
+                        <select class="form-input" name="urgency">
+                            <option value="low" ${request.urgency === 'low' ? 'selected' : ''}>منخفضة</option>
+                            <option value="medium" ${request.urgency === 'medium' ? 'selected' : ''}>متوسطة</option>
+                            <option value="high" ${request.urgency === 'high' ? 'selected' : ''}>عالية</option>
+                            <option value="urgent" ${request.urgency === 'urgent' ? 'selected' : ''}>عاجلة</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">الحالة</label>
+                        <select class="form-input" name="status">
+                            <option value="new" ${(request.status === 'new' || !request.status) ? 'selected' : ''}>جديد</option>
+                            <option value="in-progress" ${request.status === 'in-progress' ? 'selected' : ''}>قيد المعالجة</option>
+                            <option value="completed" ${request.status === 'completed' ? 'selected' : ''}>مكتمل</option>
+                            <option value="cancelled" ${request.status === 'cancelled' ? 'selected' : ''}>ملغي</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">طريقة التواصل</label>
+                        <select class="form-input" name="contactMethod">
+                            <option value="phone" ${request.contactMethod === 'phone' ? 'selected' : ''}>هاتف</option>
+                            <option value="email" ${request.contactMethod === 'email' ? 'selected' : ''}>إيميل</option>
+                            <option value="whatsapp" ${request.contactMethod === 'whatsapp' ? 'selected' : ''}>واتساب</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">الوصف التفصيلي</label>
+                    <textarea class="form-input form-textarea" name="details" rows="4">${request.details || ''}</textarea>
+                </div>
+            `;
+            
+            showModal('editModal');
+        }
+
+        function saveRequest() {
+            const form = document.getElementById('editForm');
+            const formData = new FormData(form);
+            const originalIndex = currentRequests.findIndex(req => req === filteredRequests[currentEditingIndex]);
+            
+            if (originalIndex !== -1) {
+                // Update the request
+                Object.keys(currentRequests[originalIndex]).forEach(key => {
+                    if (formData.has(key)) {
+                        currentRequests[originalIndex][key] = formData.get(key);
+                    }
+                });
+                
+                // Save to localStorage
+                localStorage.setItem('productRequests', JSON.stringify(currentRequests));
+                
+                // Refresh the display
+                loadRequests();
+                closeModal('editModal');
+                showNotification('تم حفظ التغييرات بنجاح', 'success');
             }
         }
-        
-        function saveProductRequest(id) {
-            const requests = JSON.parse(localStorage.getItem('productRequests') || '[]');
-            const requestIndex = requests.findIndex(r => r.id === id);
-            
-            if (requestIndex !== -1) {
-                requests[requestIndex] = {
-                    ...requests[requestIndex],
-                    productName: document.getElementById('editProductName').value,
-                    quantity: document.getElementById('editQuantity').value,
-                    name: document.getElementById('editName').value,
-                    email: document.getElementById('editEmail').value,
-                    phone: document.getElementById('editPhone').value,
-                    details: document.getElementById('editDetails').value
-                };
-                
-                localStorage.setItem('productRequests', JSON.stringify(requests));
-                loadProductRequests();
-                closeModal();
-                alert('تم حفظ التغييرات بنجاح');
+
+        function deleteRequest(index) {
+            if (confirm('هل أنت متأكد من حذف هذا الطلب؟')) {
+                const originalIndex = currentRequests.findIndex(req => req === filteredRequests[index]);
+                if (originalIndex !== -1) {
+                    currentRequests.splice(originalIndex, 1);
+                    localStorage.setItem('productRequests', JSON.stringify(currentRequests));
+                    loadRequests();
+                    showNotification('تم حذف الطلب بنجاح', 'success');
+                }
             }
         }
-        
-        function saveConsultation(id) {
-            const consultations = JSON.parse(localStorage.getItem('consultations') || '[]');
-            const consultationIndex = consultations.findIndex(c => c.id == id);
-            
-            if (consultationIndex !== -1) {
-                consultations[consultationIndex] = {
-                    ...consultations[consultationIndex],
-                    name: document.getElementById('editConsultationName').value,
-                    email: document.getElementById('editConsultationEmail').value,
-                    phone: document.getElementById('editConsultationPhone').value,
-                    type: document.getElementById('editConsultationType').value,
-                    message: document.getElementById('editConsultationMessage').value,
-                    status: document.getElementById('editConsultationStatus').value
-                };
-                
-                localStorage.setItem('consultations', JSON.stringify(consultations));
-                loadConsultations();
-                closeModal();
-                alert('تم حفظ التغييرات بنجاح');
+
+        function deleteImage(requestIndex, imageIndex) {
+            if (confirm('هل أنت متأكد من حذف هذه الصورة؟')) {
+                const originalIndex = currentRequests.findIndex(req => req === filteredRequests[requestIndex]);
+                if (originalIndex !== -1 && currentRequests[originalIndex].images) {
+                    currentRequests[originalIndex].images.splice(imageIndex, 1);
+                    localStorage.setItem('productRequests', JSON.stringify(currentRequests));
+                    loadRequests();
+                    
+                    // Refresh the view modal if it's open
+                    if (document.getElementById('viewModal').classList.contains('show')) {
+                        viewRequest(requestIndex);
+                    }
+                    
+                    showNotification('تم حذف الصورة بنجاح', 'success');
+                }
             }
         }
-        
-        // Export functions
-        function exportProductRequests() {
-            const requests = JSON.parse(localStorage.getItem('productRequests') || '[]');
+
+        function viewImage(imageSrc) {
+            document.getElementById('modalImage').src = imageSrc;
+            showModal('imageModal');
+        }
+
+        function applyFilters() {
+            const searchTerm = document.getElementById('searchFilter').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+            const priorityFilter = document.getElementById('priorityFilter').value;
+            const dateFrom = document.getElementById('dateFromFilter').value;
+            const dateTo = document.getElementById('dateToFilter').value;
             
-            if (requests.length === 0) {
-                alert('لا توجد بيانات للتصدير');
+            filteredRequests = currentRequests.filter(request => {
+                // Search filter
+                const matchesSearch = !searchTerm || 
+                    request.name.toLowerCase().includes(searchTerm) ||
+                    request.productName.toLowerCase().includes(searchTerm) ||
+                    (request.company && request.company.toLowerCase().includes(searchTerm)) ||
+                    (request.phone && request.phone.includes(searchTerm));
+                
+                // Status filter
+                const requestStatus = request.status || 'new';
+                const matchesStatus = !statusFilter || requestStatus === statusFilter;
+                
+                // Priority filter
+                const requestPriority = request.urgency || 'medium';
+                const matchesPriority = !priorityFilter || requestPriority === priorityFilter;
+                
+                // Date filters
+                const requestDate = new Date(request.date);
+                const matchesDateFrom = !dateFrom || requestDate >= new Date(dateFrom);
+                const matchesDateTo = !dateTo || requestDate <= new Date(dateTo + 'T23:59:59');
+                
+                return matchesSearch && matchesStatus && matchesPriority && matchesDateFrom && matchesDateTo;
+            });
+            
+            renderRequests();
+        }
+
+        function clearAllRequests() {
+            if (confirm('هل أنت متأكد من حذف جميع الطلبات؟ هذا الإجراء لا يمكن التراجع عنه.')) {
+                localStorage.removeItem('productRequests');
+                currentRequests = [];
+                filteredRequests = [];
+                renderRequests();
+                updateStats();
+                showNotification('تم حذف جميع الطلبات', 'info');
+            }
+        }
+
+        function exportToCSV() {
+            if (currentRequests.length === 0) {
+                showNotification('لا توجد طلبات للتصدير', 'error');
                 return;
             }
             
-            const data = requests.map(request => ({
-                'رقم الطلب': request.id,
-                'اسم المنتج': request.productName,
-                'الكمية': request.quantity,
-                'الاسم': request.name,
-                'البريد الإلكتروني': request.email,
-                'الهاتف': request.phone,
-                'التفاصيل': request.details || '',
-                'التاريخ': new Date(request.date).toLocaleDateString('ar-SA')
-            }));
+            const headers = [
+                'التاريخ', 'اسم العميل', 'المنتج', 'الفئة', 'الكمية', 'الميزانية',
+                'الهاتف', 'البريد الإلكتروني', 'الشركة', 'البلد', 'الأولوية',
+                'الحالة', 'طريقة التواصل', 'الوصف'
+            ];
             
-            downloadCSV(data, 'طلبات_المنتجات.csv');
-        }
-        
-        function exportConsultations() {
-            let consultations = JSON.parse(localStorage.getItem('consultations') || '[]');
-            
-            if (consultations.length === 0) {
-                alert('لا توجد بيانات للتصدير');
-                return;
-            }
-            
-            const data = consultations.map(consultation => ({
-                'الاسم': consultation.name,
-                'البريد الإلكتروني': consultation.email,
-                'الهاتف': consultation.phone,
-                'نوع الاستشارة': consultation.type,
-                'الرسالة': consultation.message,
-                'التاريخ': new Date(consultation.date).toLocaleDateString('ar-SA'),
-                'الحالة': getConsultationStatusText(consultation.status)
-            }));
-            
-            downloadCSV(data, 'الاستشارات.csv');
-        }
-        
-        function downloadCSV(data, filename) {
-            const headers = Object.keys(data[0]);
             const csvContent = [
                 headers.join(','),
-                ...data.map(row => headers.map(header => `"${row[header]}"`).join(','))
+                ...currentRequests.map(request => [
+                    new Date(request.date).toLocaleDateString('ar-SA'),
+                    `"${request.name}"`,
+                    `"${request.productName}"`,
+                    `"${request.category || ''}"`,
+                    request.quantity,
+                    `"${request.budget || ''}"`,
+                    `"${request.phone}"`,
+                    `"${request.email || ''}"`,
+                    `"${request.company || ''}"`,
+                    `"${request.country || ''}"`,
+                    `"${getPriorityText(request.urgency || 'medium')}"`,
+                    `"${getStatusText(request.status || 'new')}"`,
+                    `"${getContactMethodText(request.contactMethod || 'phone')}"`,
+                    `"${(request.details || '').replace(/"/g, '""')}"`
+                ].join(','))
             ].join('\n');
             
             const blob = new Blob(['\ufeff' + csvContent], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement('a');
-            const url = URL.createObjectURL(blob);
-            link.setAttribute('href', url);
-            link.setAttribute('download', filename);
-            link.style.visibility = 'hidden';
-            document.body.appendChild(link);
+            link.href = URL.createObjectURL(blob);
+            link.download = `product-requests-${new Date().toISOString().split('T')[0]}.csv`;
             link.click();
-            document.body.removeChild(link);
-        }
-        
-        function saveSettings() {
-            const settings = {
-                siteName: document.getElementById('siteName').value,
-                siteEmail: document.getElementById('siteEmail').value,
-                sitePhone: document.getElementById('sitePhone').value,
-                whatsappNumber: document.getElementById('whatsappNumber').value,
-                siteDescription: document.getElementById('siteDescription').value
-            };
             
-            localStorage.setItem('siteSettings', JSON.stringify(settings));
-            alert('تم حفظ الإعدادات بنجاح');
+            showNotification('تم تصدير البيانات بنجاح', 'success');
         }
-        
-        function showModal() {
-            document.getElementById('modal').classList.add('show');
+
+        function exportToJSON() {
+            if (currentRequests.length === 0) {
+                showNotification('لا توجد بيانات للتصدير', 'error');
+                return;
+            }
+            
+            const dataStr = JSON.stringify(currentRequests, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `product-requests-backup-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            
+            showNotification('تم تصدير النسخة الاحتياطية بنجاح', 'success');
+        }
+
+        function refreshData() {
+            loadRequests();
+            showNotification('تم تحديث البيانات', 'info');
+        }
+
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('show');
             document.body.style.overflow = 'hidden';
         }
-        
-        function closeModal() {
-            document.getElementById('modal').classList.remove('show');
-            document.getElementById('modalSaveBtn').style.display = 'none';
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
             document.body.style.overflow = 'auto';
         }
-        
-        // Close modal when clicking outside
-        document.getElementById('modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
-        
-        // Touch events for better mobile interaction
-        let touchStartX = 0;
-        let touchEndX = 0;
-        
-        document.addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-        
-        document.addEventListener('touchend', function(e) {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-        
-        function handleSwipe() {
-            const sidebar = document.getElementById('sidebar');
-            const swipeThreshold = 50;
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+            `;
             
-            if (window.innerWidth <= 1024) {
-                // Swipe right to open menu
-                if (touchEndX - touchStartX > swipeThreshold && !sidebar.classList.contains('show')) {
-                    sidebar.classList.add('show');
-                    document.getElementById('mobileOverlay').classList.add('show');
-                }
-                // Swipe left to close menu
-                else if (touchStartX - touchEndX > swipeThreshold && sidebar.classList.contains('show')) {
-                    closeMobileMenu();
-                }
-            }
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideInRight 0.3s ease reverse';
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 4000);
         }
+
+        // Helper functions
+        function getPriorityText(priority) {
+            const priorities = {
+                low: 'منخفضة',
+                medium: 'متوسطة',
+                high: 'عالية',
+                urgent: 'عاجلة'
+            };
+            return priorities[priority] || 'متوسطة';
+        }
+
+        function getStatusText(status) {
+            const statuses = {
+                new: 'جديد',
+                'in-progress': 'قيد المعالجة',
+                completed: 'مكتمل',
+                cancelled: 'ملغي'
+            };
+            return statuses[status] || 'جديد';
+        }
+
+        function getContactMethodText(method) {
+            const methods = {
+                phone: 'هاتف',
+                email: 'إيميل',
+                whatsapp: 'واتساب'
+            };
+            return methods[method] || 'هاتف';
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const sidebar = document.getElementById('sidebar');
+            const mobileToggle = document.getElementById('mobileMenuToggle');
+            
+            if (window.innerWidth <= 1024 && 
+                !sidebar.contains(e.target) && 
+                !mobileToggle.contains(e.target) &&
+                sidebar.classList.contains('show')) {
+                sidebar.classList.remove('show');
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 1024) {
+                document.getElementById('sidebar').classList.remove('show');
+            }
+        });
     </script>
 </body>
 </html>
