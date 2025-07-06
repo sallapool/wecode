@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> موردك - خدماتنا </title>
-    <meta name="title" content="منصة موردك - خدماتنا ">
+    <title>موردك - خدماتنا</title>
+    <meta name="title" content="منصة موردك - خدماتنا">
     <meta name="description" content="اكتشف خدمات موردك الشاملة للاستيراد من الصين: فحص جودة، شحن دولي، وساطة تجارية، دراسات جدوى وخطط تسويقية. حلول متكاملة لنجاح تجارتك الدولية.">
     
     <meta name="keywords" content="خدمات موردك, استيراد من الصين, فحص جودة الصين, شحن من الصين, وساطة تجارية, دراسة جدوى, خطة تسويقية, خدمات لوجستية, توثيق استيراد, منصة موردك">
@@ -24,7 +24,6 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://www.mowaridak.com/services" />
     
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     
@@ -60,16 +59,1208 @@
       }
     }
     </script>
+
+    <style>
+        /* Enhanced Services Styles */
+        :root {
+            --primary-blue: #2563eb;
+            --dark-blue: #1e40af;
+            --light-blue: #dbeafe;
+            --accent-orange: #f97316;
+            --success-green: #10b981;
+            --warning-yellow: #f59e0b;
+            --error-red: #ef4444;
+            --white: #ffffff;
+            --light-gray: #f8fafc;
+            --gray: #64748b;
+            --dark-gray: #334155;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --border-radius: 12px;
+            --spacing: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-logo h2 {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-blue);
+            background: var(--light-blue);
+        }
+
+        .btn-login {
+            background: var(--primary-blue);
+            color: var(--white) !important;
+            border-radius: var(--border-radius);
+            padding: 0.75rem 1.5rem;
+        }
+
+        .btn-login:hover {
+            background: var(--dark-blue);
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .language-selector {
+            position: relative;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--gray);
+            border-radius: var(--border-radius);
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .lang-btn:hover {
+            border-color: var(--primary-blue);
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--white);
+            border: 1px solid var(--gray);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            min-width: 120px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+        }
+
+        .lang-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            background: none;
+            border: none;
+            padding: 0.75rem 1rem;
+            width: 100%;
+            text-align: right;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lang-option:hover {
+            background: var(--light-blue);
+        }
+
+        /* Mobile Menu Toggle - IMPROVED */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+            padding: 0.75rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        
+        }
+
+        .nav-toggle:hover {
+            background: var(--light-blue);
+            border-color: var(--primary-blue);
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-blue);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        /* Active hamburger animation */
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Hero Section */
+        .services-hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            padding: 150px 20px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.1"><polygon points="0,0 1000,100 1000,0"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .services-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .services-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--accent-orange);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 80px 20px;
+            background: var(--light-gray);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid transparent;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--light-blue);
+        }
+
+        .service-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.1);
+        }
+
+        .service-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(37, 99, 235, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-overlay {
+            opacity: 1;
+        }
+
+        .overlay-content {
+            text-align: center;
+            color: var(--white);
+        }
+
+        .overlay-content i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+        }
+
+        .overlay-content span {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .service-content {
+            padding: 2rem;
+            position: relative;
+        }
+
+        .service-icon {
+            position: absolute;
+            top: -25px;
+            left: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-blue);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .service-content h3 {
+            color: var(--primary-blue);
+            margin: 1rem 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .service-content p {
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .service-features span {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .service-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .stars {
+            color: var(--accent-orange);
+        }
+
+        .rating-text {
+            color: var(--gray);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 80px 20px;
+            background: var(--white);
+        }
+
+        .features-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--light-gray);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-blue);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .feature-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* CTA Section */
+        .services-cta {
+            padding: 80px 20px;
+            background: var(--white);
+        }
+
+        .cta-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--dark-blue);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3,
+        .footer-section h4 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--white);
+        }
+
+        .footer-stats {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .footer-stat {
+            text-align: center;
+        }
+
+        .footer-stat strong {
+            display: block;
+            color: var(--accent-orange);
+            font-size: 1.2rem;
+        }
+
+        .footer-stat span {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info i {
+            color: var(--primary-blue);
+            width: 20px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+        }
+
+        /* Floating Chat */
+        .floating-chat {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .chat-toggle {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+        }
+
+        .chat-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-options {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+        }
+
+        .floating-chat.active .chat-options {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .chat-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            text-decoration: none;
+            color: var(--dark-gray);
+            transition: var(--transition);
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .chat-option:last-child {
+            border-bottom: none;
+        }
+
+        .chat-option:hover {
+            background: var(--light-gray);
+        }
+
+        .chat-option.whatsapp {
+            color: var(--success-green);
+        }
+
+        .chat-option.email {
+            color: var(--primary-blue);
+        }
+
+        /* Scroll to Top */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            z-index: 1000;
+        }
+
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top:hover {
+            background: var(--dark-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Service Modal */
+        .service-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .service-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--white);
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--light-gray);
+            background: var(--light-gray);
+        }
+
+        .modal-header h3 {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            background: var(--white);
+            color: var(--primary-blue);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .service-description h4,
+        .service-image-section h4,
+        .service-features-section h4,
+        .service-benefits-section h4,
+        .service-process h4,
+        .service-cta h4 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .service-description p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* Single Image in Modal */
+        .service-image-section {
+            text-align: center;
+        }
+
+        .service-main-image {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* Service Details Grid */
+        .service-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .features-list,
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features-list li,
+        .benefits-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .features-list i {
+            color: var(--success-green);
+        }
+
+        .benefits-list i {
+            color: var(--accent-orange);
+        }
+
+        /* Process Steps */
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--light-gray);
+            border-radius: var(--border-radius);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-blue);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        /* CTA in Modal */
+        .service-cta {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+
+        .service-cta p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-whatsapp,
+        .btn-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            margin: 0 0.5rem;
+        }
+
+        .btn-whatsapp {
+            background: var(--success-green);
+            color: var(--white);
+        }
+
+        .btn-whatsapp:hover {
+            background: #059669;
+        }
+
+        .btn-email {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .btn-email:hover {
+            background: var(--dark-blue);
+        }
+
+        /* Prevent body scroll when modal is open */
+        .modal-open {
+            overflow: hidden;
+        }
+
+        /* Animations */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-card, .feature-card {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .service-card.animate, .feature-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .service-card:nth-child(even) {
+            transition-delay: 0.2s;
+        }
+        
+        .service-card:nth-child(3n) {
+            transition-delay: 0.4s;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        /* ENHANCED MOBILE STYLES */
+        @media (max-width: 768px) {
+            /* Hide desktop menu and show mobile toggle */
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transform: translateX(-100%);
+                transition: var(--transition);
+                z-index: 999;
+                box-shadow: var(--shadow-lg);
+            }
+            
+            .nav-menu.active {
+                transform: translateX(0);
+            }
+            
+            .nav-menu .nav-link {
+                font-size: 1.2rem;
+                padding: 1rem 2rem;
+                border-radius: var(--border-radius);
+                width: 80%;
+                text-align: center;
+            }
+            
+            .nav-toggle {
+                display: flex;
+                z-index: 1001;
+            }
+            
+            /* Adjust navbar for mobile */
+            .nav-container {
+                padding: 1rem;
+            }
+            
+            .nav-logo h2 {
+                font-size: 1.5rem;
+            }
+            
+            /* Mobile overlay for menu */
+            .nav-menu::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+                opacity: 0.1;
+                z-index: -1;
+            }
+            
+            /* Other mobile adjustments */
+            .services-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-details-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .modal-content {
+                width: 95%;
+                max-height: 95vh;
+            }
+            
+            .modal-body {
+                padding: 1rem;
+            }
+            
+            .floating-chat {
+                bottom: 1rem;
+                right: 1rem;
+            }
+            
+            .scroll-to-top {
+                bottom: 1rem;
+                left: 1rem;
+            }
+
+            .service-main-image {
+                height: 250px;
+            }
+
+            /* Language selector adjustments for mobile */
+            .language-selector {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .services-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+            
+            .nav-container {
+                padding: 1rem;
+            }
+            
+            .services-section {
+                padding: 60px 15px;
+            }
+            
+            .features-section {
+                padding: 60px 15px;
+            }
+
+            .service-main-image {
+                height: 200px;
+            }
+
+            .nav-menu .nav-link {
+                font-size: 1.1rem;
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .service-content {
+                padding: 1.5rem;
+            }
+            
+            .modal-header {
+                padding: 1rem;
+            }
+            
+            .modal-body {
+                padding: 1rem;
+            }
+
+            .nav-container {
+                padding: 0.75rem;
+            }
+
+            .nav-logo h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
 </head>
-
-
 
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <h2 data-ar="موردك" data-en="mowaridak" data-zh="莫尔达克">موردك</h2>
+                <h2 data-ar="موردك" data-en="Mowaridak" data-zh="莫尔达克">موردك</h2>
             </div>
             
             <div class="nav-menu" id="nav-menu">
@@ -94,6 +1285,7 @@
                         <button class="lang-option" data-lang="zh">中文</button>
                     </div>
                 </div>
+                <!-- Mobile Menu Toggle Button -->
                 <div class="nav-toggle" id="nav-toggle">
                     <span></span>
                     <span></span>
@@ -109,6 +1301,26 @@
             <div class="hero-content">
                 <h1 data-ar="خدماتنا المتكاملة" data-en="Our Comprehensive Services" data-zh="我们的综合服务">خدماتنا المتكاملة</h1>
                 <p data-ar="نقدم مجموعة شاملة من الخدمات المتخصصة في مجال الاستيراد والتجارة الدولية" data-en="We provide a comprehensive range of specialized services in import and international trade" data-zh="我们在进口和国际贸易领域提供全面的专业服务">نقدم مجموعة شاملة من الخدمات المتخصصة في مجال الاستيراد والتجارة الدولية</p>
+                
+                <!-- Stats Counter -->
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="500">0</div>
+                        <div class="stat-label" data-ar="عميل راضي" data-en="Happy Clients" data-zh="满意客户">عميل راضي</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="1000">0</div>
+                        <div class="stat-label" data-ar="شحنة مكتملة" data-en="Completed Shipments" data-zh="完成货运">شحنة مكتملة</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="50">0</div>
+                        <div class="stat-label" data-ar="دولة" data-en="Countries" data-zh="国家">دولة</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="99">0</div>
+                        <div class="stat-label" data-ar="% نجاح" data-en="% Success" data-zh="% 成功">% نجاح</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -120,9 +1332,12 @@
                 <!-- Import Service -->
                 <div class="service-card" data-service="import">
                     <div class="service-image">
-                        <img src="استيراد.jpg" alt="Import Service">
+                        <img src="https://images.pexels.com/photos/4481327/pexels-photo-4481327.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Import Service">
                         <div class="service-overlay">
-                            <i class="fas fa-arrow-right"></i>
+                            <div class="overlay-content">
+                                <i class="fas fa-eye"></i>
+                                <span data-ar="عرض التفاصيل" data-en="View Details" data-zh="查看详情">عرض التفاصيل</span>
+                            </div>
                         </div>
                     </div>
                     <div class="service-content">
@@ -136,15 +1351,28 @@
                             <span data-ar="آمن" data-en="Safe" data-zh="安全">آمن</span>
                             <span data-ar="موثوق" data-en="Reliable" data-zh="可靠">موثوق</span>
                         </div>
+                        <div class="service-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">4.9/5</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Inspection Service -->
                 <div class="service-card" data-service="inspection">
                     <div class="service-image">
-                        <img src="فحص.png" alt="Inspection Service">
+                        <img src="https://images.pexels.com/photos/5668882/pexels-photo-5668882.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Inspection Service">
                         <div class="service-overlay">
-                            <i class="fas fa-arrow-right"></i>
+                            <div class="overlay-content">
+                                <i class="fas fa-eye"></i>
+                                <span data-ar="عرض التفاصيل" data-en="View Details" data-zh="查看详情">عرض التفاصيل</span>
+                            </div>
                         </div>
                     </div>
                     <div class="service-content">
@@ -158,15 +1386,28 @@
                             <span data-ar="شامل" data-en="Comprehensive" data-zh="全面">شامل</span>
                             <span data-ar="معتمد" data-en="Certified" data-zh="认证">معتمد</span>
                         </div>
+                        <div class="service-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">4.8/5</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Representation Service -->
                 <div class="service-card" data-service="representation">
                     <div class="service-image">
-                        <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1 " alt="Representation Service">
+                        <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Representation Service">
                         <div class="service-overlay">
-                            <i class="fas fa-arrow-right"></i>
+                            <div class="overlay-content">
+                                <i class="fas fa-eye"></i>
+                                <span data-ar="عرض التفاصيل" data-en="View Details" data-zh="查看详情">عرض التفاصيل</span>
+                            </div>
                         </div>
                     </div>
                     <div class="service-content">
@@ -180,15 +1421,28 @@
                             <span data-ar="معتمد" data-en="Certified" data-zh="认证">معتمد</span>
                             <span data-ar="قانوني" data-en="Legal" data-zh="合法">قانوني</span>
                         </div>
+                        <div class="service-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">4.9/5</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Shipping Service -->
                 <div class="service-card" data-service="shipping">
                     <div class="service-image">
-                        <img src="شحن.webp  " alt="Shipping Service">
+                        <img src="https://images.pexels.com/photos/4481327/pexels-photo-4481327.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Shipping Service">
                         <div class="service-overlay">
-                            <i class="fas fa-arrow-right"></i>
+                            <div class="overlay-content">
+                                <i class="fas fa-eye"></i>
+                                <span data-ar="عرض التفاصيل" data-en="View Details" data-zh="查看详情">عرض التفاصيل</span>
+                            </div>
                         </div>
                     </div>
                     <div class="service-content">
@@ -202,6 +1456,16 @@
                             <span data-ar="سريع" data-en="Fast" data-zh="快速">سريع</span>
                             <span data-ar="مؤمن" data-en="Insured" data-zh="保险">مؤمن</span>
                         </div>
+                        <div class="service-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">4.7/5</span>
+                        </div>
                     </div>
                 </div>
 
@@ -210,7 +1474,10 @@
                     <div class="service-image">
                         <img src="https://images.pexels.com/photos/590041/pexels-photo-590041.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Pricing Service">
                         <div class="service-overlay">
-                            <i class="fas fa-arrow-right"></i>
+                            <div class="overlay-content">
+                                <i class="fas fa-eye"></i>
+                                <span data-ar="عرض التفاصيل" data-en="View Details" data-zh="查看详情">عرض التفاصيل</span>
+                            </div>
                         </div>
                     </div>
                     <div class="service-content">
@@ -224,6 +1491,16 @@
                             <span data-ar="تحليلي" data-en="Analytical" data-zh="分析性">تحليلي</span>
                             <span data-ar="مربح" data-en="Profitable" data-zh="盈利">مربح</span>
                         </div>
+                        <div class="service-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">4.6/5</span>
+                        </div>
                     </div>
                 </div>
 
@@ -232,7 +1509,10 @@
                     <div class="service-image">
                         <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Marketing Service">
                         <div class="service-overlay">
-                            <i class="fas fa-arrow-right"></i>
+                            <div class="overlay-content">
+                                <i class="fas fa-eye"></i>
+                                <span data-ar="عرض التفاصيل" data-en="View Details" data-zh="查看详情">عرض التفاصيل</span>
+                            </div>
                         </div>
                     </div>
                     <div class="service-content">
@@ -246,6 +1526,16 @@
                             <span data-ar="مستهدف" data-en="Targeted" data-zh="有针对性">مستهدف</span>
                             <span data-ar="رقمي" data-en="Digital" data-zh="数字化">رقمي</span>
                         </div>
+                        <div class="service-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">4.8/5</span>
+                        </div>
                     </div>
                 </div>
 
@@ -254,7 +1544,10 @@
                     <div class="service-image">
                         <img src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Feasibility Service">
                         <div class="service-overlay">
-                            <i class="fas fa-arrow-right"></i>
+                            <div class="overlay-content">
+                                <i class="fas fa-eye"></i>
+                                <span data-ar="عرض التفاصيل" data-en="View Details" data-zh="查看详情">عرض التفاصيل</span>
+                            </div>
                         </div>
                     </div>
                     <div class="service-content">
@@ -268,6 +1561,16 @@
                             <span data-ar="دقيق" data-en="Accurate" data-zh="准确">دقيق</span>
                             <span data-ar="علمي" data-en="Scientific" data-zh="科学">علمي</span>
                         </div>
+                        <div class="service-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">4.9/5</span>
+                        </div>
                     </div>
                 </div>
 
@@ -276,7 +1579,10 @@
                     <div class="service-image">
                         <img src="https://images.pexels.com/photos/3760067/pexels-photo-3760067.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Documentation Service">
                         <div class="service-overlay">
-                            <i class="fas fa-arrow-right"></i>
+                            <div class="overlay-content">
+                                <i class="fas fa-eye"></i>
+                                <span data-ar="عرض التفاصيل" data-en="View Details" data-zh="查看详情">عرض التفاصيل</span>
+                            </div>
                         </div>
                     </div>
                     <div class="service-content">
@@ -290,6 +1596,16 @@
                             <span data-ar="قانوني" data-en="Legal" data-zh="合法">قانوني</span>
                             <span data-ar="آمن" data-en="Secure" data-zh="安全">آمن</span>
                         </div>
+                        <div class="service-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">4.7/5</span>
+                        </div>
                     </div>
                 </div>
 
@@ -298,7 +1614,10 @@
                     <div class="service-image">
                         <img src="https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Compliance Service">
                         <div class="service-overlay">
-                            <i class="fas fa-arrow-right"></i>
+                            <div class="overlay-content">
+                                <i class="fas fa-eye"></i>
+                                <span data-ar="عرض التفاصيل" data-en="View Details" data-zh="查看详情">عرض التفاصيل</span>
+                            </div>
                         </div>
                     </div>
                     <div class="service-content">
@@ -312,7 +1631,73 @@
                             <span data-ar="متوافق" data-en="Compliant" data-zh="合规">متوافق</span>
                             <span data-ar="آمن" data-en="Safe" data-zh="安全">آمن</span>
                         </div>
+                        <div class="service-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">4.8/5</span>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 data-ar="مميزاتنا الفريدة" data-en="Our Unique Features" data-zh="我们的独特优势">مميزاتنا الفريدة</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 data-ar="خدمة على مدار الساعة" data-en="24/7 Service" data-zh="24/7服务">خدمة على مدار الساعة</h3>
+                    <p data-ar="فريقنا متاح لخدمتك في أي وقت لضمان سير عملياتك بسلاسة" data-en="Our team is available to serve you at any time to ensure your operations run smoothly" data-zh="我们的团队随时为您提供服务，确保您的业务顺利进行">فريقنا متاح لخدمتك في أي وقت لضمان سير عملياتك بسلاسة</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 data-ar="ضمان الجودة" data-en="Quality Guarantee" data-zh="质量保证">ضمان الجودة</h3>
+                    <p data-ar="نضمن جودة جميع المنتجات والخدمات التي نقدمها مع إمكانية الاستبدال" data-en="We guarantee the quality of all products and services we provide with replacement option" data-zh="我们保证所有产品和服务的质量，并提供更换选项">نضمن جودة جميع المنتجات والخدمات التي نقدمها مع إمكانية الاستبدال</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 data-ar="فريق خبراء" data-en="Expert Team" data-zh="专家团队">فريق خبراء</h3>
+                    <p data-ar="فريق من الخبراء المتخصصين في التجارة الدولية والاستيراد من الصين" data-en="A team of experts specialized in international trade and import from China" data-zh="专门从事国际贸易和中国进口的专家团队">فريق من الخبراء المتخصصين في التجارة الدولية والاستيراد من الصين</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3 data-ar="أسعار تنافسية" data-en="Competitive Prices" data-zh="竞争价格">أسعار تنافسية</h3>
+                    <p data-ar="نقدم أفضل الأسعار في السوق مع الحفاظ على أعلى مستويات الجودة" data-en="We offer the best prices in the market while maintaining the highest quality standards" data-zh="我们提供市场上最优惠的价格，同时保持最高的质量标准">نقدم أفضل الأسعار في السوق مع الحفاظ على أعلى مستويات الجودة</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 data-ar="تغطية عالمية" data-en="Global Coverage" data-zh="全球覆盖">تغطية عالمية</h3>
+                    <p data-ar="نخدم العملاء في جميع أنحاء العالم مع شبكة واسعة من الشركاء" data-en="We serve customers worldwide with a wide network of partners" data-zh="我们通过广泛的合作伙伴网络为全球客户提供服务">نخدم العملاء في جميع أنحاء العالم مع شبكة واسعة من الشركاء</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 data-ar="تتبع متقدم" data-en="Advanced Tracking" data-zh="高级跟踪">تتبع متقدم</h3>
+                    <p data-ar="نوفر لك تحديثات حية لمتابعة شحنتك خطوة بخطوة، مع إشعارات فورية عند كل مرحلة" data-en="We provide live updates to track your shipment step-by-step, with instant notifications at every stage" data-zh="我们提供实时更新的逐步货运追踪服务，每个阶段都有即时通知">نوفر لك تحديثات حية لمتابعة شحنتك خطوة بخطوة، مع إشعارات فورية عند كل مرحلة</p>
                 </div>
             </div>
         </div>
@@ -325,8 +1710,8 @@
                 <h2 data-ar="هل تحتاج إلى خدمة مخصصة؟" data-en="Need a Custom Service?" data-zh="需要定制服务吗？">هل تحتاج إلى خدمة مخصصة؟</h2>
                 <p data-ar="تواصل معنا لمناقشة احتياجاتك الخاصة وسنقدم لك حلولاً مخصصة تناسب مشروعك" data-en="Contact us to discuss your specific needs and we will provide you with customized solutions for your project" data-zh="联系我们讨论您的具体需求，我们将为您的项目提供定制解决方案">تواصل معنا لمناقشة احتياجاتك الخاصة وسنقدم لك حلولاً مخصصة تناسب مشروعك</p>
                 <div class="cta-buttons">
-                    <a href="contact.html" class="btn-primary" data-ar="تواصل معنا" data-en="Contact Us" data-zh="联系我们">تواصل معنا</a>
-                    <a href="product-request.html" class="btn-secondary" data-ar="طلب منتج" data-en="Request Product" data-zh="请求产品">طلب منتج</a>
+                    <a href="/contact" class="btn-primary" data-ar="تواصل معنا" data-en="Contact Us" data-zh="联系我们">تواصل معنا</a>
+                    <a href="/product-request" class="btn-secondary" data-ar="طلب منتج" data-en="Request Product" data-zh="请求产品">طلب منتج</a>
                 </div>
             </div>
         </div>
@@ -337,7 +1722,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 data-ar="موردك" data-en="mowaridak" data-zh="莫尔达克">موردك</h3>
+                    <h3 data-ar="موردك" data-en="Mowaridak" data-zh="莫尔达克">موردك</h3>
                     <p data-ar="بوابتك الآمنة للاستيراد من الصين" data-en="Your Safe Gateway to Import from China" data-zh="您从中国进口的安全门户">بوابتك الآمنة للاستيراد من الصين</p>
                     <div class="footer-stats">
                         <div class="footer-stat">
@@ -383,7 +1768,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p data-ar="© 2025 موردك. جميع الحقوق محفوظة." data-en="© 2025 mowaridak. All rights reserved." data-zh="© 2025 莫尔达克。保留所有权利。">© 2025 موردك. جميع الحقوق محفوظة.</p>
+                <p data-ar="© 2025 موردك. جميع الحقوق محفوظة." data-en="© 2025 Mowaridak. All rights reserved." data-zh="© 2025 莫尔达克。保留所有权利。">© 2025 موردك. جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </footer>
@@ -391,6 +1776,7 @@
     <!-- Floating Chat -->
     <div class="floating-chat" id="floatingChat">
         <div class="chat-toggle" id="chatToggle">
+            <i class="fas fa-comment"></i>
         </div>
         <div class="chat-options" id="chatOptions">
             <a href="https://wa.me/966566072502" class="chat-option whatsapp" target="_blank">
@@ -401,7 +1787,8 @@
                 <i class="fas fa-envelope"></i>
                 <span data-ar="إيميل" data-en="Email" data-zh="邮件">إيميل</span>
             </a>
-            <a href="contact.html" class="chat-option consultation">
+            <a href="/contact" class="chat-option consultation">
+                <i class="fas fa-users"></i>
                 <span data-ar="استشارة مجانية" data-en="Free Consultation" data-zh="免费咨询">استشارة مجانية</span>
             </a>
         </div>
@@ -414,218 +1801,1108 @@
 
     <!-- Service Modal -->
     <div class="service-modal" id="serviceModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
         <div class="modal-content">
-            <span class="close-modal" id="closeModal">&times;</span>
+            <div class="modal-header">
+                <h3 id="modalTitle"></h3>
+                <button class="close-modal" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
             <div class="modal-body" id="modalBody">
                 <!-- Service details will be loaded here -->
             </div>
         </div>
     </div>
 
-    <style>
-        .services-hero {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
-            color: var(--white);
-            padding: 150px 20px 100px;
-            text-align: center;
-        }
-        
-        .services-hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        
-        .services-hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-        
-        .services-section {
-            padding: 80px 20px;
-            background: var(--light-gray);
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .service-card {
-            background: var(--white);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            cursor: pointer;
-            border: 1px solid transparent;
-            position: relative;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--light-blue);
-        }
-        
-        .service-image {
-            position: relative;
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .service-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .service-card:hover .service-image img {
-            transform: scale(1.1);
-        }
-        
-        .service-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(37, 99, 235, 0.9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .service-card:hover .service-overlay {
-            opacity: 1;
-        }
-        
-        .service-overlay i {
-            font-size: 3rem;
-            color: var(--white);
-            animation: bounce 2s infinite;
-        }
-        
-        .service-content {
-            padding: 2rem;
-            position: relative;
-        }
-        
-        .service-icon {
-            position: absolute;
-            top: -25px;
-            left: 2rem;
-            width: 50px;
-            height: 50px;
-            background: var(--primary-blue);
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: var(--shadow);
-        }
-        
-        .service-content h3 {
-            color: var(--primary-blue);
-            margin: 1rem 0;
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-        
-        .service-content p {
-            color: var(--gray);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-        
-        .service-features {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-        
-        .service-features span {
-            background: var(--light-blue);
-            color: var(--primary-blue);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        
-        .services-cta {
-            padding: 80px 20px;
-            background: var(--white);
-        }
-        
-        .cta-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .cta-content h2 {
-            font-size: 2.5rem;
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-        }
-        
-        .cta-content p {
-            font-size: 1.1rem;
-            color: var(--gray);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .services-hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .cta-content h2 {
-                font-size: 2rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
+    <script>
+        // Enhanced Services JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all functionality
+            initializeNavigation();
+            initializeServiceModals();
+            initializeStatsCounter();
+            initializeScrollToTop();
+            initializeFloatingChat();
+            initializeLanguageSelector();
+            initializeScrollAnimations();
+        });
 
-    <script src="script.js"></script>
+        // ENHANCED Navigation functionality for mobile
+        function initializeNavigation() {
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            
+            if (navToggle && navMenu) {
+                // Toggle menu on button click
+                navToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Toggle classes
+                    navMenu.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                    
+                    // Prevent body scroll when menu is open
+                    if (navMenu.classList.contains('active')) {
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        document.body.style.overflow = '';
+                    }
+                    
+                    console.log('Mobile menu toggled:', navMenu.classList.contains('active'));
+                });
+
+                // Close menu when clicking on a link
+                const navLinks = navMenu.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        navMenu.classList.remove('active');
+                        navToggle.classList.remove('active');
+                        document.body.style.overflow = '';
+                    });
+                });
+
+                // Close menu when clicking outside (on mobile overlay)
+                navMenu.addEventListener('click', function(e) {
+                    // If clicking on the menu container itself (not on a link), close menu
+                    if (e.target === navMenu) {
+                        navMenu.classList.remove('active');
+                        navToggle.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+
+                // Handle window resize
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 768) {
+                        navMenu.classList.remove('active');
+                        navToggle.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+
+                // Close menu on escape key
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        navToggle.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+        }
+
+        // Service Modal functionality
+        function initializeServiceModals() {
+            const serviceCards = document.querySelectorAll('.service-card');
+            const modal = document.getElementById('serviceModal');
+            const modalOverlay = document.getElementById('modalOverlay');
+            const closeModal = document.getElementById('closeModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+            
+            // Service details data with full translations
+            const serviceDetails = {
+                import: {
+                    title: {
+                        ar: 'خدمة الاستيراد',
+                        en: 'Import Service',
+                        zh: '进口服务'
+                    },
+                    description: {
+                        ar: 'نقدم خدمة استيراد متكاملة من الصين تشمل جميع المراحل من البحث عن المنتجات وحتى وصولها إلى بابك',
+                        en: 'We provide a comprehensive import service from China that includes all stages from product search to delivery to your door',
+                        zh: '我们提供从中国进口的综合服务，包括从产品搜索到送货上门的所有阶段'
+                    },
+                    features: {
+                        ar: [
+                            'البحث عن أفضل الموردين في الصين',
+                            'التفاوض على الأسعار والشروط',
+                            'إدارة عملية الطلب والإنتاج',
+                            'متابعة الشحنات لحظة بلحظة',
+                            'التخليص الجمركي والتسليم'
+                        ],
+                        en: [
+                            'Search for the best suppliers in China',
+                            'Negotiate prices and terms',
+                            'Manage order and production process',
+                            'Track shipments moment by moment',
+                            'Customs clearance and delivery'
+                        ],
+                        zh: [
+                            '寻找中国最好的供应商',
+                            '协商价格和条款',
+                            '管理订单和生产流程',
+                            '实时跟踪货运',
+                            '清关和交付'
+                        ]
+                    },
+                    benefits: {
+                        ar: [
+                            'توفير الوقت والجهد',
+                            'ضمان جودة المنتجات',
+                            'أسعار تنافسية',
+                            'خدمة شاملة من البداية للنهاية'
+                        ],
+                        en: [
+                            'Save time and effort',
+                            'Guarantee product quality',
+                            'Competitive prices',
+                            'Comprehensive service from start to finish'
+                        ],
+                        zh: [
+                            '节省时间和精力',
+                            '保证产品质量',
+                            '竞争价格',
+                            '从开始到结束的全面服务'
+                        ]
+                    },
+                    process: {
+                        ar: [
+                            'استلام طلبك ومتطلباتك',
+                            'البحث عن أفضل الموردين',
+                            'التفاوض وإتمام الصفقة',
+                            'متابعة الإنتاج والجودة',
+                            'الشحن والتسليم'
+                        ],
+                        en: [
+                            'Receive your order and requirements',
+                            'Search for the best suppliers',
+                            'Negotiate and complete the deal',
+                            'Monitor production and quality',
+                            'Shipping and delivery'
+                        ],
+                        zh: [
+                            '接收您的订单和要求',
+                            '寻找最好的供应商',
+                            '谈判并完成交易',
+                            '监控生产和质量',
+                            '运输和交付'
+                        ]
+                    },
+                    image: 'https://images.pexels.com/photos/4481327/pexels-photo-4481327.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&dpr=1'
+                },
+                inspection: {
+                    title: {
+                        ar: 'خدمة الفحص',
+                        en: 'Inspection Service',
+                        zh: '检验服务'
+                    },
+                    description: {
+                        ar: 'نضمن جودة منتجاتك من خلال فحص شامل ومفصل قبل الشحن',
+                        en: 'We ensure the quality of your products through comprehensive and detailed inspection before shipping',
+                        zh: '我们通过在发货前进行全面详细的检验来确保您产品的质量'
+                    },
+                    features: {
+                        ar: [
+                            'فحص دقيق للمنتجات 100%',
+                            'تقرير مفصل بالصور',
+                            'فحص التعبئة والتغليف',
+                            'اختبار الجودة حسب المعايير',
+                            'توثيق كامل للعملية'
+                        ],
+                        en: [
+                            '100% accurate product inspection',
+                            'Detailed report with photos',
+                            'Packaging inspection',
+                            'Quality testing according to standards',
+                            'Complete process documentation'
+                        ],
+                        zh: [
+                            '100%准确的产品检验',
+                            '带照片的详细报告',
+                            '包装检验',
+                            '按标准进行质量测试',
+                            '完整的流程文档'
+                        ]
+                    },
+                    benefits: {
+                        ar: [
+                            'ضمان الجودة المطلوبة',
+                            'تجنب المشاكل المحتملة',
+                            'توفير شهادات الجودة',
+                            'راحة البال والثقة'
+                        ],
+                        en: [
+                            'Guarantee required quality',
+                            'Avoid potential problems',
+                            'Provide quality certificates',
+                            'Peace of mind and confidence'
+                        ],
+                        zh: [
+                            '保证所需质量',
+                            '避免潜在问题',
+                            '提供质量证书',
+                            '安心和信心'
+                        ]
+                    },
+                    process: {
+                        ar: [
+                            'تحديد معايير الفحص',
+                            'تنسيق موعد الفحص',
+                            'إجراء الفحص الشامل',
+                            'إعداد التقرير المفصل',
+                            'تسليم النتائج والتوصيات'
+                        ],
+                        en: [
+                            'Define inspection criteria',
+                            'Schedule inspection appointment',
+                            'Conduct comprehensive inspection',
+                            'Prepare detailed report',
+                            'Deliver results and recommendations'
+                        ],
+                        zh: [
+                            '确定检验标准',
+                            '安排检验预约',
+                            '进行全面检验',
+                            '准备详细报告',
+                            '交付结果和建议'
+                        ]
+                    },
+                    image: 'https://images.pexels.com/photos/5668882/pexels-photo-5668882.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&dpr=1'
+                },
+                representation: {
+                    title: {
+                        ar: 'خدمة التمثيل',
+                        en: 'Representation Service',
+                        zh: '代表服务'
+                    },
+                    description: {
+                        ar: 'نمثلك أمام الموردين الصينيين لضمان أفضل الصفقات والشروط',
+                        en: 'We represent you with Chinese suppliers to ensure the best deals and terms',
+                        zh: '我们代表您与中国供应商合作，确保最好的交易和条款'
+                    },
+                    features: {
+                        ar: [
+                            'تمثيل قانوني معتمد',
+                            'التفاوض نيابة عنك',
+                            'إدارة العلاقات مع الموردين',
+                            'حل النزاعات التجارية',
+                            'ضمان الحقوق والالتزامات'
+                        ],
+                        en: [
+                            'Certified legal representation',
+                            'Negotiate on your behalf',
+                            'Manage supplier relationships',
+                            'Resolve trade disputes',
+                            'Guarantee rights and obligations'
+                        ],
+                        zh: [
+                            '认证法律代表',
+                            '代表您谈判',
+                            '管理供应商关系',
+                            '解决贸易争端',
+                            '保证权利和义务'
+                        ]
+                    },
+                    benefits: {
+                        ar: [
+                            'خبرة في السوق الصيني',
+                            'معرفة بالقوانين المحلية',
+                            'شبكة واسعة من الموردين',
+                            'حماية مصالحك التجارية'
+                        ],
+                        en: [
+                            'Expertise in Chinese market',
+                            'Knowledge of local laws',
+                            'Wide network of suppliers',
+                            'Protect your business interests'
+                        ],
+                        zh: [
+                            '中国市场专业知识',
+                            '了解当地法律',
+                            '广泛的供应商网络',
+                            '保护您的商业利益'
+                        ]
+                    },
+                    process: {
+                        ar: [
+                            'دراسة احتياجاتك',
+                            'وضع استراتيجية التفاوض',
+                            'التواصل مع الموردين',
+                            'التفاوض وإتمام الصفقات',
+                            'متابعة التنفيذ والالتزام'
+                        ],
+                        en: [
+                            'Study your needs',
+                            'Develop negotiation strategy',
+                            'Communicate with suppliers',
+                            'Negotiate and complete deals',
+                            'Monitor implementation and compliance'
+                        ],
+                        zh: [
+                            '研究您的需求',
+                            '制定谈判策略',
+                            '与供应商沟通',
+                            '谈判并完成交易',
+                            '监控实施和合规'
+                        ]
+                    },
+                    image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&dpr=1'
+                },
+                shipping: {
+                    title: {
+                        ar: 'خدمة الشحن',
+                        en: 'Shipping Service',
+                        zh: '运输服务'
+                    },
+                    description: {
+                        ar: 'نوفر حلول شحن متكاملة من الصين إلى جميع أنحاء العالم',
+                        en: 'We provide comprehensive shipping solutions from China to all over the world',
+                        zh: '我们提供从中国到世界各地的综合运输解决方案'
+                    },
+                    features: {
+                        ar: [
+                            'شحن بحري وجوي وبري',
+                            'تأمين على البضائع',
+                            'تتبع الشحنات المباشر',
+                            'التخليص الجمركي',
+                            'التسليم حتى باب المنزل'
+                        ],
+                        en: [
+                            'Sea, air and land shipping',
+                            'Cargo insurance',
+                            'Direct shipment tracking',
+                            'Customs clearance',
+                            'Door-to-door delivery'
+                        ],
+                        zh: [
+                            '海运、空运和陆运',
+                            '货物保险',
+                            '直接货运跟踪',
+                            '清关',
+                            '门到门交付'
+                        ]
+                    },
+                    benefits: {
+                        ar: [
+                            'أسعار تنافسية',
+                            'سرعة في التسليم',
+                            'أمان وحماية البضائع',
+                            'خدمة شاملة'
+                        ],
+                        en: [
+                            'Competitive prices',
+                            'Fast delivery',
+                            'Safety and cargo protection',
+                            'Comprehensive service'
+                        ],
+                        zh: [
+                            '竞争价格',
+                            '快速交付',
+                            '安全和货物保护',
+                            '全面服务'
+                        ]
+                    },
+                    process: {
+                        ar: [
+                            'حساب تكاليف الشحن',
+                            'اختيار طريقة الشحن المناسبة',
+                            'تحضير الوثائق المطلوبة',
+                            'متابعة الشحنة',
+                            'التسليم النهائي'
+                        ],
+                        en: [
+                            'Calculate shipping costs',
+                            'Choose appropriate shipping method',
+                            'Prepare required documents',
+                            'Track shipment',
+                            'Final delivery'
+                        ],
+                        zh: [
+                            '计算运输成本',
+                            '选择合适的运输方式',
+                            '准备所需文件',
+                            '跟踪货运',
+                            '最终交付'
+                        ]
+                    },
+                    image: 'https://images.pexels.com/photos/4481327/pexels-photo-4481327.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&dpr=1'
+                },
+                pricing: {
+                    title: {
+                        ar: 'خطة التسعير',
+                        en: 'Pricing Plan',
+                        zh: '定价计划'
+                    },
+                    description: {
+                        ar: 'نساعدك في وضع استراتيجية تسعير مدروسة لمنتجاتك',
+                        en: 'We help you develop a well-studied pricing strategy for your products',
+                        zh: '我们帮助您为产品制定经过深思熟虑的定价策略'
+                    },
+                    features: {
+                        ar: [
+                            'تحليل تكاليف شامل',
+                            'دراسة المنافسين',
+                            'تحديد الهوامش الربحية',
+                            'استراتيجيات التسعير',
+                            'متابعة وتحديث الأسعار'
+                        ],
+                        en: [
+                            'Comprehensive cost analysis',
+                            'Competitor study',
+                            'Determine profit margins',
+                            'Pricing strategies',
+                            'Price monitoring and updates'
+                        ],
+                        zh: [
+                            '全面成本分析',
+                            '竞争对手研究',
+                            '确定利润率',
+                            '定价策略',
+                            '价格监控和更新'
+                        ]
+                    },
+                    benefits: {
+                        ar: [
+                            'تحقيق أفضل ربحية',
+                            'تنافسية في السوق',
+                            'فهم أفضل للتكاليف',
+                            'اتخاذ قرارات مدروسة'
+                        ],
+                        en: [
+                            'Achieve best profitability',
+                            'Market competitiveness',
+                            'Better understanding of costs',
+                            'Make informed decisions'
+                        ],
+                        zh: [
+                            '实现最佳盈利能力',
+                            '市场竞争力',
+                            '更好地了解成本',
+                            '做出明智的决定'
+                        ]
+                    },
+                    process: {
+                        ar: [
+                            'جمع بيانات التكاليف',
+                            'تحليل السوق والمنافسين',
+                            'وضع استراتيجية التسعير',
+                            'اختبار وتطبيق الأسعار',
+                            'متابعة النتائج والتحسين'
+                        ],
+                        en: [
+                            'Collect cost data',
+                            'Analyze market and competitors',
+                            'Develop pricing strategy',
+                            'Test and apply prices',
+                            'Monitor results and improve'
+                        ],
+                        zh: [
+                            '收集成本数据',
+                            '分析市场和竞争对手',
+                            '制定定价策略',
+                            '测试和应用价格',
+                            '监控结果并改进'
+                        ]
+                    },
+                    image: 'https://images.pexels.com/photos/590041/pexels-photo-590041.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&dpr=1'
+                },
+                marketing: {
+                    title: {
+                        ar: 'خطة التسويق',
+                        en: 'Marketing Plan',
+                        zh: '营销计划'
+                    },
+                    description: {
+                        ar: 'نضع خطة تسويقية شاملة لضمان نجاح منتجاتك في السوق',
+                        en: 'We develop a comprehensive marketing plan to ensure your products succeed in the market',
+                        zh: '我们制定全面的营销计划，确保您的产品在市场上取得成功'
+                    },
+                    features: {
+                        ar: [
+                            'تحليل السوق المستهدف',
+                            'وضع الاستراتيجيات التسويقية',
+                            'تصميم الحملات الإعلانية',
+                            'إدارة وسائل التواصل الاجتماعي',
+                            'قياس وتحليل النتائج'
+                        ],
+                        en: [
+                            'Target market analysis',
+                            'Develop marketing strategies',
+                            'Design advertising campaigns',
+                            'Social media management',
+                            'Measure and analyze results'
+                        ],
+                        zh: [
+                            '目标市场分析',
+                            '制定营销策略',
+                            '设计广告活动',
+                            '社交媒体管理',
+                            '测量和分析结果'
+                        ]
+                    },
+                    benefits: {
+                        ar: [
+                            'وصول أفضل للعملاء',
+                            'زيادة المبيعات',
+                            'بناء هوية تجارية قوية',
+                            'تحقيق أهداف التسويق'
+                        ],
+                        en: [
+                            'Better customer reach',
+                            'Increase sales',
+                            'Build strong brand identity',
+                            'Achieve marketing goals'
+                        ],
+                        zh: [
+                            '更好地接触客户',
+                            '增加销售',
+                            '建立强大的品牌形象',
+                            '实现营销目标'
+                        ]
+                    },
+                    process: {
+                        ar: [
+                            'دراسة السوق والجمهور',
+                            'وضع الاستراتيجية التسويقية',
+                            'تنفيذ الحملات',
+                            'متابعة الأداء',
+                            'التحسين المستمر'
+                        ],
+                        en: [
+                            'Study market and audience',
+                            'Develop marketing strategy',
+                            'Execute campaigns',
+                            'Monitor performance',
+                            'Continuous improvement'
+                        ],
+                        zh: [
+                            '研究市场和受众',
+                            '制定营销策略',
+                            '执行活动',
+                            '监控表现',
+                            '持续改进'
+                        ]
+                    },
+                    image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&dpr=1'
+                },
+                feasibility: {
+                    title: {
+                        ar: 'دراسة الجدوى',
+                        en: 'Feasibility Study',
+                        zh: '可行性研究'
+                    },
+                    description: {
+                        ar: 'نقدم دراسة جدوى شاملة لمشروعك لضمان نجاحه',
+                        en: 'We provide a comprehensive feasibility study for your project to ensure its success',
+                        zh: '我们为您的项目提供全面的可行性研究，确保其成功'
+                    },
+                    features: {
+                        ar: [
+                            'دراسة السوق المالية',
+                            'تحليل المخاطر',
+                            'دراسة الجدوى الفنية',
+                            'التوقعات المالية',
+                            'خطة العمل'
+                        ],
+                        en: [
+                            'Financial market study',
+                            'Risk analysis',
+                            'Technical feasibility study',
+                            'Financial projections',
+                            'Business plan'
+                        ],
+                        zh: [
+                            '金融市场研究',
+                            '风险分析',
+                            '技术可行性研究',
+                            '财务预测',
+                            '商业计划'
+                        ]
+                    },
+                    benefits: {
+                        ar: [
+                            'اتخاذ قرارات مدروسة',
+                            'تقليل المخاطر',
+                            'فهم متطلبات المشروع',
+                            'زيادة فرص النجاح'
+                        ],
+                        en: [
+                            'Make informed decisions',
+                            'Reduce risks',
+                            'Understand project requirements',
+                            'Increase success chances'
+                        ],
+                        zh: [
+                            '做出明智的决定',
+                            '降低风险',
+                            '了解项目要求',
+                            '增加成功机会'
+                        ]
+                    },
+                    process: {
+                        ar: [
+                            'جمع المعلومات والبيانات',
+                            'تحليل السوق والمنافسة',
+                            'دراسة الجوانب الفنية',
+                            'التحليل المالي',
+                            'إعداد التقرير النهائي'
+                        ],
+                        en: [
+                            'Collect information and data',
+                            'Analyze market and competition',
+                            'Study technical aspects',
+                            'Financial analysis',
+                            'Prepare final report'
+                        ],
+                        zh: [
+                            '收集信息和数据',
+                            '分析市场和竞争',
+                            '研究技术方面',
+                            '财务分析',
+                            '准备最终报告'
+                        ]
+                    },
+                    image: 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&dpr=1'
+                },
+                documentation: {
+                    title: {
+                        ar: 'خدمة التوثيق',
+                        en: 'Documentation Service',
+                        zh: '文档服务'
+                    },
+                    description: {
+                        ar: 'نوفر جميع الوثائق اللازمة لضمان سلامة عملياتك التجارية',
+                        en: 'We provide all necessary documents to ensure the safety of your business operations',
+                        zh: '我们提供所有必要的文件，确保您的业务运营安全'
+                    },
+                    features: {
+                        ar: [
+                            'إعداد العقود التجارية',
+                            'وثائق الجودة والضمان',
+                            'شهادات المطابقة',
+                            'التوثيق القانوني',
+                            'حفظ وأرشفة الوثائق'
+                        ],
+                        en: [
+                            'Prepare commercial contracts',
+                            'Quality and warranty documents',
+                            'Compliance certificates',
+                            'Legal documentation',
+                            'Document storage and archiving'
+                        ],
+                        zh: [
+                            '准备商业合同',
+                            '质量和保修文件',
+                            '合规证书',
+                            '法律文档',
+                            '文件存储和归档'
+                        ]
+                    },
+                    benefits: {
+                        ar: [
+                            'حماية قانونية شاملة',
+                            'ضمان المطابقة',
+                            'سهولة المراجعة',
+                            'التنظيم والترتيب'
+                        ],
+                        en: [
+                            'Comprehensive legal protection',
+                            'Ensure compliance',
+                            'Easy review',
+                            'Organization and arrangement'
+                        ],
+                        zh: [
+                            '全面的法律保护',
+                            '确保合规',
+                            '易于审查',
+                            '组织和安排'
+                        ]
+                    },
+                    process: {
+                        ar: [
+                            'تحديد الوثائق المطلوبة',
+                            'إعداد وتحضير الوثائق',
+                            'المراجعة القانونية',
+                            'التوثيق الرسمي',
+                            'التسليم والأرشفة'
+                        ],
+                        en: [
+                            'Identify required documents',
+                            'Prepare and draft documents',
+                            'Legal review',
+                            'Official documentation',
+                            'Delivery and archiving'
+                        ],
+                        zh: [
+                            '确定所需文件',
+                            '准备和起草文件',
+                            '法律审查',
+                            '官方文档',
+                            '交付和归档'
+                        ]
+                    },
+                    image: 'https://images.pexels.com/photos/3760067/pexels-photo-3760067.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&dpr=1'
+                },
+                compliance: {
+                    title: {
+                        ar: 'خدمة الامتثال',
+                        en: 'Compliance Service',
+                        zh: '合规服务'
+                    },
+                    description: {
+                        ar: 'نضمن امتثال جميع عملياتك للمعايير والقوانين المحلية والدولية',
+                        en: 'We ensure all your operations comply with local and international standards and laws',
+                        zh: '我们确保您的所有业务符合当地和国际标准和法律'
+                    },
+                    features: {
+                        ar: [
+                            'مراجعة المعايير والقوانين',
+                            'تقييم الامتثال الحالي',
+                            'وضع خطة الامتثال',
+                            'التدريب والتوعية',
+                            'المتابعة والتحديث'
+                        ],
+                        en: [
+                            'Review standards and laws',
+                            'Assess current compliance',
+                            'Develop compliance plan',
+                            'Training and awareness',
+                            'Follow-up and updates'
+                        ],
+                        zh: [
+                            '审查标准和法律',
+                            '评估当前合规性',
+                            '制定合规计划',
+                            '培训和意识',
+                            '跟进和更新'
+                        ]
+                    },
+                    benefits: {
+                        ar: [
+                            'تجنب المخاطر القانونية',
+                            'ضمان الجودة',
+                            'بناء الثقة مع العملاء',
+                            'التطوير المستمر'
+                        ],
+                        en: [
+                            'Avoid legal risks',
+                            'Ensure quality',
+                            'Build customer trust',
+                            'Continuous development'
+                        ],
+                        zh: [
+                            '避免法律风险',
+                            '确保质量',
+                            '建立客户信任',
+                            '持续发展'
+                        ]
+                    },
+                    process: {
+                        ar: [
+                            'تحليل المتطلبات الحالية',
+                            'تقييم الفجوات',
+                            'وضع خطة الامتثال',
+                            'التنفيذ والمتابعة',
+                            'التحسين المستمر'
+                        ],
+                        en: [
+                            'Analyze current requirements',
+                            'Assess gaps',
+                            'Develop compliance plan',
+                            'Implementation and follow-up',
+                            'Continuous improvement'
+                        ],
+                        zh: [
+                            '分析当前要求',
+                            '评估差距',
+                            '制定合规计划',
+                            '实施和跟进',
+                            '持续改进'
+                        ]
+                    },
+                    image: 'https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&dpr=1'
+                }
+            };
+            
+            // Add click event to service cards
+            serviceCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const serviceType = this.dataset.service;
+                    const serviceData = serviceDetails[serviceType];
+                    
+                    if (serviceData) {
+                        showServiceModal(serviceData);
+                    }
+                });
+            });
+            
+            // Close modal events
+            if (closeModal) {
+                closeModal.addEventListener('click', hideServiceModal);
+            }
+            
+            if (modalOverlay) {
+                modalOverlay.addEventListener('click', hideServiceModal);
+            }
+            
+            // Close modal on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    hideServiceModal();
+                }
+            });
+            
+            function showServiceModal(serviceData) {
+                const currentLang = getCurrentLanguage();
+                modalTitle.textContent = serviceData.title[currentLang];
+                modalBody.innerHTML = createModalContent(serviceData, currentLang);
+                modal.classList.add('active');
+                document.body.classList.add('modal-open');
+            }
+            
+            function hideServiceModal() {
+                modal.classList.remove('active');
+                document.body.classList.remove('modal-open');
+            }
+            
+            function createModalContent(serviceData, lang) {
+                const labels = {
+                    ar: {
+                        description: 'وصف الخدمة',
+                        image: 'صورة الخدمة',
+                        features: 'مميزات الخدمة',
+                        benefits: 'الفوائد',
+                        process: 'مراحل العمل',
+                        contact: 'هل تحتاج لمزيد من المعلومات؟',
+                        contactDesc: 'فريقنا المختص جاهز لمساعدتك والإجابة على جميع استفساراتك',
+                        whatsapp: 'تواصل عبر الواتساب',
+                        email: 'أرسل إيميل'
+                    },
+                    en: {
+                        description: 'Service Description',
+                        image: 'Service Image',
+                        features: 'Service Features',
+                        benefits: 'Benefits',
+                        process: 'Work Stages',
+                        contact: 'Need More Information?',
+                        contactDesc: 'Our specialized team is ready to help you and answer all your inquiries',
+                        whatsapp: 'Contact via WhatsApp',
+                        email: 'Send Email'
+                    },
+                    zh: {
+                        description: '服务描述',
+                        image: '服务图片',
+                        features: '服务特色',
+                        benefits: '好处',
+                        process: '工作阶段',
+                        contact: '需要更多信息？',
+                        contactDesc: '我们的专业团队随时准备帮助您并回答您的所有询问',
+                        whatsapp: '通过WhatsApp联系',
+                        email: '发送邮件'
+                    }
+                };
+                
+                return `
+                    <div class="modal-content-wrapper">
+                        <div class="service-description">
+                            <h4>${labels[lang].description}</h4>
+                            <p>${serviceData.description[lang]}</p>
+                        </div>
+                        
+                        <div class="service-image-section">
+                            <h4>${labels[lang].image}</h4>
+                            <img src="${serviceData.image}" alt="${serviceData.title[lang]}" class="service-main-image">
+                        </div>
+                        
+                        <div class="service-details-grid">
+                            <div class="service-features-section">
+                                <h4>${labels[lang].features}</h4>
+                                <ul class="features-list">
+                                    ${serviceData.features[lang].map(feature => `<li><i class="fas fa-check"></i> ${feature}</li>`).join('')}
+                                </ul>
+                            </div>
+                            
+                            <div class="service-benefits-section">
+                                <h4>${labels[lang].benefits}</h4>
+                                <ul class="benefits-list">
+                                    ${serviceData.benefits[lang].map(benefit => `<li><i class="fas fa-star"></i> ${benefit}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="service-process">
+                            <h4>${labels[lang].process}</h4>
+                            <div class="process-steps">
+                                ${serviceData.process[lang].map((step, index) => `
+                                    <div class="process-step">
+                                        <div class="step-number">${index + 1}</div>
+                                        <div class="step-content">${step}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        
+                        <div class="service-cta">
+                            <h4>${labels[lang].contact}</h4>
+                            <p>${labels[lang].contactDesc}</p>
+                            <div class="cta-buttons">
+                                <a href="https://wa.me/966566072502" class="btn-whatsapp" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> ${labels[lang].whatsapp}
+                                </a>
+                                <a href="mailto:info@mowaridak.com" class="btn-email">
+                                    <i class="fas fa-envelope"></i> ${labels[lang].email}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Stats Counter Animation
+        function initializeStatsCounter() {
+            const statsSection = document.querySelector('.hero-stats');
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            if (!statsSection || !statNumbers.length) return;
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        observer.disconnect();
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            observer.observe(statsSection);
+            
+            function animateCounters() {
+                statNumbers.forEach(counter => {
+                    const target = parseInt(counter.dataset.target);
+                    const duration = 2000;
+                    const increment = target / (duration / 16);
+                    let current = 0;
+                    
+                    const updateCounter = () => {
+                        current += increment;
+                        if (current >= target) {
+                            counter.textContent = target;
+                        } else {
+                            counter.textContent = Math.floor(current);
+                            requestAnimationFrame(updateCounter);
+                        }
+                    };
+                    
+                    updateCounter();
+                });
+            }
+        }
+
+        // Scroll to Top functionality
+        function initializeScrollToTop() {
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            
+            if (!scrollToTopBtn) return;
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.classList.add('show');
+                } else {
+                    scrollToTopBtn.classList.remove('show');
+                }
+            });
+            
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Floating Chat functionality
+        function initializeFloatingChat() {
+            const floatingChat = document.getElementById('floatingChat');
+            const chatToggle = document.getElementById('chatToggle');
+            const chatOptions = document.getElementById('chatOptions');
+            
+            if (!floatingChat || !chatToggle || !chatOptions) return;
+            
+            chatToggle.addEventListener('click', function() {
+                floatingChat.classList.toggle('active');
+            });
+            
+            // Close chat when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!floatingChat.contains(e.target)) {
+                    floatingChat.classList.remove('active');
+                }
+            });
+        }
+
+        // Language Selector functionality
+        function initializeLanguageSelector() {
+            const langBtn = document.getElementById('lang-btn');
+            const langDropdown = document.getElementById('lang-dropdown');
+            const langOptions = document.querySelectorAll('.lang-option');
+            
+            if (!langBtn || !langDropdown || !langOptions.length) return;
+            
+            langBtn.addEventListener('click', function() {
+                langDropdown.classList.toggle('active');
+            });
+            
+            langOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const selectedLang = this.dataset.lang;
+                    changeLanguage(selectedLang);
+                    langDropdown.classList.remove('active');
+                });
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!langBtn.contains(e.target) && !langDropdown.contains(e.target)) {
+                    langDropdown.classList.remove('active');
+                }
+            });
+            
+            function changeLanguage(lang) {
+                const elements = document.querySelectorAll('[data-ar]');
+                elements.forEach(element => {
+                    const text = element.dataset[lang];
+                    if (text) {
+                        element.textContent = text;
+                    }
+                });
+                
+                // Update HTML direction
+                if (lang === 'ar') {
+                    document.documentElement.setAttribute('dir', 'rtl');
+                } else {
+                    document.documentElement.setAttribute('dir', 'ltr');
+                }
+                
+                // Store current language
+                localStorage.setItem('currentLanguage', lang);
+            }
+        }
+
+        // Get current language
+        function getCurrentLanguage() {
+            return localStorage.getItem('currentLanguage') || 'ar';
+        }
+
+        // Scroll Animations
+        function initializeScrollAnimations() {
+            const animateElements = document.querySelectorAll('.service-card, .feature-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+    </script>
 </body>
 </html>

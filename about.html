@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> منصة موردك - من نحن </title>
-    <meta name="title" content=" موردك - من نحن  ">
-    <meta name="description" content="منصة موردك هي منصة رائدة ومتكاملة متخصصة في تبسيط وتأمين عملية الاستيراد من الصين. نلتزم بتقديم حلول لوجستية وتجارية شاملة، تبدأ من الفكرة الأولية للمنتج وتصل بك إلى باب منزلك أو مستودعك .">
+    <title>منصة موردك - من نحن</title>
+    <meta name="title" content="موردك - من نحن">
+    <meta name="description" content="منصة موردك هي منصة رائدة ومتكاملة متخصصة في تبسيط وتأمين عملية الاستيراد من الصين. نلتزم بتقديم حلول لوجستية وتجارية شاملة، تبدأ من الفكرة الأولية للمنتج وتصل بك إلى باب منزلك أو مستودعك.">
     <meta name="keywords" content="ما هي منصة موردك, معلومات عن موردك, شركة موردك للاستيراد, منصة استيراد من الصين, خدمات لوجستية من الصين, فحص جودة الصين, وساطة تجارية مع الصين, موردك للتصدير, شحن من الصين, تاريخ موردك">
+    
     <!-- Open Graph / Social Media -->
     <meta property="og:title" content="ما هي منصة موردك؟ | منصة الاستيراد والتصدير الموثوقة من الصين">
     <meta property="og:description" content="منصة موردك توفر حلولاً متكاملة للاستيراد من الصين بكل سهولة وأمان منذ أكثر من 10 سنوات">
@@ -23,9 +24,8 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://www.mowaridak.com/about" />
     
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     <!-- Schema Markup for About Page -->
     <script type="application/ld+json">
@@ -72,10 +72,1236 @@
       ]
     }
     </script>
+
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-blue: #1e40af;
+            --secondary-blue: #3b82f6;
+            --light-blue: #dbeafe;
+            --dark-blue: #1e3a8a;
+            --white: #ffffff;
+            --light-gray: #f8fafc;
+            --gray: #64748b;
+            --dark-gray: #334155;
+            --black: #0f172a;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --gold: #f59e0b;
+            --gradient: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            --gradient-light: linear-gradient(135deg, var(--light-blue), var(--white));
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --border-radius: 12px;
+            --border-radius-lg: 20px;
+            --spacing: 8px;
+            --container-max-width: 1200px;
+            --header-height: 80px;
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: var(--white);
+            direction: rtl;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            text-align: center;
+        }
+
+        .loader-circle {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--light-blue);
+            border-top: 4px solid var(--primary-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        .loader-text {
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: var(--header-height);
+        }
+
+        .nav-logo h2 {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-blue);
+        }
+
+        .btn-login {
+            
+    background: var(--primary-blue);
+    color: var(--white) !important;
+    padding: 8px 20px;
+    border-radius: 25px;
+    transition: var(--transition);
+
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .language-selector {
+            position: relative;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--dark-gray);
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .lang-btn:hover {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            min-width: 120px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            z-index: 1000;
+        }
+
+        .lang-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            display: block;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: none;
+            border: none;
+            text-align: right;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lang-option:hover {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-blue);
+            margin: 3px 0;
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .page-hero {
+            position: relative;
+            background: var(--gradient);
+            color: var(--white);
+            padding: 120px 0 80px;
+            overflow: hidden;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .hero-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-shape.shape-1 {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .hero-shape.shape-2 {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            left: 80%;
+            animation-delay: 2s;
+        }
+
+        .hero-shape.shape-3 {
+            width: 100px;
+            height: 100px;
+            top: 30%;
+            left: 70%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .hero-breadcrumb i {
+            font-size: 0.7rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .hero-content > p {
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            animation: slideInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            animation: slideInUp 0.8s ease-out 0.4s both;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Badge */
+        .section-badge {
+            display: inline-block;
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* About Content */
+        .about-content {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .about-intro {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            font-size: 2.8rem;
+            color: var(--dark-gray);
+            margin-bottom: 2rem;
+            line-height: 1.3;
+            font-weight: 700;
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+
+        .intro-features {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--light-gray);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .feature-item:hover {
+            background: var(--light-blue);
+            transform: translateX(-5px);
+        }
+
+        .feature-item i {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            width: 40px;
+            text-align: center;
+        }
+
+        .feature-item span {
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+
+        .intro-image {
+            position: relative;
+        }
+
+        .image-container {
+            position: relative;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .image-container:hover .image-overlay {
+            opacity: 1;
+        }
+
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .play-btn {
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Vision & Mission */
+        .vision-mission {
+            padding: 100px 0;
+            background: var(--light-gray);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .vision-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .vision-main {
+            margin-bottom: 4rem;
+        }
+
+        .vision-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            transition: var(--transition);
+        }
+
+        .vision-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .vision-card .card-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .card-content h3 {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .card-content p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .goal-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .goal-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-blue);
+        }
+
+        .goal-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 1.5rem;
+            transition: var(--transition);
+        }
+
+        .goal-card:hover .goal-icon {
+            background: var(--primary-blue);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .goal-content h4 {
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .goal-content p {
+            color: var(--gray);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Our Values */
+        .our-values {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .value-card {
+            background: var(--light-gray);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-light);
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .value-card:hover::before {
+            left: 0;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            z-index: 2;
+            transition: var(--transition);
+        }
+
+        .value-card:hover .value-icon {
+            transform: scale(1.1) rotate(360deg);
+        }
+
+        .value-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .value-content h3 {
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .value-content p {
+            color: var(--gray);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* Why Choose Us */
+        .why-choose-us {
+            padding: 100px 0;
+            background: var(--light-gray);
+        }
+
+        .choose-content {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .choose-list {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .choose-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .choose-item:hover {
+            transform: translateX(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .choose-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .choose-text h4 {
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .choose-text p {
+            color: var(--gray);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .choose-image {
+            position: relative;
+        }
+
+        .choose-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 60px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-waves {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            overflow: hidden;
+        }
+
+        .wave {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            opacity: 0.3;
+            animation: wave 4s ease-in-out infinite;
+        }
+
+        .wave1 {
+            animation-delay: 0s;
+        }
+
+        .wave2 {
+            animation-delay: 1s;
+            opacity: 0.2;
+        }
+
+        .wave3 {
+            animation-delay: 2s;
+            opacity: 0.1;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: translateX(-50%) translateY(0px); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary-blue);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .footer-section h4 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .footer-stat {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+        }
+
+        .footer-stat strong {
+            display: block;
+            color: var(--secondary-blue);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--secondary-blue);
+            transform: translateX(-5px);
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-info i {
+            color: var(--secondary-blue);
+            width: 20px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Floating Chat */
+        .floating-chat {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .chat-toggle {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+
+        .chat-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+
+        .chat-options {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            background: var(--white);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-xl);
+            padding: 1rem;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .chat-options.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .chat-option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            text-decoration: none;
+            color: var(--dark-gray);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            margin-bottom: 0.5rem;
+        }
+
+        .chat-option:last-child {
+            margin-bottom: 0;
+        }
+
+        .chat-option:hover {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+        }
+
+        .chat-option.whatsapp:hover {
+            background: #25d366;
+            color: var(--white);
+        }
+
+        .chat-option.email:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .chat-option.consultation:hover {
+            background: var(--secondary-blue);
+            color: var(--white);
+        }
+
+        .chat-option i {
+            font-size: 1.2rem;
+            width: 20px;
+        }
+
+        /* Scroll to Top */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 1000;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background: var(--dark-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: var(--header-height);
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - var(--header-height));
+                background: var(--white);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 2rem;
+                transition: var(--transition);
+                box-shadow: var(--shadow-lg);
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .nav-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content > p {
+                font-size: 1.1rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .about-intro {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .intro-text h2 {
+                font-size: 2.2rem;
+            }
+
+            .vision-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+
+            .goals-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .choose-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .footer-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-chat {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .scroll-to-top {
+                bottom: 20px;
+                left: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .intro-text h2,
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .vision-card,
+            .goal-card,
+            .value-card,
+            .choose-item {
+                padding: 1.5rem;
+            }
+
+            .chat-options {
+                min-width: 180px;
+                bottom: 70px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -84,12 +1310,12 @@
             </div>
             
             <div class="nav-menu" id="nav-menu">
-                <a href="/index" class="nav-link" data-ar="الرئيسية" data-en="Home" data-zh="首页">الرئيسية</a>
-                <a href="/about" class="nav-link active" data-ar="من نحن" data-en="About Us" data-zh="关于我们">من نحن</a>
-                <a href="/services" class="nav-link" data-ar="خدماتنا" data-en="Our Services" data-zh="我们的服务">خدماتنا</a>
-                <a href="/workflow" class="nav-link" data-ar="سير العمل" data-en="Workflow" data-zh="工作流程">سير العمل</a>
-                <a href="/contact" class="nav-link" data-ar="اتصل بنا" data-en="Contact Us" data-zh="联系我们">اتصل بنا</a>
-                <a href="/login" class="nav-link btn-login" data-ar="تسجيل الدخول" data-en="Login" data-zh="登录">تسجيل الدخول</a>
+                <a href="index.html" class="nav-link" data-ar="الرئيسية" data-en="Home" data-zh="首页">الرئيسية</a>
+                <a href="about.html" class="nav-link active" data-ar="من نحن" data-en="About Us" data-zh="关于我们">من نحن</a>
+                <a href="services.html" class="nav-link" data-ar="خدماتنا" data-en="Our Services" data-zh="我们的服务">خدماتنا</a>
+                <a href="workflow.html" class="nav-link" data-ar="سير العمل" data-en="Workflow" data-zh="工作流程">سير العمل</a>
+                <a href="contact.html" class="nav-link" data-ar="اتصل بنا" data-en="Contact Us" data-zh="联系我们">اتصل بنا</a>
+                <a href="login.html" class="nav-link btn-login" data-ar="تسجيل الدخول" data-en="Login" data-zh="登录">تسجيل الدخول</a>
             </div>
 
             <div class="nav-controls">
@@ -116,10 +1342,36 @@
 
     <!-- Hero Section -->
     <section class="page-hero">
+        <div class="hero-background">
+            <div class="hero-shapes">
+                <div class="hero-shape shape-1"></div>
+                <div class="hero-shape shape-2"></div>
+                <div class="hero-shape shape-3"></div>
+            </div>
+        </div>
         <div class="container">
             <div class="hero-content">
+                <div class="hero-breadcrumb">
+                    <a href="index.html"><span data-ar="الرئيسية" data-en="about" data-zh="首页">الرئيسية</span></a>
+                    <i class="fas fa-chevron-left"></i>
+                    <span data-ar="من نحن" data-en="About Us" data-zh="关于我们">من نحن</span>
+                </div>
                 <h1 data-ar="من نحن" data-en="About Us" data-zh="关于我们">من نحن</h1>
                 <p data-ar="تعرف على قصتنا ورؤيتنا في تسهيل التجارة الدولية" data-en="Learn about our story and vision in facilitating international trade" data-zh="了解我们在促进国际贸易方面的故事和愿景">تعرف على قصتنا ورؤيتنا في تسهيل التجارة الدولية</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label" data-ar="سنوات خبرة" data-en="Years Experience" data-zh="年经验">سنوات خبرة</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label" data-ar="عميل راضي" data-en="Happy Clients" data-zh="满意客户">عميل راضي</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label" data-ar="شحنة نجحت" data-en="Successful Shipments" data-zh="成功货运">شحنة نجحت</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -129,11 +1381,33 @@
         <div class="container">
             <div class="about-intro">
                 <div class="intro-text">
+                    <div class="section-badge" data-ar="قصتنا" data-en="Our Story" data-zh="我们的故事">قصتنا</div>
                     <h2 data-ar="موردك هي منصة رائدة ومتكاملة" data-en="mowaridak is a leading and integrated platform" data-zh="莫尔达克是一个领先的综合平台">موردك هي منصة رائدة ومتكاملة</h2>
                     <p data-ar="متخصصة في تبسيط وتأمين عملية الاستيراد من الصين. نلتزم بتقديم حلول لوجستية وتجارية شاملة، تبدأ من الفكرة الأولية للمنتج وتصل بك إلى باب منزلك أو مستودعك." data-en="Specialized in simplifying and securing the import process from China. We are committed to providing comprehensive logistical and commercial solutions, starting from the initial product idea and reaching you at your doorstep or warehouse." data-zh="专门从事简化和保障从中国进口过程。我们致力于提供全面的物流和商业解决方案，从产品的初始想法开始，直到到达您的门口或仓库。">متخصصة في تبسيط وتأمين عملية الاستيراد من الصين. نلتزم بتقديم حلول لوجستية وتجارية شاملة، تبدأ من الفكرة الأولية للمنتج وتصل بك إلى باب منزلك أو مستودعك.</p>
+                    <div class="intro-features">
+                        <div class="feature-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span data-ar="أمان وموثوقية" data-en="Security & Reliability" data-zh="安全可靠">أمان وموثوقية</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-clock"></i>
+                            <span data-ar="خدمة على مدار الساعة" data-en="24/7 Service" data-zh="24/7服务">خدمة على مدار الساعة</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-award"></i>
+                            <span data-ar="جودة عالية" data-en="High Quality" data-zh="高质量">جودة عالية</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="intro-image">
-                    <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800" alt="About Us">
+                    <div class="image-container">
+                        <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800" alt="About Us">
+                        <div class="image-overlay">
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -143,18 +1417,21 @@
     <section class="vision-mission">
         <div class="container">
             <div class="section-header">
+                <div class="section-badge" data-ar="رؤيتنا" data-en="Our Vision" data-zh="我们的愿景">رؤيتنا</div>
                 <h2 data-ar="رؤيتنا وأهدافنا" data-en="Our Vision and Goals" data-zh="我们的愿景和目标">رؤيتنا وأهدافنا</h2>
                 <p data-ar="نحو مستقبل أفضل للتجارة الدولية" data-en="Towards a better future for international trade" data-zh="为国际贸易创造更美好的未来">نحو مستقبل أفضل للتجارة الدولية</p>
             </div>
             
             <div class="vision-content">
-                <div class="vision-card">
-                    <div class="card-icon">
-                        <i class="fas fa-eye"></i>
-                    </div>
-                    <div class="card-content">
-                        <h3 data-ar="رؤيتنا" data-en="Our Vision" data-zh="我们的愿景">رؤيتنا</h3>
-                        <p data-ar="أن نكون الشريك الموثوق والسباق في تسهيل عمليات الاستيراد والتجارة الدولية، ممكّنين الأفراد والشركات من الوصول إلى أفضل المنتجات والفرص من الصين بكل سهولة وثقة." data-en="To be the trusted and leading partner in facilitating import operations and international trade, enabling individuals and companies to access the best products and opportunities from China with ease and confidence." data-zh="成为促进进口业务和国际贸易的可信赖领先合作伙伴，使个人和公司能够轻松、自信地获得来自中国的最佳产品和机会。">أن نكون الشريك الموثوق والسباق في تسهيل عمليات الاستيراد والتجارة الدولية، ممكّنين الأفراد والشركات من الوصول إلى أفضل المنتجات والفرص من الصين بكل سهولة وثقة.</p>
+                <div class="vision-main">
+                    <div class="vision-card">
+                        <div class="card-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 data-ar="رؤيتنا" data-en="Our Vision" data-zh="我们的愿景">رؤيتنا</h3>
+                            <p data-ar="أن نكون الشريك الموثوق والسباق في تسهيل عمليات الاستيراد والتجارة الدولية، ممكّنين الأفراد والشركات من الوصول إلى أفضل المنتجات والفرص من الصين بكل سهولة وثقة." data-en="To be the trusted and leading partner in facilitating import operations and international trade, enabling individuals and companies to access the best products and opportunities from China with ease and confidence." data-zh="成为促进进口业务和国际贸易的可信赖领先合作伙伴，使个人和公司能够轻松、自信地获得来自中国的最佳产品和机会。">أن نكون الشريك الموثوق والسباق في تسهيل عمليات الاستيراد والتجارة الدولية، ممكّنين الأفراد والشركات من الوصول إلى أفضل المنتجات والفرص من الصين بكل سهولة وثقة.</p>
+                        </div>
                     </div>
                 </div>
                 
@@ -203,11 +1480,11 @@
         </div>
     </section>
 
-    
     <!-- Our Values -->
     <section class="our-values">
         <div class="container">
             <div class="section-header">
+                <div class="section-badge" data-ar="قيمنا" data-en="Our Values" data-zh="我们的价值观">قيمنا</div>
                 <h2 data-ar="قيمنا ومبادئنا" data-en="Our Values and Principles" data-zh="我们的价值观和原则">قيمنا ومبادئنا</h2>
                 <p data-ar="المبادئ التي نؤمن بها ونعمل من خلالها" data-en="The principles we believe in and work through" data-zh="我们信奉并通过其工作的原则">المبادئ التي نؤمن بها ونعمل من خلالها</p>
             </div>
@@ -217,32 +1494,99 @@
                     <div class="value-icon">
                         <i class="fas fa-handshake"></i>
                     </div>
-                    <h3 data-ar="الثقة والشفافية" data-en="Trust and Transparency" data-zh="信任和透明度">الثقة والشفافية</h3>
-                    <p data-ar="نؤمن بأهمية الثقة والشفافية في جميع تعاملاتنا التجارية" data-en="We believe in the importance of trust and transparency in all our business dealings" data-zh="我们相信信任和透明度在我们所有商业交易中的重要性">نؤمن بأهمية الثقة والشفافية في جميع تعاملاتنا التجارية</p>
+                    <div class="value-content">
+                        <h3 data-ar="الثقة والشفافية" data-en="Trust and Transparency" data-zh="信任和透明度">الثقة والشفافية</h3>
+                        <p data-ar="نؤمن بأهمية الثقة والشفافية في جميع تعاملاتنا التجارية" data-en="We believe in the importance of trust and transparency in all our business dealings" data-zh="我们相信信任和透明度在我们所有商业交易中的重要性">نؤمن بأهمية الثقة والشفافية في جميع تعاملاتنا التجارية</p>
+                    </div>
                 </div>
                 
                 <div class="value-card">
                     <div class="value-icon">
                         <i class="fas fa-award"></i>
                     </div>
-                    <h3 data-ar="الجودة والامتياز" data-en="Quality and Excellence" data-zh="质量和卓越">الجودة والامتياز</h3>
-                    <p data-ar="نسعى دائماً لتحقيق أعلى معايير الجودة في خدماتنا" data-en="We always strive to achieve the highest quality standards in our services" data-zh="我们始终努力在我们的服务中达到最高的质量标准">نسعى دائماً لتحقيق أعلى معايير الجودة في خدماتنا</p>
+                    <div class="value-content">
+                        <h3 data-ar="الجودة والامتياز" data-en="Quality and Excellence" data-zh="质量和卓越">الجودة والامتياز</h3>
+                        <p data-ar="نسعى دائماً لتحقيق أعلى معايير الجودة في خدماتنا" data-en="We always strive to achieve the highest quality standards in our services" data-zh="我们始终努力在我们的服务中达到最高的质量标准">نسعى دائماً لتحقيق أعلى معايير الجودة في خدماتنا</p>
+                    </div>
                 </div>
                 
                 <div class="value-card">
                     <div class="value-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h3 data-ar="العمل الجماعي" data-en="Teamwork" data-zh="团队合作">العمل الجماعي</h3>
-                    <p data-ar="نؤمن بقوة العمل الجماعي والتعاون لتحقيق النجاح" data-en="We believe in the power of teamwork and collaboration to achieve success" data-zh="我们相信团队合作和协作的力量来实现成功">نؤمن بقوة العمل الجماعي والتعاون لتحقيق النجاح</p>
+                    <div class="value-content">
+                        <h3 data-ar="العمل الجماعي" data-en="Teamwork" data-zh="团队合作">العمل الجماعي</h3>
+                        <p data-ar="نؤمن بقوة العمل الجماعي والتعاون لتحقيق النجاح" data-en="We believe in the power of teamwork and collaboration to achieve success" data-zh="我们相信团队合作和协作的力量来实现成功">نؤمن بقوة العمل الجماعي والتعاون لتحقيق النجاح</p>
+                    </div>
                 </div>
                 
                 <div class="value-card">
                     <div class="value-icon">
                         <i class="fas fa-lightbulb"></i>
                     </div>
-                    <h3 data-ar="الابتكار والإبداع" data-en="Innovation and Creativity" data-zh="创新和创造力">الابتكار والإبداع</h3>
-                    <p data-ar="نسعى للابتكار المستمر في حلولنا وخدماتنا" data-en="We strive for continuous innovation in our solutions and services" data-zh="我们努力在我们的解决方案和服务中持续创新">نسعى للابتكار المستمر في حلولنا وخدماتنا</p>
+                    <div class="value-content">
+                        <h3 data-ar="الابتكار والإبداع" data-en="Innovation and Creativity" data-zh="创新和创造力">الابتكار والإبداع</h3>
+                        <p data-ar="نسعى للابتكار المستمر في حلولنا وخدماتنا" data-en="We strive for continuous innovation in our solutions and services" data-zh="我们努力在我们的解决方案和服务中持续创新">نسعى للابتكار المستمر في حلولنا وخدماتنا</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose-us">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge" data-ar="لماذا نحن؟" data-en="Why Choose Us?" data-zh="为什么选择我们？">لماذا نحن؟</div>
+                <h2 data-ar="لماذا تختار موردك؟" data-en="Why Choose mowaridak?" data-zh="为什么选择莫尔达克？">لماذا تختار موردك؟</h2>
+                <p data-ar="نحن نقدم أكثر من مجرد خدمة استيراد" data-en="We offer more than just import services" data-zh="我们提供的不仅仅是进口服务">نحن نقدم أكثر من مجرد خدمة استيراد</p>
+            </div>
+            
+            <div class="choose-content">
+                <div class="choose-list">
+                    <div class="choose-item">
+                        <div class="choose-icon">
+                            <i class="fas fa-globe-asia"></i>
+                        </div>
+                        <div class="choose-text">
+                            <h4 data-ar="خبرة واسعة في السوق الصيني" data-en="Extensive Experience in Chinese Market" data-zh="在中国市场的丰富经验">خبرة واسعة في السوق الصيني</h4>
+                            <p data-ar="أكثر من 10 سنوات من الخبرة في التعامل مع الموردين الصينيين" data-en="More than 10 years of experience dealing with Chinese suppliers" data-zh="与中国供应商打交道超过10年的经验">أكثر من 10 سنوات من الخبرة في التعامل مع الموردين الصينيين</p>
+                        </div>
+                    </div>
+                    
+                    <div class="choose-item">
+                        <div class="choose-icon">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                        <div class="choose-text">
+                            <h4 data-ar="فريق محترف ومتخصص" data-en="Professional and Specialized Team" data-zh="专业和专业团队">فريق محترف ومتخصص</h4>
+                            <p data-ar="فريق من الخبراء في مجال الاستيراد والتجارة الدولية" data-en="Team of experts in import and international trade" data-zh="进口和国际贸易专家团队">فريق من الخبراء في مجال الاستيراد والتجارة الدولية</p>
+                        </div>
+                    </div>
+                    
+                    <div class="choose-item">
+                        <div class="choose-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <div class="choose-text">
+                            <h4 data-ar="شحن سريع وآمن" data-en="Fast and Safe Shipping" data-zh="快速安全的运输">شحن سريع وآمن</h4>
+                            <p data-ar="شبكة لوجستية متطورة تضمن وصول البضائع بأمان" data-en="Advanced logistics network ensuring safe delivery of goods" data-zh="先进的物流网络确保货物安全送达">شبكة لوجستية متطورة تضمن وصول البضائع بأمان</p>
+                        </div>
+                    </div>
+                    
+                    <div class="choose-item">
+                        <div class="choose-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="choose-text">
+                            <h4 data-ar="أسعار تنافسية" data-en="Competitive Prices" data-zh="竞争力价格">أسعار تنافسية</h4>
+                            <p data-ar="نحصل على أفضل الأسعار من الموردين مباشرة" data-en="We get the best prices directly from suppliers" data-zh="我们直接从供应商那里获得最优价格">نحصل على أفضل الأسعار من الموردين مباشرة</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="choose-image">
+                    <img src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Why Choose Us">
                 </div>
             </div>
         </div>
@@ -250,6 +1594,11 @@
 
     <!-- Footer -->
     <footer class="footer">
+        <div class="footer-waves">
+            <div class="wave wave1"></div>
+            <div class="wave wave2"></div>
+            <div class="wave wave3"></div>
+        </div>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
@@ -270,10 +1619,10 @@
                 <div class="footer-section">
                     <h4 data-ar="روابط سريعة" data-en="Quick Links" data-zh="快速链接">روابط سريعة</h4>
                     <ul>
-                        <li><a href="/index" data-ar="الرئيسية" data-en="Home" data-zh="首页">الرئيسية</a></li>
-                        <li><a href="/services" data-ar="خدماتنا" data-en="Our Services" data-zh="我们的服务">خدماتنا</a></li>
-                        <li><a href="/about" data-ar="من نحن" data-en="About Us" data-zh="关于我们">من نحن</a></li>
-                        <li><a href="/contact" data-ar="اتصل بنا" data-en="Contact Us" data-zh="联系我们">اتصل بنا</a></li>
+                        <li><a href="index.html" data-ar="الرئيسية" data-en="Home" data-zh="首页">الرئيسية</a></li>
+                        <li><a href="services.html" data-ar="خدماتنا" data-en="Our Services" data-zh="我们的服务">خدماتنا</a></li>
+                        <li><a href="about.html" data-ar="من نحن" data-en="About Us" data-zh="关于我们">من نحن</a></li>
+                        <li><a href="contact.html" data-ar="اتصل بنا" data-en="Contact Us" data-zh="联系我们">اتصل بنا</a></li>
                     </ul>
                 </div>
                 
@@ -306,7 +1655,10 @@
 
     <!-- Floating Chat -->
     <div class="floating-chat">
-        <div class="chat-options">
+        <div class="chat-toggle" id="chat-toggle">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="chat-options" id="chat-options">
             <a href="https://wa.me/966566072502" class="chat-option whatsapp" target="_blank">
                 <i class="fab fa-whatsapp"></i>
                 <span data-ar="واتساب" data-en="WhatsApp" data-zh="WhatsApp">واتساب</span>
@@ -316,7 +1668,7 @@
                 <span data-ar="إيميل" data-en="Email" data-zh="邮件">إيميل</span>
             </a>
             <a href="contact.html" class="chat-option consultation">
-                <i class="fas fa-comments"></i>
+                <i class="fas fa-handshake"></i>
                 <span data-ar="استشارة مجانية" data-en="Free Consultation" data-zh="免费咨询">استشارة مجانية</span>
             </a>
         </div>
@@ -327,334 +1679,191 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <style>
-        .page-hero {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
-            color: var(--white);
-            padding: 150px 20px 100px;
-            text-align: center;
-        }
-        
-        .page-hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        
-        .page-hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .about-content {
-            padding: 80px 20px;
-            background: var(--white);
-        }
-        
-        .about-intro {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .intro-text h2 {
-            font-size: 2.5rem;
-            color: var(--primary-blue);
-            margin-bottom: 2rem;
-            line-height: 1.3;
-        }
-        
-        .intro-text p {
-            font-size: 1.1rem;
-            color: var(--gray);
-            line-height: 1.8;
-        }
-        
-        .intro-image img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .vision-mission {
-            padding: 80px 20px;
-            background: var(--light-gray);
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .section-header h2 {
-            font-size: 2.5rem;
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-        }
-        
-        .section-header p {
-            font-size: 1.1rem;
-            color: var(--gray);
-        }
-        
-        .vision-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .vision-card {
-            background: var(--white);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow-lg);
-            margin-bottom: 3rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 2rem;
-        }
-        
-        .vision-card .card-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--primary-blue);
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            flex-shrink: 0;
-        }
-        
-        .vision-card h3 {
-            color: var(--primary-blue);
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-        
-        .vision-card p {
-            color: var(--gray);
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-        
-        .goals-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        
-        .goal-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            text-align: center;
-            transition: var(--transition);
-        }
-        
-        .goal-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .goal-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--light-blue);
-            color: var(--primary-blue);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin: 0 auto 1rem;
-        }
-        
-        .goal-card h4 {
-            color: var(--dark-gray);
-            margin-bottom: 1rem;
-        }
-        
-        .goal-card p {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-        
-        .our-team {
-            padding: 80px 20px;
-            background: var(--white);
-        }
-        
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .team-member {
-            background: var(--light-gray);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .team-member:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .member-image {
-            height: 250px;
-            overflow: hidden;
-        }
-        
-        .member-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .team-member:hover .member-image img {
-            transform: scale(1.05);
-        }
-        
-        .member-info {
-            padding: 2rem;
-            text-align: center;
-            background: var(--white);
-        }
-        
-        .member-info h3 {
-            color: var(--dark-gray);
-            margin-bottom: 0.5rem;
-        }
-        
-        .member-info p {
-            color: var(--primary-blue);
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-        
-        .member-social {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-        
-        .member-social a {
-            width: 40px;
-            height: 40px;
-            background: var(--light-blue);
-            color: var(--primary-blue);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-        }
-        
-        .member-social a:hover {
-            background: var(--primary-blue);
-            color: var(--white);
-        }
-        
-        .our-values {
-            padding: 80px 20px;
-            background: var(--light-gray);
-        }
-        
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .value-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            text-align: center;
-            transition: var(--transition);
-        }
-        
-        .value-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .value-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--primary-blue);
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin: 0 auto 1.5rem;
-        }
-        
-        .value-card h3 {
-            color: var(--dark-gray);
-            margin-bottom: 1rem;
-        }
-        
-        .value-card p {
-            color: var(--gray);
-            line-height: 1.6;
-        }
-        
-        @media (max-width: 768px) {
-            .page-hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .about-intro {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .intro-text h2 {
-                font-size: 2rem;
-            }
-            
-            .vision-card {
-                flex-direction: column;
-                text-align: center;
-                padding: 2rem;
-            }
-            
-            .section-header h2 {
-                font-size: 2rem;
-            }
-            
-            .goals-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 
-    <script src="script.js"></script>
+    <script>
+        // Loading Screen
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+            }, 1000);
+        });
+
+        // Mobile Navigation Toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        navToggle.addEventListener('click', function() {
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Language Selector
+        const langBtn = document.getElementById('lang-btn');
+        const langDropdown = document.getElementById('lang-dropdown');
+        const langOptions = document.querySelectorAll('.lang-option');
+
+        langBtn.addEventListener('click', function() {
+            langDropdown.classList.toggle('active');
+        });
+
+        // Close language dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!langBtn.contains(e.target) && !langDropdown.contains(e.target)) {
+                langDropdown.classList.remove('active');
+            }
+        });
+
+        langOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const selectedLang = this.getAttribute('data-lang');
+                switchLanguage(selectedLang);
+                langDropdown.classList.remove('active');
+            });
+        });
+
+        // Language switching function
+        function switchLanguage(lang) {
+            const elements = document.querySelectorAll('[data-ar], [data-en], [data-zh]');
+            
+            elements.forEach(element => {
+                if (element.getAttribute('data-' + lang)) {
+                    element.textContent = element.getAttribute('data-' + lang);
+                }
+            });
+
+            // Update direction for RTL/LTR
+            if (lang === 'ar') {
+                document.documentElement.setAttribute('dir', 'rtl');
+                document.documentElement.setAttribute('lang', 'ar');
+            } else {
+                document.documentElement.setAttribute('dir', 'ltr');
+                document.documentElement.setAttribute('lang', lang);
+            }
+
+            // Store language preference
+            localStorage.setItem('preferred-language', lang);
+        }
+
+        // Load saved language preference
+        const savedLang = localStorage.getItem('preferred-language') || 'ar';
+        switchLanguage(savedLang);
+
+        // Floating Chat Toggle
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatOptions = document.getElementById('chat-options');
+
+        chatToggle.addEventListener('click', function() {
+            chatOptions.classList.toggle('active');
+        });
+
+        // Close chat options when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!chatToggle.contains(e.target) && !chatOptions.contains(e.target)) {
+                chatOptions.classList.remove('active');
+            }
+        });
+
+        // Scroll to Top Button
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.goal-card, .value-card, .choose-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Counter animation for stats
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            function updateCounter() {
+                start += increment;
+                if (start < target) {
+                    element.textContent = Math.floor(start) + '+';
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target + '+';
+                }
+            }
+            
+            updateCounter();
+        }
+
+        // Animate counters when they come into view
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.textContent);
+                    animateCounter(entry.target, target);
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        statNumbers.forEach(stat => {
+            statsObserver.observe(stat);
+        });
+    </script>
 </body>
 </html>
